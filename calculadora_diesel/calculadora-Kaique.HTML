@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de riscos de explosão em armazéns de diesel</title>
+</head>
+<body>
+    <header>
+        <h1>Riscos de explosão em armazéns de diesel</h1>
+    </header>
+    <main>
+        <p>
+            Insira a temperatura do ambiente (em °C): <input type="number" id="input_temperatura_ambiente">
+        </p>
+
+        <button onclick="calcularExibirRiscos()">Calcular riscos</button>
+
+        <section id="section_resultado"></section>
+    </main>
+</body>
+</html>
+<script>
+    function calcularExibirRiscos() {
+        const temperaturaAmbiente = Number(input_temperatura_ambiente.value)
+        const temperaturaTanque = temperaturaAmbiente + 20
+        
+        section_resultado.innerHTML = `
+            <p>Considerando que a temperatura ideal para armazenar diesel é de 20°C, a temperatura no tanque subiu para ${temperaturaTanque}°C.</p>
+        `
+
+        if (temperaturaTanque >= 38) {
+            section_resultado.innerHTML += `
+                <p>Serão liberados vapores inflamáveis. Eles podem causar uma explosão se expostos a uma fonte de ignição.</p>
+            `
+        } else {
+            section_resultado.innerHTML += `
+                <p>Não foram liberados vapores inflamáveis. No entanto, sem monitoramento esses vapores podem surgir sem serem notados.</p>
+            `
+        }
+
+        section_resultado.innerHTML += `
+            <p>Nossos sistemas garantem o monitoramento da temperatura e geram alertas quando ela passa do ideal. Assim é possível minimizar o risco de qualquer acidente.</p>
+        `
+    }
+</script>

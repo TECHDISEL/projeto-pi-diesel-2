@@ -1,0 +1,52 @@
+#include "Ultrasonic.h" // Inclui a biblioteca para o sensor HC-SR04
+
+// Definições dos pinos de trigger e echo
+int trigger = 12;
+int echo = 13;
+
+// Cria uma instância do objeto HC_SR04 com os pinos definidos
+HC_SR04 sensor(trigger, echo);
+
+// Pino conectado ao sensor LM35
+const int PINO_SENSOR_TEMPERATURA = A0;
+
+//Variável para armazenar a temperatura em Celsius
+float temperaturaCelsius;
+
+
+//Inicializa a comunicação serial a 9600 bps (bits por segundo)
+void setup() {
+    Serial.begin(9600);
+}
+
+
+//// Função principal de execução contínua
+void loop(){
+
+long distancia = sensor.distance(); // sensor.distance() chama a função
+da biblioteca Ultrasonic para medir a distância e armazena o valor em distancia.
+
+//// Lê o valor analógico do sensor, converte para temperatura em Celsius
+int valorLeitura = analogRead(PINO_SENSOR_TEMPERATURA);
+temperaturaCelsius = (valorLeitura * 5.0 / 1023.0) * 100.0;
+
+
+// Exibe a distância no monitor serial
+	Serial.print("Distância:");
+	Serial.print(distancia);
+	Serial.println("\t");
+	
+
+// Exibe a temperatura no monitor serial
+	Serial.print("Temperatura:");
+	Serial.print(temperaturaCelsius);
+	Serial.println();
+
+
+
+// Aguarda 2 segundos antes da próxima leitura
+delay(2000);
+
+}
+
+
