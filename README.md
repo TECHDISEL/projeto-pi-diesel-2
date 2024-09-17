@@ -1,4 +1,4 @@
-# Grupo-2 Sprint2
+# Grupo-10 Sprint2
 # Projeto de PI - Monitoramento de tanques a diesel
 <img src="C:\Users\go449\OneDrive\Documentos\sptech\projeto-sprint2\projeto-pi-disel-2\calculadora_diesel\logo_TechDiesel.png">
 
