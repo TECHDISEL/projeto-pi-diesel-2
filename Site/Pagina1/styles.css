@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+/* definir algumas variaveis padrões de customização para serem chamadas mais tarde */
+:root {
+    --main-color: #185344;
+    --black: #13131a;
+    --bg: #ffffff;
+    --border: 0.1rem solid rgba(10, 42, 30, 0.919);
+    font-size: 10px;
+}
+
+/* Resetar os parâmetros padrões de navegadores */ 
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: 0.2s linear;
+    font-family: "Raleway", sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+}
+
+section {
+    padding: 3rem 2rem;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.menu-superior {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+.menu-superior section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.barra-navegação a {
+    margin: 0 1rem;
+    font-size: 1.8rem;
+    color: #71a147;
+}
+
+/* atribuir um efeito de seleção quando clicar nos incones da barra de navegação */ 
+.barra-navegação a:hover {
+    color: var(--main-color);
+    border-bottom: var(--border);
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+}
