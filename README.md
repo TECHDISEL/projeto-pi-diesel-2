@@ -1,21 +1,21 @@
 # Grupo-10 Sprint2
 # Projeto de PI - Monitoramento de tanques a diesel
-<img src="C:\Users\go449\OneDrive\Documentos\sptech\projeto-sprint2\projeto-pi-disel-2\calculadora_diesel\logo_TechDiesel.png">
+<img src="https://www.importaciones-mca.com/wp-content/uploads/2019/04/FARM.jpg">
 
 ## Descrição do Projeto
 
-texto
+Software de monitoramento do estoque de diesel em tanques estacionários de produtres agrícolas.
 
 ## Contexto
 
-texto
+Nas grandes propriedades agrícolas, a demanda por eficiência e controle de custos é fundamental para a operação diária. Muitas dessas fazendas mantêm postos de combustíveis internos para abastecimento de maquinários pesados, como tratores, colheitadeiras e caminhões, necessários para o trabalho no campo. O combustível, principalmente o óleo diesel, é um dos principais insumos dessas operações, sendo essencial monitorar o estoque de maneira precisa para garantir a continuidade das atividades e otimizar os gastos.
 
 ## Objetivo
 
-texto
+Realizar controle de estoque, para que o produtor possa ter o maior controle do fluxo de diesel e pelanejamento de custos.
 
 ## Trello
-- **Plataforma de administração:** utilizamos a plataforma Trello para realizar a delegação de tarefas e administração de do que será feito, o que está sendo feito e quais já estão finzalizadas no link: 
+- **Plataforma de administração:** utilizamos a plataforma Trello para realizar a delegação de tarefas e administração de do que será feito, o que está sendo feito e quais já estão finzalizadas no link: https://trello.com/b/5gyAcYLs/tech-diesel
 
 ## Contribuição
 
