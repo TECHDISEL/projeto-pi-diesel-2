@@ -1,6 +1,6 @@
 # Grupo-10 Sprint2
 # Projeto de PI - Monitoramento de tanques a diesel
-<img src="https://www.importaciones-mca.com/wp-content/uploads/2019/04/FARM.jpg">
+<img src="https://blog.broto.com.br/wp-content/uploads/2022/01/maquinas-usadas-na-agricultura.jpeg">
 
 ## Descrição do Projeto
 
