@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador financeiro</title>
+</head>
+<body>
+    <h1>Simulator TECH DIESEL</h1>
+
+    <h3>Insira a altura do tanque (diâmetro da circunferência):</h3>
+    <input type="number" id="alturaTotalDoTanque">
+
+    <h3>Insira o comprimento do tanque:</h3>
+    <input type="number" id="comprimentoDoTanque">
+
+    <h3>Insira a altura atual do Diesel:</h3>
+    <input type="number" id="alturaAtualDoDiesel">
+
+    <h3>Informe quantos dias demoram para realizar o reabastecimento do Diesel:</h3>
+    <input type="number" id="diasReabastecimento">
+
+    <h3>Informe quanto de Diesel é utilizado por dia:</h3>
+    <input type="number" id="dieselUtilizadoPorDia">
+    <br>
+    <br>
+    <button onclick="calcular_diesel_tanque_deitado()">Calcular volume atual do Diesel (tanque deitado)</button>
+    <button onclick="calcular_diesel_tanque_em_pe()">Calcular volume atual do Diesel (tanque em pé(?))</button>
+    <br>
+    <br>
+    <div id="resultado_volume_diesel"></div>
+    <script src="script.js"></script>
+</body>
+</html>
