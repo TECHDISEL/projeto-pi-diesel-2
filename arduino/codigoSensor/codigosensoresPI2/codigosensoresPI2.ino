@@ -5,8 +5,7 @@ int echo = 13;    // Pino do echo do sensor ultrassônico
 
 Ultrasonic sensor(trigger, echo); // Inicializa o sensor ultrassônico
 
-const int distanciaMin = 5;  // Distância mínima aceitável
-const int distanciaMax = 100; // Distância máxima aceitável
+
 
 // ----------------------------------------------------------------------------------------------------------------------
 
@@ -17,21 +16,18 @@ void setup() {
 // ----------------------------------------------------------------------------------------------------------------------
 
 void loop() {
-    long distancia = sensor.distance(); // Obtém a distância medida pelo sensor
+    long distancia = sensor.distanceRead(); // Obtém a distância medida pelo sensor
 
-    // Exibe a distância medida
-    Serial.print("Distância: ");
-    Serial.print(distancia);
-    Serial.println(" cm");
+    if(isnan(distancia)){
+      Serial.println("Umidade: Erro ao ler os dados do sensor");
+    } else {
+      Serial.print(30);
+      Serial.print(" ");
+      Serial.print(5);
+      Serial.print(" ");
+      Serial.println(distancia);
+    }
 
-    // Exibe os valores mínimos e máximos
-    Serial.print("Distância Mínima: ");
-    Serial.print(distanciaMin);
-    Serial.println(" cm");
-
-    Serial.print("Distância Máxima: ");
-    Serial.print(distanciaMax);
-    Serial.println(" cm");
 
     delay(2000); // Aguarda 2 segundos antes da próxima leitura
 }
