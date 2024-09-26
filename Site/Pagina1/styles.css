@@ -58,3 +58,30 @@ section {
     padding-bottom: 0.5rem;
     font-size: 2rem;
 }
+
+/* Sessão de passagem de informações do site, contendo 3 div's com passagem entre elas */
+.item {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50% -50%);
+}
+
+.item.active {
+    display: block;
+}
+
+#proximo, #anterior {
+    position: absolute;
+    top: 25%;
+}
+
+#anterior {
+    margin-left: 1%;
+}
+
+#proximo {
+    margin-left: 96%;
+} 
+
