@@ -44,12 +44,6 @@ body {
     animation: descer 3s forwards ease-in-out;
 }
 
-.tanque .mountain {
-    background: rgb(212, 251, 186);
-    border-top-right-radius: 75%;
-    border-top-left-radius: 75%;
-}
-
 .marcador {
     width: 150px; 
     height: 2px;
