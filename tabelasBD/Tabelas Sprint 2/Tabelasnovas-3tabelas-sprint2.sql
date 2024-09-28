@@ -7,24 +7,23 @@ nome varchar(40) not null,
 telefone varchar(11),
 endereco varchar(30),
 responsavel varchar(15),
-email varchar(30) not null,
-senha varchar(45) not null
-);
-
-create table sensor(
-idsensor int primary key auto_increment,
-nivel varchar(10),
-dataehora datetime not null
+email varchar(30),
+senha varchar(30)
 );
 
 create table tanque(
 idTanque int primary key auto_increment,
 capacidadeLitros decimal(10,2),
-fkSensor int,
 fkCliente int,
-constraint fktanquesensor foreign key (fkSensor)
-	references sensor(idSensor),
-constraint fkclientetanque foreign key (fkCliente)
+constraint fktanquecliente foreign key (fkCliente)
 	references cliente(idCliente)
 );
 
+create table sensor(
+idsensor int primary key auto_increment,
+nivel varchar(10),
+dataehora datetime not null,
+fkTanque int,
+constraint fksensortanque foreign key (fkTanque)
+	references tanque(idTanque)
+);
