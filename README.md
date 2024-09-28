@@ -17,6 +17,10 @@ Realizar controle de estoque, para que o produtor possa ter o maior controle do 
 ## Trello
 - **Plataforma de administração:** utilizamos a plataforma Trello para realizar a delegação de tarefas e administração de do que será feito, o que está sendo feito e quais já estão finzalizadas no link: https://trello.com/b/5gyAcYLs/tech-diesel
 
+## Página Institucional
+- Uma página institucional fortalece a presença online e facilita a comunicação, sendo um canal importante para atrair e engajar o público. Além disso, nossa página faz uma ponte para nosso simulador financeiro.
+![image](https://github.com/user-attachments/assets/8ee1b6e4-2513-4ae3-ae0a-8d5fbedacacb)
+
 ## Contribuição
 
 Para contribuir com este projeto:
