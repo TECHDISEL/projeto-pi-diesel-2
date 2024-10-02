@@ -17,6 +17,7 @@ void setup() {
 
 void loop() {
     long distancia = sensor.distanceRead(); // Obtém a distância medida pelo sensor
+    // float volume = 3.14 * (50^2) * (1000 - distancia) // supondo medidas do tanque. float volume = 3.14 * (r^2) * (altura tanque - distancia)
 
     if(isnan(distancia)){
       Serial.println("Umidade: Erro ao ler os dados do sensor");

@@ -107,5 +107,4 @@ body, html {
 .scene .texto-principal button:hover {
     background-color: #5badff;
     transform: scale(1.25);
-
 }

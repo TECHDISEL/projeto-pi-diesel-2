@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animação Tanque</title>
-    <link rel="stylesheet" href="pagina 2.css">
+    <link rel="stylesheet" href="./styles/pagina 2.css">
 </head>
-<body>
-    
-    <div class="texto-simulador">
-        <h1 id="primeiro">Temos um volume de: </h1>
-        <h2 id="segundo"><b>Volume tanque </b></h2>
-        <p id="segundo">Como a demora em abastecer seus armazenamentos impacta em seus lucros?</p>
-        <p id="terceiro"> Cada dia demorado para abastecer, pode encarecer o preço do diesel - TRAZER PERDAS ATRELADAS A VARIAÇÃO DO DIESEL </p>
-        <p id="terceiro"> Como o tempo ocioso de suas máquinas paradas afetam seus lucros? </p>
-        <p id="quarto"> Horas ociosas podem trazer mais prejuízos em seus processos - TRAZER PERDAS POR TEMPO PARADO</p>
 
-        <button onclick="window.location.href='pagina 3.html'">
-            Continuar
-        </button>
+<body>
+
+    <div id="container">
+        <div class="texto-simulador">
+            <h1 id="primeiro"> Em uma fazenda com armazenamento de 15.000 L de diesel </h1>
+            <h3 id="segundo"><b> Nos preços atuais de diesel, significa que seu armazenamento corresponde a um
+                    investimento de R$90.150,00 </b></h3>
+            <h3 id="segundo"><b> Uma variação de somente 0,6% no volume de seu diesel (conforme estipulado pela ANP)
+                    representa R$ 5.409,00 perdidos</b></h3>
+            <p id="segundo"> Apenas <b style=" color:red;">uma</b> colheitadeira que consome 35 L/h de diesel representa
+                por dia <b>5,6 %</b> de seu investimento com diesel. </p>
+            <p id="terceiro"> Já pensou como o tempo ocioso de suas máquinas paradas devido ao reabastecimento de seus
+                tanques afetam os lucros de suas safras? Em como a perda da qualidade do diesel parado afeta suas colheitas? </p>
+            <p id="terceiro"> Com um monitoramento ideal de como se comporta seus estoques, você garante maior assertividade no gerenciamento de seu diesel e principalmente de seu dinheiro </p>
+
+            <button onclick="window.location.href='pagina 3.html'">
+                Continuar
+            </button>
+        </div>
+
+        <div class="tanque">
+            <div class="liquido"></div>
+            <div class="marcador"></div>
+            <img src="./images/gas tank.png" alt="">
+            <img id="farmer" src="./images/farmer.png" alt="">
+        </div>
     </div>
-    
-    <div class="tanque">
-        <div class="liquido"></div>
-        <div class="marcador"></div>
-        <img id="farmer" src="./images/farmer.png" alt="">
-    </div>
-    
 
 </body>
+
 </html>
