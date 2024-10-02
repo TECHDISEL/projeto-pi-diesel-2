@@ -1,0 +1,48 @@
+body {
+    background-image: url("https://files.oaiusercontent.com/file-jGTdT5XYN8dLi2Qu7C0thLCj?se=2024-10-02T02%3A54%3A13Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Da1df9828-bbc1-4026-82c1-38744bc9afdf.webp&sig=8%2B%2BkvadAZQSTBNdacDX3HHw83onSbCjwekTx2BUuMRk%3D");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.login-container {
+    background-color: #ffffff; /* Fundo branco para o container */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Largura do container */
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    color: #2E7D32; /* Cor do texto do título */
+}
+
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #2E7D32; /* Cor do botão */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1b5e20; /* Cor do botão ao passar o mouse */
+}
