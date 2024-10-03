@@ -2,6 +2,24 @@ body {
     margin: 0 40px 0 40px;
 }
 
+.visible {
+    display: block;
+}
+
+div {
+    display: none;
+}
+
+.entradas-usuario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #5badff;
+    height: 100vh;
+    gap: 20px;
+}
+
 #container {
     display: flex;
     justify-content: center;
@@ -29,6 +47,11 @@ body {
     width: 75%;
     background-color: beige;
     height: 500px;
+}
+
+.texto-simulador .buttons_result {
+    display: flex;
+    gap: 15px;
 }
 
 .tanque {
@@ -65,25 +88,25 @@ body {
 }
 
 
-.texto-simulador #primeiro {
+.texto-simulador .primeiro {
     opacity: 0;
     animation: aparecerTexto 2s forwards;
     animation-delay: 2s;
 }
 
-.texto-simulador #segundo {
+.texto-simulador .segundo {
     opacity: 0;
     animation: aparecerTexto 4s forwards;
     animation-delay: 4s;
 }
 
-.texto-simulador #terceiro {
+.texto-simulador .terceiro {
     opacity: 0;
     animation: aparecerTexto 6s forwards;
     animation-delay: 6s;
 }
 
-.texto-simulador #quarto, button {
+.texto-simulador .quarto, .btn_resultado {
     opacity: 0;
     animation: aparecerTexto 8s forwards;
     animation-delay: 8s;
