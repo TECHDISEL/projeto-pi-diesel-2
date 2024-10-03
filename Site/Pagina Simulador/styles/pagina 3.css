@@ -29,7 +29,14 @@ body {
 }
 
 .frente {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
     background-size: cover;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
 }   
 
 .frente, .tras {
@@ -42,8 +49,14 @@ body {
 }
 
 .tras {
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    align-items: center;
     background-color: #bfd127;
     transform: rotateY(180deg);
+    color: rgba(10, 42, 30, 0.919);
 }
 
 .cards:hover .flip {
