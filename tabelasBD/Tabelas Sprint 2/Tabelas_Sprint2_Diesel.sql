@@ -1,4 +1,5 @@
-use sprint2;
+CREATE DATABASE tech_diesel;
+use tech_diesel;
 
 CREATE TABLE cliente(
 idCliente int primary key auto_increment,
@@ -21,8 +22,8 @@ constraint fktanquecliente foreign key (fkCliente)
 
 create table sensor(
 idsensor int primary key auto_increment,
-nivel decimal(10,2),
-dataehora datetime not null,
+nivel INT,
+dataehora datetime,
 fkTanque int,
 constraint fksensortanque foreign key (fkTanque)
 	references tanque(idTanque)
@@ -60,4 +61,7 @@ JOIN
 	tanque ON cliente.idCliente = tanque.fkCliente
 JOIN
 	sensor ON tanque.idTanque = sensor.fkTanque;
+
+SELECT * FROM sensor;
+
 
