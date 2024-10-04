@@ -22,10 +22,6 @@ void loop() {
     if(isnan(distancia)){
       Serial.println("Umidade: Erro ao ler os dados do sensor");
     } else {
-      Serial.print(0.30);
-      Serial.print(" ");
-      Serial.print(0.05);
-      Serial.print(" ");
       Serial.println(distancia);
     }
 
