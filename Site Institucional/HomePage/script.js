@@ -2,4 +2,3 @@
 
 let lista = document.querySelector('.item')
 let proximo = document.getElementById('proximo')
-let

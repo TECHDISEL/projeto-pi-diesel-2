@@ -1,0 +1,75 @@
+body {
+    background-image: url("https://files.oaiusercontent.com/file-CWCTtYuocB0h5b4UoJ4LMeEo?se=2024-10-03T00%3A58%3A26Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D4462e5f0-018c-4624-8744-bcfd7dc0ee92.webp&sig=3QUbHccbBJr%2Bj%2BWdQ6Jl9jd8XVAyes5Tdgfyt3rgWaI%3D");
+    /* Imagem de fazenda  */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.cadastro-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    color: #2E7D32;
+    margin-bottom: 20px;
+}
+
+.cadastro-secao {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #2E7D32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1b5e20;
+}
+
+.tipo-cadastro {
+    margin-bottom: 20px;
+}
+
+.tipo-cadastro input {
+    margin-right: 10px;
+}
+
+.oculto {
+    display: none;
+}
