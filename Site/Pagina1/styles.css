@@ -4,9 +4,15 @@ body {
 }
 
 .header {
-    background-color: whitesmoke;
-    border-bottom: 3px solid #bfd127;
-    padding: 10px 0;
+    background-color: whitesmoke; 
+    position: fixed; 
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; 
+    z-index: 10; 
+    padding: 3px 0;
+    border-radius: 60px;
 }
 
 .header .container {
@@ -47,11 +53,12 @@ body {
     transition: color 0.3s ease;
 }
 
-/*.navbar a:hover {
-    color: #bfd127;
-}*/
+.navbar a:hover {
+    color: #ffd900;
+}
 
 .banner {
+    position: relative;
     height: 800px;
     width: 100%;
     background-image: url("Images/trator_gasolina.jpg");
@@ -64,7 +71,7 @@ body {
 
 .banner .container {
     text-align: center;
-    background-color: #5454545b;
+    background-color: #0000009f;
     width: 100%;
     height: 100%;
     display: flex;
@@ -83,6 +90,177 @@ body {
     font-weight: bold;
     color: #ffea30;
 }
+
+.diagrama_negocios{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-left: 120px;
+    padding-right: 120px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.diagrama_negocios .maximizeEficiencia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+}
+
+.diagrama_negocios .maximizeEficiencia h4{
+    font-size: 34px;
+    color: #383838;
+}
+
+.diagrama_negocios .maximizeEficiencia p{
+    font-size: 24px;
+}
+
+.diagrama_negocios img {
+    width: 55%;
+    height: auto;
+}
+
+.entendaComoFunciona{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #25767a;
+    color: whitesmoke;
+    font-size: 32px;
+}
+
+.entendaComoFunciona .sensor{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 120px;
+    padding-top: 20px;
+    font-size: 24px;
+}
+
+.entendaComoFunciona .sensor img{
+    width: 250px;
+    height: auto;
+}
+
+.entendaComoFunciona .sensor p{
+    margin-left: 120px;
+    width: 500px;
+}
+
+.entendaComoFunciona .sensor .imagem_sensor{
+    display: flex;
+    flex-direction: column;
+}
+
+.entendaComoFunciona .diagrama_solucao{
+    width: 100%;
+    height: 500px;
+    background-color: white;
+    margin-bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0px;
+}
+
+.entendaComoFunciona .diagrama_solucao img{
+    width: 65%;
+    height: auto;
+    padding: 200px;
+    margin-bottom: 0px;
+}
+
+.chamada_simulador {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 120px;
+    background-color: #f5f5f5;
+}
+
+.simulador_info {
+    max-width: 50%;
+}
+
+.chamada_simulador h4 {
+    font-size: 36px;
+    color: #25767a;
+    margin-bottom: 20px;
+}
+
+.chamada_simulador p {
+    font-size: 18px;
+    color: #383838;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.chamada_simulador strong {
+    color: #25767a;
+}
+
+.btn-simulador {
+    padding: 15px 30px;
+    background-color: #b1c40a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-simulador:hover {
+    background-color: #8b9d00;
+}
+
+.simulador_imagem img {
+    width: 600px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.beneficios {
+    background-color: #25767a;
+    color: white;
+    padding: 50px 120px;
+    text-align: center;
+}
+
+.beneficios h3 {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.beneficios ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.beneficios ul li {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+    padding: 20px;
+    margin: 10px;
+}
+
+.beneficios ul li i {
+    font-size: 24px;
+    margin-right: 15px;
+    color: #bfd127;
+}
+
 
 .social {
     height: 400px;
@@ -166,12 +344,12 @@ body {
 .contacts a {  
     color: white;  
     text-decoration: none;  
-    /*transition: color 0.3s ease;*/  
+    transition: color 0.3s ease;  
 }  
 
-/*.contacts a:hover {  
+.contacts a:hover {  
     color: #a8dadc;  
-} */ 
+}  
 
 .social-media {  
     display: flex;  
@@ -180,13 +358,13 @@ body {
 
 .social-media a i {  
     font-size: 32px;
-    /*transition: transform 0.3s ease;*/  
+    transition: transform 0.3s ease;  
     color: white;  
 }
 
-/*.social-media a i:hover {  
+.social-media a i:hover {  
     transform: scale(1.2);  
-}*/  
+}  
 
 .footer-bottom {  
     display: flex;  
