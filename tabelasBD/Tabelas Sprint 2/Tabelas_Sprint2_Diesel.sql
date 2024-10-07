@@ -1,5 +1,4 @@
-CREATE DATABASE tech_diesel;
-use tech_diesel;
+use sprint2;
 
 CREATE TABLE cliente(
 idCliente int primary key auto_increment,
@@ -22,12 +21,16 @@ constraint fktanquecliente foreign key (fkCliente)
 
 create table sensor(
 idsensor int primary key auto_increment,
-nivel INT,
-dataehora datetime default current_timestamp,
+nivel decimal(10,2),
+dataehora datetime not null,
 fkTanque int,
 constraint fksensortanque foreign key (fkTanque)
 	references tanque(idTanque)
 );
+
+desc tanque;
+
+select * from tanque;
 
 INSERT INTO cliente VALUES
 (default, '12345678000195', 'Fazenda Boa Vista', '1195986704', 'Estrada Rural, Km 23', 'José Almeida', 'contato@boavistaagro.com', 'boavista123'),
@@ -61,7 +64,7 @@ JOIN
 	tanque ON cliente.idCliente = tanque.fkCliente
 JOIN
 	sensor ON tanque.idTanque = sensor.fkTanque;
-
-SELECT * FROM sensor;
-
+    
+UPDATE tanque set capacidadeLitros = 5000 
+	where idTanque = 1; 
 
