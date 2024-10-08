@@ -8,9 +8,9 @@ Este projeto foi criado para monitorar e gerenciar o estoque de diesel em tanque
 
 ## Features
 - Monitoramento em Tempo Real: Acompanha os níveis de combustível com sensores.
-- Integração com API: API RESTful para comunicação com o sistema.
-- Painel de Controle: Interface web para visualizar níveis de combustível, tendências de consumo e alertas.
-- Alertas e Notificações: Fornece alertas de nível de combustível e lembretes de manutenção.
+- Integração: API para comunicação com o sistema.
+- Site Institucional e Simulador Financeiro com fins de marketing
+- Painel de Controle: Interface web com dashboards para visualizar níveis de combustível, tendências de consumo e alertas.
 - Gerenciamento de Banco de Dados: Armazena dados históricos de consumo e estoque de combustível.
 
 ## Tecnologias utilizadas
