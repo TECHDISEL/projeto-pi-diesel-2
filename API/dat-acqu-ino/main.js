@@ -12,7 +12,6 @@ const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
 const serial = async (
-    valoresSensorAnalogico,
     valoresSensorDigital,
 ) => {
 
@@ -52,10 +51,8 @@ const serial = async (
         console.log(data);
         const valores = data.split(';');
         const sensorDigital = parseInt(valores[0]);
-        const sensorAnalogico = parseFloat(valores[1]);
 
         // armazena os valores dos sensores nos arrays correspondentes
-        valoresSensorAnalogico.push(sensorAnalogico);
         valoresSensorDigital.push(sensorDigital);
 
         // insere os dados no banco de dados (se habilitado)
@@ -87,7 +84,6 @@ const serial = async (
 
 // função para criar e configurar o servidor web
 const servidor = (
-    valoresSensorAnalogico,
     valoresSensorDigital
 ) => {
     const app = express();
@@ -105,9 +101,6 @@ const servidor = (
     });
 
     // define os endpoints da API para cada tipo de sensor
-    app.get('/sensores/analogico', (_, response) => {
-        return response.json(valoresSensorAnalogico);
-    });
     app.get('/sensores/digital', (_, response) => {
         return response.json(valoresSensorDigital);
     });
@@ -116,18 +109,15 @@ const servidor = (
 // função principal assíncrona para iniciar a comunicação serial e o servidor web
 (async () => {
     // arrays para armazenar os valores dos sensores
-    const valoresSensorAnalogico = [];
     const valoresSensorDigital = [];
 
     // inicia a comunicação serial
     await serial(
-        valoresSensorAnalogico,
         valoresSensorDigital
     );
 
     // inicia o servidor web
     servidor(
-        valoresSensorAnalogico,
         valoresSensorDigital
     );
 })();
