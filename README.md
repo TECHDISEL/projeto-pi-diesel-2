@@ -1,19 +1,19 @@
 # Grupo-10 Sprint2
-# Diesel Inventory Management System
+# Sistema de Gerenciamento de Estoque de Diesel
 <img src="https://blog.broto.com.br/wp-content/uploads/2022/01/maquinas-usadas-na-agricultura.jpeg">
 
-## Project Overview
+## Visão Geral do Projeto
 
-This project is designed to monitor and manage diesel inventory in stationary tanks commonly used on large agricultural properties. The system integrates with IoT sensors and provides real-time data to optimize fuel usage, aiding in cost control for agricultural operations.
+Este projeto foi criado para monitorar e gerenciar o estoque de diesel em tanques estacionários usados em grandes propriedades agrícolas. O sistema integra sensores IoT e fornece dados em tempo real para otimizar o uso de combustível, ajudando no controle de custos das operações agrícolas.
 
 ## Features
-- Real-time Diesel Monitoring: Tracks fuel levels using sensors.
-- API Integration: RESTful API for system communication.
-- Dashboard: Web-based interface to view fuel levels, consumption trends, and alerts.
-- Alerts & Notifications: Provides fuel level alerts and maintenance reminders.
-- Database Management: Stores historical fuel data and usage trends.
+- Monitoramento em Tempo Real: Acompanha os níveis de combustível com sensores.
+- Integração com API: API RESTful para comunicação com o sistema.
+- Painel de Controle: Interface web para visualizar níveis de combustível, tendências de consumo e alertas.
+- Alertas e Notificações: Fornece alertas de nível de combustível e lembretes de manutenção.
+- Gerenciamento de Banco de Dados: Armazena dados históricos de consumo e estoque de combustível.
 
-## Technologies Used
+## Tecnologias utilizadas
 
 - Frontend: HTML, CSS
 - Backend: Javascript
