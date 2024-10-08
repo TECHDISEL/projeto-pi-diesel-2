@@ -64,11 +64,7 @@ const serial = async (
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
                 'INSERT INTO sensor (nivel) VALUES (?)',
-<<<<<<< HEAD
                 [sensorDigital]            
-=======
-                [sensorDigital],
->>>>>>> 059f33f48700b3d7b19806993b24b4bc4e983cec
             );
 
             await poolBancoDados.execute(
@@ -109,9 +105,6 @@ const servidor = (
     });
 
     // define os endpoints da API para cada tipo de sensor
-    app.get('/sensores/analogico', (_, response) => {
-        return response.json(valoresSensorAnalogico);
-    });
     app.get('/sensores/digital', (_, response) => {
         return response.json(valoresSensorDigital);
     });
@@ -131,7 +124,7 @@ const servidor = (
 
     // inicia o servidor web
     servidor(
-        valoresSensorAnalogico,
+        valoresSensorAnalogico, 
         valoresSensorDigital
     );
 })();

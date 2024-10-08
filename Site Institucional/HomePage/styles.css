@@ -4,13 +4,15 @@ body {
 }
 
 .header {
-    background-color: whitesmoke;
-    border-bottom: 3px solid #bfd127;
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    z-index: 10;
+    background-color: whitesmoke; 
+    position: fixed; 
     top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; 
+    z-index: 10; 
+    padding: 3px 0;
+    border-radius: 60px;
 }
 
 .header .container {
@@ -56,7 +58,8 @@ body {
 }
 
 .banner {
-    height: 700px;
+    position: relative;
+    height: 800px;
     width: 100%;
     background-image: url("Images/trator_gasolina.jpg");
     background-position: center;
@@ -113,7 +116,6 @@ body {
 
 .diagrama_negocios .maximizeEficiencia p{
     font-size: 24px;
-    text-align: justify;
 }
 
 .diagrama_negocios img {
@@ -218,7 +220,7 @@ body {
 }
 
 .simulador_imagem img {
-    width: 650px;
+    width: 600px;
     height: auto;
     border-radius: 10px;
 }
