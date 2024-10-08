@@ -35,7 +35,11 @@ Este projeto foi criado para monitorar e gerenciar o estoque de diesel em tanque
 
 ## Página Institucional
 - Uma página institucional fortalece a presença online e facilita a comunicação, sendo um canal importante para atrair e engajar o público. Além disso, nossa página faz uma ponte para nosso simulador financeiro.
-![image](https://github.com/user-attachments/assets/8ee1b6e4-2513-4ae3-ae0a-8d5fbedacacb)
+![image](https://github.com/user-attachments/assets/d129cf55-3b0e-44be-9930-657b3470c55e)
+
+## Simulador Financeiro
+- Recurso de marketing que estima custos e estimula a compra do produto.
+![image](https://github.com/user-attachments/assets/a191b2c7-be40-4c53-a231-52b4c09aa918)
 
 ## Contribuição
 Está restrito aos alunos da SPTech do 1 ADSA da São Paulo Tech School
