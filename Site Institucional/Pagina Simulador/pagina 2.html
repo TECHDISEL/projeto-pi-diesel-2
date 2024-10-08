@@ -6,38 +6,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Animação Tanque</title>
     <link rel="stylesheet" href="./styles/pagina 2.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-    <div id="content1" class="class visible">
+    <div id="content1" class="visible">
         <div class="entradas-usuario">
-            <p> Para nos conhecermos melhor,, qual o seu consumo diário de diesel? </p>
-            <input type="number" id="qtde_consumo">
-            <button onclick="proximo('content1','content2')"> Continuar </button>
+
+            <p>Nos diga, você já teve problemas com atrasos em sua produção devido a falta de estoque de diesel? </p>
+            <button onclick="proximo('content1','content2')"> Sim </button>
+            <button onclick="proximo('content1','content4')"> Não </button>
+
         </div>
     </div>
 
-    <div id="content2" class="class">
-        <div id="container">
+    <div id="content2" class="hidden">
+        <div class="entradas-usuario">
 
-            <div id="resultado" class="texto-simulador">
-                
-            </div>
+            <p>Informe qual a média de consumo mensal de diesel em suas produções?</p>
+            <input type="number" id="consumo_diesel">
+            <button onclick="proximo('content2','content3')"> Continuar </button>
 
-            <div class="tanque">
-                <div class="liquido"></div>
-                <div class="marcador"></div>
-                <img src="./images/gas tank.png" alt="">
-                <img id="farmer" src="./images/farmer.png" alt="">
-            </div>
-            
         </div>
     </div>
 
+    <div id="content3" class="hidden">
+
+        <h1> Um sistema de monitoramento permite saber exatamente o nível de combustível nos tanques em tempo real, o
+            que ajuda a evitar excessos ou falta de estoque. </h1>
+        <p> Tempo ocioso em sua produção pode gerar perdas significativas. Com um custo de mão de obra por hora e custo
+            de operação de máquinas, cada hora parada pode ser preciosa. </p>
+
+        <p> Nós da TECH DIESEL promovemos <b style="color: green;">um ganho de até 5%</b> em suas produções, evitando
+            paradas desnecessárias e garantindo um total aproveitamento de seu tempo </p>
+
+        <div class="content3-center">
+
+            <div class="grafico-text">
+                <p>Para o seu consumo fornecido, <b>Considerando valores extras por conta de ociosidade</b> os seus
+                    gastos chegam até: ...</p>
+                <p>Com nossos sistemas, pode-se chegar com economias de até: ...</p>
+
+                <button onclick="window.location.href='pagina 3.html';"> Continuar </button>
+            </div>
+
+            <div class="grafico1">
+                <canvas id="myChart"></canvas>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="content4" class="hidden">
+        <div class="entradas-usuario">
+
+            <p>Informe qual a média de reabastecimentos mensais de diesel em suas produções?</p>
+            <input type="number" id="consumo_diesel">
+            <button onclick="proximo('content4','content5')"> Continuar </button>
+
+        </div>
+    </div>
+
+    <div id="content5" class="hidden">
+
+        <div>
+            <h1>Mesmo sem ter que lidar com ociosidade nos seus reabastecimentos, ajudamos a verificar se há um estoque
+                excessivo de diesel em suas produções</h1>
+
+            <p>Por mais que o gasto com o diesel seja necessário e permanente para a produção agrícola acontecer, cada
+                compra de estoque deve ser analisada, as notas fiscais devem ser organizadas, para assim ter dados
+                precisos, confiáveis e sempre atualizados</p>
+
+            <p>Considerando um gasto médio de ___ que você tenha com distribuidoras de Diesel durante seus
+                reabastecimentos, podemos verificar a viabilidade ecônomica ao diminuir a quantidade de abastecimentos
+                que você faça no mês</p>
+        </div>
+
+        <div class="grafico2">
+            <canvas id="myChart2"></canvas>
+        </div>
+        
+    </div>
+
+    <div id="content6" class="hidden">
+
+        <h1> Como você mantém a frequência de apenas um abastecimento, podemos avaliar a quantidade necessária </h1>
+
+
+
+    </div>
+    
 </body>
 
 </html>
+
+<!-- <div class="tanque">
+    <div class="liquido"></div>
+    <div class="marcador"></div>
+    <img src="./images/gas tank.png" alt="">
+    <img id="farmer" src="./images/farmer.png" alt="">
+</div> -->
 
 <script>
 
@@ -47,38 +117,86 @@
         document.getElementById(nextId).classList.remove('hidden');
         document.getElementById(nextId).classList.add('visible');
 
-        const qtdeArmazenamentoDiesel = Number(qtde_armazenamento.value)
-        const qtdeConsumoDiesel = Number(qtde_consumo.value)
+        const consumoMensalDiesel = 15_000
+        const gastoMensalDiesel = consumoMensalDiesel * 6.01
+        const percaPorHoraParada = 1011.3 + 40.2 + 741.9 + 18550.2
+        const gastoSemMonitoramento = gastoMensalDiesel + percaPorHoraParada
+        const diferencaGastos = gastoSemMonitoramento - gastoMensalDiesel
 
-        const valorArmazenado = qtdeArmazenamentoDiesel * 6.01                                                  // Valor para exibirmos o investimento do cliente em diesel
-        const variacaoDiesel = valorArmazenado * 0.006                                                          // Valor para sabermos como a variação de diesel estipulada pela ANP impacta ao cliente
-        const consumoHoraDiesel = ((qtdeConsumoDiesel / 24) * 1.05 * 6.01) - (qtdeConsumoDiesel / 24 * 6.01)    // Estipulando uma margem de lucro de 1% em cima do consumo de diesel (real / hora)
-        const consumoDiaDiesel = consumoHoraDiesel * 24
-        const consumoMesDiesel = consumoDiaDiesel * 30
+        if (nextId === 'content3') { // Somente cria o gráfico quando exibe o content3
+            setTimeout(() => {
+                const ctx = document.getElementById('myChart').getContext('2d');
+                if (ctx) {
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                            datasets: [{
+                                label: 'Sem monitoramento',
+                                data: [gastoSemMonitoramento, gastoSemMonitoramento * 2, gastoSemMonitoramento * 3, gastoSemMonitoramento * 4, gastoSemMonitoramento * 5, gastoSemMonitoramento * 6, gastoSemMonitoramento * 7, gastoSemMonitoramento * 8, gastoSemMonitoramento * 9, gastoSemMonitoramento * 10, gastoSemMonitoramento * 11, gastoSemMonitoramento * 12],
+                                borderWidth: 2,
+                                backgroundColor: 'rgb(255, 0, 0)',
+                                borderColor: 'rgb(255, 0, 0)'
+                            },
+                            {
+                                label: 'Com monitoramento',
+                                data: [gastoMensalDiesel, gastoMensalDiesel * 2, gastoMensalDiesel * 3, gastoMensalDiesel * 4, gastoMensalDiesel * 5, gastoMensalDiesel * 6, gastoMensalDiesel * 7, gastoMensalDiesel * 8, gastoMensalDiesel * 9, gastoMensalDiesel * 10, gastoMensalDiesel * 11, gastoMensalDiesel * 12],
+                                borderWidth: 2,
+                                backgroundColor: 'rgb(0, 0, 255)',
+                                borderColor: 'rgb(0, 0, 255)'
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    console.error('Erro ao obter o contexto do canvas.');
+                }
+            }, 200);  // Um pequeno atraso para garantir que o canvas esteja visível
+        }
+    
 
-        resultado.innerHTML = `                
-                <h1 class="primeiro"> Em uma fazenda com armazenamento de ${qtdeArmazenamentoDiesel} Litros de diesel </h1>
-                <h3 class="segundo"> <b>Nos preços atuais de diesel, significa que seu armazenamento corresponde a um 
-                    investimento de R$${valorArmazenado.toFixed(2)}</b> </h3>
-                <h3 class="segundo"><b> Uma variação de somente 0,6% no volume de seu diesel (conforme estipulado pela
-                    ANP)
-                    representa R$${variacaoDiesel.toFixed(2)} perdidos</b> </h3>
-                <p class="segundo"> Estimando uma margem de lucro de apenas <b> 5% </b> em relação ao seu consumo diário
-                    de diesel </p>
-                <p class="terceiro"> Com uma hora de sua produção parada devido a pausas de reabastecimendo de tanque,
-                    você <b>deixaria</b> de ganhar R$${consumoHoraDiesel.toFixed(2)} </p>
-
-                <p class="terceiro"> Um dia acumulado, esse valor seria de R$${consumoDiaDiesel.toFixed(2)}, enquanto em um mês 
-                    esse valor chega até <b style = "color: red;"> R$${consumoMesDiesel.toFixed(2)} </b></p>
-
-                <p class="terceiro"> Com um monitoramento ideal de como se comporta seus estoques, você garante maior
-                    assertividade no gerenciamento de seu diesel e principalmente de seu dinheiro </p>
-
-                <div class="buttons_result">
-                    <button class="btn_resultado" onclick="proximo('content2', 'content1')"> Anterior </button>
-                    <button class="btn_resultado" onclick="window.location.href='pagina 3.html'"> Continuar </button>
-                </div>`
-
+    if (nextId === 'content5') { // Somente cria o gráfico quando exibe o content3
+        setTimeout(() => {
+            const ctx = document.getElementById('myChart2').getContext('2d');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                        datasets: [{
+                            label: 'Abastecimentos do cliente',
+                            data: [2500, 2500*2, 2500*3, 2500*4, 2500*5, 2500*6, 2500*7, 2500*8, 2500*9, 2500*10, 2500*11, 2500*12],
+                            borderWidth: 2,
+                            backgroundColor: 'rgb(255, 0, 0)',
+                            borderColor: 'rgb(255, 0, 0)'
+                        },
+                        {
+                            label: 'Abastecimentos reduzidos',
+                            data: [2000, 2000*2, 2000*3, 2000*4, 2000*5, 2000*6, 2000*7, 2000*8, 2000*9, 2000*10, 2000*11, 2000*12],
+                            borderWidth: 2,
+                            backgroundColor: 'rgb(0, 0, 255)',
+                            borderColor: 'rgb(0, 0, 255)'
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            } else {
+                console.error('Erro ao obter o contexto do canvas.');
+            }
+        }, 200);  // Um pequeno atraso para garantir que o canvas esteja visível
+    }
     }
 
 </script>

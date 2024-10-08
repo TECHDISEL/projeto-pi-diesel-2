@@ -1,14 +1,33 @@
-use sprint2;
+create database  tech_diesel;
+use tech_diesel;
 
 CREATE TABLE cliente(
 idCliente int primary key auto_increment,
 cnpj char(14) not null,
 nome varchar(40) not null,
-telefone varchar(11),
-endereco varchar(30),
 responsavel varchar(15),
-email varchar(30),
-senha varchar(30)
+fkEndereco int,
+	constraint fkEndereçoCliente foreign key (fkEndereco)
+		references endereço(idEndereco)
+);
+
+CREATE TABLE endereço(
+idEndereco int primary key auto_increment,
+rua varchar(45),
+bairro varchar(45),
+num int, 
+cep varchar(8),
+cidade varchar(45)
+);
+
+CREATE TABLE login(
+idLogin int,
+emailCliente varchar(20),
+senhaCliente varchar(10),
+telefone varchar(12),
+fkCliente int,
+	constraint fkClienteLogin foreign key (fkCliente)
+		references cliente(idCliente)
 );
 
 create table tanque(
@@ -27,8 +46,6 @@ fkTanque int,
 constraint fksensortanque foreign key (fkTanque)
 	references tanque(idTanque)
 );
-
-desc tanque;
 
 select * from tanque;
 
