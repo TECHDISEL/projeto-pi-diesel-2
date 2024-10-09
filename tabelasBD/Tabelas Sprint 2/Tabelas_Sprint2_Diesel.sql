@@ -41,7 +41,7 @@ constraint fktanquecliente foreign key (fkCliente)
 create table sensor(
 idsensor int primary key auto_increment,
 nivel decimal(10,2),
-dataehora datetime not null,
+dataehora datetime default current_timestamp not null,
 fkTanque int,
 constraint fksensortanque foreign key (fkTanque)
 	references tanque(idTanque)
