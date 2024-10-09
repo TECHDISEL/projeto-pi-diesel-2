@@ -1,0 +1,133 @@
+body {
+    background: radial-gradient(circle, white, rgb(189, 188, 188));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.cadastro-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 32px;
+    color: #25767a;
+    margin-bottom: 20px;
+}
+
+.cadastro-secao {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #777;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #25767a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1b5457;
+}
+
+.tipo-cadastro {
+    margin-bottom: 20px;
+}
+
+.oculto {
+    display: none;
+}
+
+.xl, .xm {
+    width: 100%;
+}
+
+@media(max-width: 500px) {
+    .xs {
+        width: 100% !important;
+    }
+}
+
+.tipo-cadastro-novo {
+    color: white;
+    border-radius: 120px;
+    width: 80%;
+    height: 35px;
+    display: flex;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#pessoa-fisica, #pessoa-juridica {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+#pessoa-fisica {
+    border-radius: 120px 0 0 120px;
+}
+
+#pessoa-juridica {
+    border-radius: 0 120px 120px 0;
+}
+
+.select {
+    background-color: #25767a;
+}
+
+.diselect {
+    background-color: #777;
+}
+
+.titulo img {
+    width: 50px;
+    height: auto;
+    margin-right: 5px;
+}
+
+.titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo-login {
+    margin-top: 0;
+    font-size: 32px;
+}

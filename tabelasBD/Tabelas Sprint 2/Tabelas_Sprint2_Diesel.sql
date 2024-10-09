@@ -1,15 +1,33 @@
-CREATE DATABASE tech_diesel;
+create database  tech_diesel;
 use tech_diesel;
 
 CREATE TABLE cliente(
 idCliente int primary key auto_increment,
 cnpj char(14) not null,
 nome varchar(40) not null,
-telefone varchar(11),
-endereco varchar(30),
 responsavel varchar(15),
-email varchar(30),
-senha varchar(30)
+fkEndereco int,
+	constraint fkEndereçoCliente foreign key (fkEndereco)
+		references endereço(idEndereco)
+);
+
+CREATE TABLE endereço(
+idEndereco int primary key auto_increment,
+rua varchar(45),
+bairro varchar(45),
+num int, 
+cep varchar(8),
+cidade varchar(45)
+);
+
+CREATE TABLE login(
+idLogin int,
+emailCliente varchar(20),
+senhaCliente varchar(10),
+telefone varchar(12),
+fkCliente int,
+	constraint fkClienteLogin foreign key (fkCliente)
+		references cliente(idCliente)
 );
 
 create table tanque(
@@ -22,12 +40,14 @@ constraint fktanquecliente foreign key (fkCliente)
 
 create table sensor(
 idsensor int primary key auto_increment,
-nivel INT,
-dataehora datetime default current_timestamp,
+nivel decimal(10,2),
+dataehora datetime default current_timestamp not null,
 fkTanque int,
 constraint fksensortanque foreign key (fkTanque)
 	references tanque(idTanque)
 );
+
+select * from tanque;
 
 INSERT INTO cliente VALUES
 (default, '12345678000195', 'Fazenda Boa Vista', '1195986704', 'Estrada Rural, Km 23', 'José Almeida', 'contato@boavistaagro.com', 'boavista123'),
@@ -61,7 +81,7 @@ JOIN
 	tanque ON cliente.idCliente = tanque.fkCliente
 JOIN
 	sensor ON tanque.idTanque = sensor.fkTanque;
-
-SELECT * FROM sensor;
-
+    
+UPDATE tanque set capacidadeLitros = 5000 
+	where idTanque = 1; 
 

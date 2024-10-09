@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loginCadastro.css">
+    <link rel="icon" href="Images/logo_vetorizada.png" type="image/x-icon">
+    <title>Login</title>
+</head>
+
+<body>
+    <main class="cadastro-container">
+        <header class="titulo">
+            <img src="images/logo_vetorizada.png" alt="Logo Tech Diesel">
+            <h1 class="titulo-principal">
+                Tech Diesel
+            </h1>
+        </header>
+        <h1 class="titulo-login">Login</h1>
+        <form action="login" method="POST" class="login-form">
+            <label for="email">Email</label>
+            <input class="tipo-cadastro" id="email" name="email" type="email" placeholder="Email" required aria-label="Digite seu email">
+            
+            <label for="senha">Senha</label>
+            <input class="tipo-cadastro" id="senha" name="senha" type="password" placeholder="Senha" required aria-label="Digite sua senha">
+            
+            <button type="submit">Login</button>
+        </form>
+    </main>
+</body>
+
+</html>

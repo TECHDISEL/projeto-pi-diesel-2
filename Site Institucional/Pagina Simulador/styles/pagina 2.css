@@ -1,0 +1,100 @@
+body {
+    margin: 0 40px 0 40px;
+}
+
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+.entradas-usuario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #5badff;
+    height: 100vh;
+    gap: 20px;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: aliceblue;
+}
+
+.tanque {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tanque #farmer {
+    width: 80px;
+    position: relative;
+    bottom: 75px;
+    left: 60px;
+}
+
+button {
+    border-radius: 5px;
+    background-color: #1e90ff;
+    border: none;
+    height: 30px;
+    width: 90px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #5badff;
+    transform: scale(1.25);
+
+}
+
+.content3-center {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#myChart {
+    width: 80% !important;   
+    height: 450px !important; 
+}
+
+@keyframes descer {
+    0% {
+        height: 40%;
+    }
+    100% {
+        height: 20%;
+    }
+}
+
+@keyframes aparecerMarcador {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes opacity {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes aparecerTexto {
+    to {
+        opacity: 1;
+    }
+}
