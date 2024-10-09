@@ -19,7 +19,7 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'aluno',
+            user: 'insert_user',
             password: 'Sptech#2024',
             database: 'tech_diesel',
             port: 3307
@@ -64,13 +64,7 @@ const serial = async (
                 [sensorDigital]            
             );
 
-            await poolBancoDados.execute(
-                'SELECT * FROM sensor'
-            );
-
             console.log("valores inseridos no banco: ", sensorDigital);
-            console.log(""
-            )
 
         }
 
