@@ -63,6 +63,10 @@ const serial = async (valoresSensorDigital) => {
             );
 
             console.log("valores inseridos no banco: ", sensorDigital);
+<<<<<<< HEAD
+
+=======
+>>>>>>> e5693ab3fc105b0c2356d0fc028a98a5bf837c7a
         }
 
     });
