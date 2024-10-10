@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="loginCadastro.css">
     <link rel="icon" href="Images/logo_vetorizada.png" type="image/x-icon">
     <title>Cadastro</title>
@@ -11,7 +10,6 @@
 
 <body>
     <main class="cadastro-container">
-        
         <header class="titulo">
             <img src="images/logo_vetorizada.png" alt="Logo Tech Diesel">
             <h1 class="titulo-principal">
@@ -19,100 +17,31 @@
             </h1>
         </header>
         <h1 class="titulo-login">Cadastro</h1>
-        <div class="container">
-            <div class="tipo-cadastro-novo">
-                <button id="pessoa-fisica" onclick="mostrarCadastro('fisica')" aria-label="Selecionar pessoa física">
-                    Pessoa Física
-                </button>
-                <button id="pessoa-juridica" onclick="mostrarCadastro('juridica')" aria-label="Selecionar pessoa jurídica">
-                    Pessoa Jurídica
-                </button>
-            </div>
-        </div>
+        <form action="login" class="login-form">
+            <label for="presidente">Responsável Legal</label>
+            <input type="text" id="presidente" placeholder="Digite o nome do responsável legal  da empresa">
 
-        <!-- Cadastro Pessoa Física -->
-        <section id="cadastro-fisica" class="cadastro-secao">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" placeholder="Digite seu nome" required aria-label="Digite seu nome">
+            <label for="nome_fantasia">Nome Fantasia</label>
+            <input type="text" id="nome_fantasia" placeholder="Digite o nome fantasia da empresa">
 
-            <label for="sobrenome">Sobrenome</label>
-            <input type="text" id="sobrenome" placeholder="Digite seu sobrenome" required aria-label="Digite seu sobrenome">
-
-            <label for="cpf">CPF</label>
-            <input type="text" id="cpf" placeholder="Digite seu CPF" required aria-label="Digite seu CPF">
-
-            <label for="telefone">Telefone</label>
-            <input type="tel" id="telefone" placeholder="Digite seu telefone" required aria-label="Digite seu telefone">
-
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Digite seu email" required aria-label="Digite seu email">
-
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" placeholder="Digite sua senha" required aria-label="Digite sua senha">
-        </section>
-
-        <!-- Cadastro Pessoa Jurídica -->
-        <section id="cadastro-juridica" class="cadastro-secao oculto">
-            <label for="presidente">Nome do Presidente</label>
-            <input type="text" id="presidente" placeholder="Digite o nome do presidente" required aria-label="Digite o nome do presidente">
+            <label for="nome_fantasia">Razão social</label>
+            <input type="text" id="razao_social" placeholder="Digite a razão social da empresa">
             
             <label for="cnpj">CNPJ</label>
-            <input type="text" id="cnpj" placeholder="Digite o CNPJ" required aria-label="Digite o CNPJ">
+            <input type="text" id="cnpj" placeholder="Digite o CNPJ">
 
             <label for="telefone-juridica">Telefone</label>
-            <input type="tel" id="telefone-juridica" placeholder="Digite seu telefone" required aria-label="Digite seu telefone">
+            <input type="tel" id="telefone-juridica" placeholder="Digite seu telefone">
 
             <label for="email-juridica">Email</label>
-            <input type="email" id="email-juridica" placeholder="Digite seu email" required aria-label="Digite seu email">
+            <input type="email" id="email-juridica" placeholder="Digite seu email">
 
             <label for="senha-juridica">Senha</label>
-            <input type="password" id="senha-juridica" placeholder="Digite sua senha" required aria-label="Digite sua senha">
-        </section>
-
-        <button type="submit">Cadastrar</button>
+            <input type="password" id="senha-juridica" placeholder="Digite sua senha">
+            
+            <button>Login</button>
+        </form>
     </main>
-
-    <script src="scripts.js"></script>
-</body>
-
-</html>
-
-
-    <script>
-        document.getElementById('pessoa-fisica').classList.add("select");
-document.getElementById('pessoa-juridica').classList.add("diselect");
-
-function mostrarCadastro(tipo) {
-    const fisica = document.getElementById('cadastro-fisica');
-    const juridica = document.getElementById('cadastro-juridica');
-
-    if (tipo === 'fisica') {
-        fisica.classList.remove('oculto');
-        juridica.classList.add('oculto');
-        alteraValorPessoas();
-    } else {
-        fisica.classList.add('oculto');
-        juridica.classList.remove('oculto');
-        alteraValorJuridico();
-    }
-}
-
-function alteraValorJuridico() {
-    document.getElementById('pessoa-fisica').classList.add("diselect");
-    document.getElementById('pessoa-juridica').classList.add("select");
-    document.getElementById('pessoa-fisica').classList.remove("select");
-    document.getElementById('pessoa-juridica').classList.remove("diselect");
-}
-
-function alteraValorPessoas() {
-    document.getElementById('pessoa-fisica').classList.add("select");
-    document.getElementById('pessoa-juridica').classList.add("diselect");
-    document.getElementById('pessoa-fisica').classList.remove("diselect");
-    document.getElementById('pessoa-juridica').classList.remove("select");
-}
-
-    </script>
-
 </body>
 
 </html>

@@ -5,21 +5,22 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
 }
 
 .cadastro-container {
     background-color: white;
-    padding: 20px;
+    padding: 5px 20px;
     border-radius: 10px;
     width: 400px;
     text-align: center;
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 24px;
     color: #25767a;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .cadastro-secao {
@@ -39,15 +40,17 @@ input[type="password"],
 input[type="tel"] {
     width: 95%;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     border: 1px solid #777;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 12px;
 }
 
 button {
     width: 100%;
     padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background-color: #25767a;
     color: white;
     border: none;
@@ -72,12 +75,6 @@ button:hover {
     width: 100%;
 }
 
-@media(max-width: 500px) {
-    .xs {
-        width: 100% !important;
-    }
-}
-
 .tipo-cadastro-novo {
     color: white;
     border-radius: 120px;
@@ -92,15 +89,11 @@ button:hover {
     width: 100%;
 }
 
-#pessoa-fisica, #pessoa-juridica {
+#pessoa-juridica {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 50%;
-}
-
-#pessoa-fisica {
-    border-radius: 120px 0 0 120px;
 }
 
 #pessoa-juridica {
@@ -116,7 +109,7 @@ button:hover {
 }
 
 .titulo img {
-    width: 50px;
+    width: 30px;
     height: auto;
     margin-right: 5px;
 }
@@ -129,5 +122,5 @@ button:hover {
 
 .titulo-login {
     margin-top: 0;
-    font-size: 32px;
+    font-size: 24px;
 }
