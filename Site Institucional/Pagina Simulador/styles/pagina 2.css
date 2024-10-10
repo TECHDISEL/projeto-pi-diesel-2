@@ -15,9 +15,15 @@ body {
     text-align: center;
 }
 
-/* -------------- ESTTILIZAÇÃO SOMENTE DO caminho1 (ÁREA DO USUÁRIO QUE POSSUI PROBLEMAS COM ATRASOS EM SUA PRODUÇÃO) -------------- */
+/* -------------- ESTTILIZAÇÃO SOMENTE DO CONTENT3 (ÁREA DO USUÁRIO QUE POSSUI PROBLEMAS COM ATRASOS EM SUA PRODUÇÃO) -------------- */
 #content3 {
     margin: 5px 0 15px 0;
+}
+
+#content3 #caminho1 .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 #caminho1 {
     display: flex;
