@@ -68,8 +68,6 @@ const serial = async (
             );
 
             console.log("valores inseridos no banco: ", sensorDigital);
-            console.log(""
-            )
 
         }
 

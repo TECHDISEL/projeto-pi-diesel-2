@@ -10,6 +10,51 @@ body {
     display: none;
 }
 
+/* -------------- ESTILIZAÇÃO DA ÁREA INICIAL -------------- */
+.entradas-usuario {
+    text-align: center;
+}
+
+/* -------------- ESTTILIZAÇÃO SOMENTE DO caminho1 (ÁREA DO USUÁRIO QUE POSSUI PROBLEMAS COM ATRASOS EM SUA PRODUÇÃO) -------------- */
+#content3 {
+    margin: 5px 0 15px 0;
+}
+#caminho1 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+#caminho1 h1 {
+    text-align: center;
+}
+
+#caminho1 .caminho1-center .grafico1 {
+    width: 60%;
+}
+
+#caminho1 .caminho1-center .grafico-text {
+    align-self: center;
+    width: 40%;
+}
+
+#myChart {
+    height: 375px !important; 
+}
+
+/* -------------- ESTTILIZAÇÃO SOMENTE DO caminho2 (ÁREA DO USUÁRIO QUE POSSUI PROBLEMAS COM ATRASOS EM SUA PRODUÇÃO) -------------- */
+.caminho2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+#myChart2 {
+    width: 600px;
+}
+
 .entradas-usuario {
     display: flex;
     justify-content: center;
@@ -59,15 +104,6 @@ button:hover {
 
 }
 
-.content3-center {
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-#myChart {
-    width: 80% !important;   
-    height: 450px !important; 
-}
 
 @keyframes descer {
     0% {
