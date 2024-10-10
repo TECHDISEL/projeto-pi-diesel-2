@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login</title>
+    <style>
+        body {
+            background: linear-gradient(180deg,#2E7D32,#3498db);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1.titulo-principal {
+            font-size: 24px;
+            color: #2E7D32;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2E7D32;
+        }
+
+        input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #2E7D32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1b5e20;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h1 class="titulo-principal">Tech Diesel</h1>
+        <h2>Login</h2>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Senha" required>
+        <button>Login</button>
+    </div>
+
+</body>
+</html>
