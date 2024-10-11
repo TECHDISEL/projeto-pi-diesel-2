@@ -10,11 +10,14 @@
 </head>
 
 <body class="background">
-
+    
     <div class="header">
         <div class="container">
-            <h1 class="titulo"><img src="imagensparafundodashboard/logo_vetorizada.png">Tech Diesel</h1>
+            <h1 class="titulo"><img src="imagensparafundodashboard/logo_vetorizada.png">Tech Diesel
+                <button class="close-btn" aria-label="Fechar header">✖</button> <!-- Botão para fechar -->
+            </h1>
             <ul class="navbar">
+                <p class="avatar"><img src="imagensparafundodashboard/icone-de-avatar_791764-295.avif" alt=""></p>
                 <li class="agora">
                     <a href="#">Inicial</a>
                 </li>
@@ -30,33 +33,53 @@
             </ul>
         </div>
     </div>
+<div class="trigger"></div>
 
-    <div class="divgrafico">
-        <div class="box1">
-            <h1>Níveis de Diesel</h1>
-            <div class="grafico1">
-                <canvas id="myChart"></canvas>
+<div class="divgrafico">
+    <div class="box1">
+        <h1>Níveis de Diesel</h1>
+        <div class="grafico1">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+        <div class="right-column">
+            <div class="grafico2">
+                <canvas id="myChart2"></canvas>
             </div>
-        </div>
-
-        <div class="grafico2">
-            <canvas id="myChart2" s></canvas>
-        </div>
-
-        <div class="grafico3">
-            <canvas id="myChart3"></canvas>
+            <div class="grafico3">
+                <canvas id="myChart3"></canvas>
+            </div>
         </div>
     </div>
 
 
     <script>
         const labels = [
+            '00:00',
+            '01:00',
+            '02:00',
+            '02:00',
+            '04:00',
+            '05:00',
+            '06:00',
+            '07:00',
+            '08:00',
+            '09:00',
+            '10:00',
+            '11:00',
             '12:00',
             '13:00',
             '14:00',
             '15:00',
             '16:00',
             '17:00',
+            '18:00',
+            '19:00',
+            '20:00',
+            '21:00',
+            '22:00',
+            '23:00',
         ]
 
         const data = {
@@ -70,12 +93,18 @@
         }
 
         const labels2 = [
-            'Janeiro',
-            'Fevereiro',
-            'Março',
-            'Abril',
-            'Maio',
-            'Junho',
+            'Jan',
+            'Fev',
+            'Mar',
+            'Abr',
+            'Mai',
+            'Jun',
+            'Jul',
+            'Ago',
+            'Set',
+            'Out',
+            'Nov',
+            'Dez',
         ]
 
         const data2 = {
@@ -90,12 +119,18 @@
         }
 
         const labels3 = [
-            'Janeiro',
-            'Fevereiro',
-            'Março',
-            'Abril',
-            'Maio',
-            'Junho',
+            'Jan',
+            'Fev',
+            'Mar',
+            'Abr',
+            'Mai',
+            'Jun',
+            'Jul',
+            'Ago',
+            'Set',
+            'Out',
+            'Nov',
+            'Dez',
         ]
 
         const data3 = {
@@ -144,6 +179,37 @@
             config3
         )
 
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const header = document.querySelector(".header");
+    const trigger = document.querySelector(".trigger");
+    const closeBtn = document.querySelector(".close-btn");
+
+    // Ativa o header ao passar o mouse sobre o gatilho
+    trigger.addEventListener("mouseenter", function() {
+        header.classList.add("active");
+        trigger.style.display = "none"; // Esconde o gatilho após abrir o header
+    });
+
+    // Permite que o header permaneça ativo enquanto o mouse estiver sobre ele
+    header.addEventListener("mouseenter", function() {
+        header.classList.add("active");
+    });
+
+    // Remove o header quando o botão de fechar é clicado
+    closeBtn.addEventListener("click", function() {
+        header.classList.remove("active");
+        trigger.style.display = "block"; // Mostra o gatilho novamente
+    });
+
+    // Desativa o header se o mouse sair do header
+    header.addEventListener("mouseleave", function() {
+        header.classList.remove("active");
+        trigger.style.display = "block"; // Mostra o gatilho novamente
+    });
+});
     </script>
 </body>
 
