@@ -9,12 +9,35 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;  /* Largura total da tela */
+    height: 100vh; /* Altura total da tela */
+}
+
+.image-container {
+    flex: 2; /* Ocupa 2/3 do espaço disponível */
+    height: 100%;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Faz a imagem cobrir todo o contêiner */
+}
+
 .cadastro-container {
+    flex: 1; 
     background-color: white;
     padding: 5px 20px;
     border-radius: 10px;
-    width: 400px;
     text-align: center;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o formulário verticalmente */
 }
 
 h1 {
@@ -61,51 +84,6 @@ button {
 
 button:hover {
     background-color: #1b5457;
-}
-
-.tipo-cadastro {
-    margin-bottom: 20px;
-}
-
-.oculto {
-    display: none;
-}
-
-.xl, .xm {
-    width: 100%;
-}
-
-.tipo-cadastro-novo {
-    color: white;
-    border-radius: 120px;
-    width: 80%;
-    height: 35px;
-    display: flex;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
-#pessoa-juridica {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-}
-
-#pessoa-juridica {
-    border-radius: 0 120px 120px 0;
-}
-
-.select {
-    background-color: #25767a;
-}
-
-.diselect {
-    background-color: #777;
 }
 
 .titulo img {
