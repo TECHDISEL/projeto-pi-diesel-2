@@ -1,5 +1,7 @@
 body {
     margin: 0 40px 0 40px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.5;
 }
 
 .visible {
@@ -45,11 +47,16 @@ body {
     width: 40%;
 }
 
-#myChart {
-    height: 375px !important; 
+.grafico {
+    display: flex;
 }
 
-/* -------------- ESTTILIZAÇÃO SOMENTE DO caminho2 (ÁREA DO USUÁRIO QUE POSSUI PROBLEMAS COM ATRASOS EM SUA PRODUÇÃO) -------------- */
+#myChart, #myChart2, #myChart3 {
+    height: 375px !important; 
+    justify-self: center;
+}
+
+/* -------------- ESTTILIZAÇÃO SOMENTE DO CONTENT5 (ÁREA DO USUÁRIO QUE POSSUI PROBLEMAS COM ATRASOS EM SUA PRODUÇÃO) -------------- */
 .caminho2 {
     display: flex;
     flex-direction: column;
@@ -57,8 +64,10 @@ body {
     align-items: center;
 }
 
-#myChart2 {
-    width: 600px;
+/* -------------- ESTTILIZAÇÃO SOMENTE DO CONTENT6 (ÁREA DO USUÁRIO QUE REALIZA APENAS UM REABASTECIMENTO MENSAL) -------------- */
+#content6 {
+    text-align: center;
+    margin: 2px 2px 5px 5px;
 }
 
 .entradas-usuario {
@@ -66,7 +75,6 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #5badff;
     height: 100vh;
     gap: 20px;
 }
@@ -95,17 +103,18 @@ body {
 
 button {
     border-radius: 5px;
-    background-color: #1e90ff;
+    background-color: #b1c40a;
     border: none;
     height: 30px;
     width: 90px;
     font-weight: bold;
     cursor: pointer;
     transition: color 0.3s ease, transform 0.3s ease;
+    color: white;
 }
 
 button:hover {
-    background-color: #5badff;
+    background-color: #8b9d00;
     transform: scale(1.25);
 
 }

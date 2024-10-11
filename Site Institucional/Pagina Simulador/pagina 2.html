@@ -30,56 +30,30 @@
 
             <h1> Informe qual a média de consumo mensal de diesel em suas produções? </h1>
             <input type="number" id="consumo_diesel">
+
+            <h1> Qual a média de horas paradas que você enfrentou? </h1>
+            <input type="number" id="horas_paradas">
+
             <button onclick="proximo('content2','content3')"> Continuar </button>
 
         </div>
     </div>
 
-    <div id="content3" class="hidden">
-        <div id="caminho1">
-
-            <h1> Um sistema de monitoramento permite saber exatamente o nível de combustível nos tanques em tempo real,
-                o que ajuda a evitar excessos ou falta de estoque. </h1>
-
-            <div class="center">
-                <div class="grafico-text">
-                    <p> Para o seu consumo fornecido, <b style="color: red;"> APENAS COM 1 HORA PARADA EM SUAS PRODUÇÕES
-                            PARA COMPRA DE DIESEL </b> os seus gastos acumulados chegam a R$
-                        ${dadosSemMonitoramento[dadosSemMonitoramento.length -1]} </p>
-
-                    <p> Com nossos sistemas, sem considerar os gastos por conta dessas paradas, chega-se em economias de
-                        até R$ ${economiaGerada} </p>
-                </div>
-
-                <div class="grafico1">
-                    <canvas id="myChart"></canvas>
-                </div>
-            </div>
-
-            <p> Você sabia que cada hora parada para compra de Diesel pode te acrescentar gastos desnecessários? <b
-                    style="color: red;"> Principalmente no custo horário para o uso do equipamento, incluindo
-                    depreciação, juros, manutenção, seguro. Além do custo-hora por mão de obra!</b> </p>
-
-            <p> Nós da TECH DIESEL promovemos um monitoramento eficiente em seus estoques, evitando paradas
-                desnecessárias e <b style="color: green;">garantindo um total aproveitamento de seus recursos.</b> </p>
-
-            <button onclick="window.location.href='pagina 3.html';"> Continuar </button>
-
-        </div>
-    </div>
+    <div id="content3" class="hidden"></div>
 
     <div id="content4" class="hidden">
         <div class="entradas-usuario">
 
-            <h1> Mesmo sem problemas com ociosidade em sua produção, você já ponderou se a quantidade mantida em seus
-                estoques está sendo gerida de maneira eficiente? </h1>
+            <h1> Mesmo sem problemas com pausas para compra de Diesel em sua produção, você já ponderou se a quantidade
+                mantida em seus estoques está sendo gerida de maneira eficiente? </h1>
 
             <h2> Veja como seus reabastecimentos impactam em seus gastos </h2>
 
             <p> Informe qual a média de reabastecimentos mensais de diesel em suas produções </p>
             <input type="number" id="reabastecimentos_usuario">
 
-            <p> Qual os seus gastos com distribuidoras durante a compra de seus Diesel? (Frete, taxas, custos de transportes...) </p>
+            <p> Qual os seus gastos com distribuidoras durante a compra de seus Diesel? (Frete, taxas, custos de
+                transportes...) </p>
             <input type="number" id="gasto_distribuidoras">
             <button onclick="proximo('content4','content5')"> Continuar </button>
 
@@ -87,95 +61,20 @@
     </div>
 
     <div id="content5" class="hidden">
-        <div class="caminho2">
-
-            <div>
-                <h1>Mesmo sem ter que lidar com ociosidade nos seus reabastecimentos, ajudamos a verificar se há um
-                    estoque
-                    excessivo de diesel em suas produções</h1>
-
-                <p>Embora o consumo de diesel seja indispensável e constante para o funcionamento da produção agrícola,
-                    é
-                    fundamental que cada compra de estoque seja analisada de maneira detalhada, levando em consideração
-                    o
-                    controle eficiente de custos.</p>
-
-                <p>Além disso, é imprescindível que as notas fiscais sejam devidamente organizadas e armazenadas, de
-                    modo a
-                    garantir um histórico bem estruturado, com dados precisos,
-                    confiáveis e sempre atualizados, facilitando a tomada de decisões estratégicas e o planejamento
-                    financeiro a longo prazo.</p>
-
-                <p>Considerando um gasto médio de ___ que você tenha com distribuidoras de Diesel durante seus
-                    reabastecimentos, podemos verificar a viabilidade ecônomica ao diminuir a quantidade de
-                    abastecimentos
-                    que você faça no mês economizando até: </p>
-            </div>
-
-            <div class="grafico2">
-                <canvas id="myChart2"></canvas>
-            </div>
-
-            <button onclick="window.location.href='pagina 3.html';"> Continuar </button>
-
-        </div>
-    </div>
-
-    <div id="content6" class="hidden">
-
         <div class="entradas-usuario">
+
             <h1> Como você mantém a frequência de apenas um abastecimento mensal, com nossos sistemas de monitoramento
                 podemos avaliar se a quantidade necessária para gerir sua produção não está sendo <b>excessiva</b> </h1>
             <p> Informe sua capacidade de armazenamento </p>
             <input type="number" id="armazenamento_usuario">
             <p> Qual a média de consumo diário de diesel em sua produção? </p>
             <input type="number" id="consumo_diario">
-            <button onclick="proximo('content6','content7')"> Continuar </button>
-        </div>
+            <button onclick="proximo('content5','content6')"> Continuar </button>
 
+        </div>
     </div>
 
-    <div id="content7" class="hidden">
-
-        <div class="area-grafico">
-            <h1> Com apenas um reabastecimento mensal de seus estoques, nossos sensores podem ajudar a avaliar se você
-                não mantém uma quantidade excessiva de diesel armazenada</h1>
-            <div class="grafico3">
-                <canvas id="myChart3"></canvas>
-            </div>
-        </div>
-
-        <div id="condicao1">
-            <p> Diesel é um <b>ativo</b> em suas produções, ou seja, para uma boa gestão seria interessante que ele
-                sempre esteja em uso para te gerar lucros.</p>
-
-            <p> Mantê-lo parado por muito tempo pode impactar em perdas por degradação, gastos com manutenção do tanque
-                e drenagem de água do Diesel. Com os dados fornecidos, nota-se que dificilmente seu consumo mensal
-                ultrapassa seus estoques</p>
-
-            <p> Nossos sensores o ajudam a avaliar melhor o gerenciamento de seu estoque e definir melhores pontos de
-                reabestecimento de seus tanques.</p>
-        </div>
-
-        <div id="condicao2">
-            <p> Diesel é um <b>ativo</b> em suas produções, ou seja, para uma boa gestão seria interessante que ele
-                sempre esteja em uso para te gerar lucros.</p>
-
-            <p> Apenas um reabestecimento mensal pode impactar em paradas inesperadas, ocasiosando em perdas por
-                <b>ociosidade</b> em suas produções. Com os dados fornecidos, nota-se pontos em que seu consumo
-                ultrapassa seu estoque mensal
-            </p>
-
-            <p> Essas perdas estão relacionadas ao custo por hora com mão de obra, custo de manutenção de equipamentos,
-                depreciamento dos seus equipamentos. Ou seja, é importante que seu Diesel esteja sempre em uso <b>sem
-                    impactar com perdas inesperadas</b></p>
-
-            <p> Nossos sensores o ajudam a avaliar melhor o gerenciamento de seu estoque e definir melhores pontos de
-                reabestecimento de seus tanques.</p>
-
-        </div>
-
-    </div>
+    <div id="content6" class="hidden"></div>
 
 </body>
 
@@ -189,21 +88,59 @@
         document.getElementById(nextId).classList.remove('hidden');
         document.getElementById(nextId).classList.add('visible');
 
-        // Content 3 -- Sessão onde o usuário SOFRE com ociosidade por conta de paradas
         if (nextId === 'content3') {
+
+            // Content 3 -- Sessão onde o usuário SOFRE com ociosidade por conta de paradas
+
             const consumoDieselLitros = Number(consumo_diesel.value)
             var consumoDieselReais = consumoDieselLitros * 6.02
             var acrescimoPorParadas = 33.71 + 1.34 + 1278.77 + 78.55  // Valores considerando as médias de gasto/h de tratores, colhedoras, pulverizadores (Fornecidos pela fundação ABC)
-            var consumoSemMonitoramento = consumoDieselReais + acrescimoPorParadas
+            var horasParadas = Number(horas_paradas.value)
+            var consumoSemMonitoramento = consumoDieselReais + (acrescimoPorParadas * horasParadas)
             var dadosSemMonitoramento = []
             var dadosComMonitoramento = []
-            const economiaGerada = dadosSemMonitoramento[dadosSemMonitoramento.length - 1] - dadosComMonitoramento[dadosComMonitoramento.length - 1]
+            var economiaGerada = 0
 
             for (var mesesPassados = 1; mesesPassados <= 12; mesesPassados++) {
                 dadosSemMonitoramento.push(consumoSemMonitoramento * mesesPassados)
                 dadosComMonitoramento.push(consumoDieselReais * mesesPassados)
 
+                economiaGerada = (consumoSemMonitoramento * mesesPassados) - (consumoDieselReais * mesesPassados)
+
             }
+
+            content3.innerHTML = `
+            <div id="caminho1">
+
+            <h1> Um sistema de monitoramento permite saber exatamente o nível de combustível nos tanques em tempo real,
+                o que ajuda a evitar excessos ou falta de estoque. </h1>
+
+            <div class="center">
+                <div class="grafico-text">
+                    <p> Para o seu consumo fornecido, <b style="color: red;"> APENAS COM ${horasParadas} HORA(s) PARADA(s) POR MÊS EM SUAS PRODUÇÕES
+                            PARA COMPRA DE DIESEL </b> os seus investimentos com Diesel chegam a
+                        ${(dadosSemMonitoramento[dadosSemMonitoramento.length - 1]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} </p>
+
+                    <p> Com nossos sistemas, sem considerar os acréscimos por conta dessas paradas, chega-se em economias de
+                        até R$ ${economiaGerada.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} </p>
+                </div>
+
+                <div class="grafico">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+
+            <p> Você sabia que cada hora parada para compra de Diesel pode te acrescentar gastos desnecessários? <b
+                    style="color: red;"> Principalmente no custo horário para o uso do equipamento, incluindo
+                    depreciação, juros, manutenção, seguro. Além do custo-hora por mão de obra!</b> </p>
+
+            <p> Nós da TECH DIESEL promovemos um monitoramento eficiente em seus estoques, evitando paradas
+                desnecessárias e <b style="color: green;">garantindo um total aproveitamento de seus recursos.</b> </p>
+
+            <button onclick="window.location.href='pagina 3.html';"> Continuar </button>
+
+            </div> `
+
         }
 
         if (nextId === 'content3') {
@@ -245,69 +182,94 @@
 
         // Content 5 -- Sessão onde o usuário não sofre com ociosidade por conta de paradas
 
-        if (nextId === 'content5') {
+        if (nextId === 'content5' && Number(reabastecimentos_usuario.value) > 1) {
             const reabastecimentosUsuario = Number(reabastecimentos_usuario.value)
-            var gastoComDistribuidoras = Number(gasto_distribuidoras.value)                        
+            var gastoComDistribuidoras = Number(gasto_distribuidoras.value)
             var dieselReabastecido = reabastecimentosUsuario * gastoComDistribuidoras
             var dieselReabastecidoReduzido = (reabastecimentosUsuario - 1) * gastoComDistribuidoras
             var dadosDieselReabastecido = []
             var dadosDieselReabastecidoReduzido = []
+            var economiaGerada2 = 0
 
             for (var mesesPassados = 1; mesesPassados <= 12; mesesPassados++) {
                 dadosDieselReabastecido.push(dieselReabastecido * mesesPassados)
                 dadosDieselReabastecidoReduzido.push(dieselReabastecidoReduzido * mesesPassados)
+                economiaGerada2 = (dieselReabastecido * mesesPassados) - (dieselReabastecidoReduzido * mesesPassados)
 
             }
-        }
 
-        if (nextId === 'content5') {
-            setTimeout(() => {
-                const ctx = document.getElementById('myChart2').getContext('2d');
-                if (ctx) {
-                    new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                            datasets: [{
-                                label: 'Abastecimentos do cliente',
-                                data: dadosDieselReabastecido,
-                                borderWidth: 2,
-                                backgroundColor: 'rgb(255, 0, 0)',
-                                borderColor: 'rgb(255, 0, 0)'
+            if (nextId === 'content5') {
+                setTimeout(() => {
+                    const ctx = document.getElementById('myChart2').getContext('2d');
+                    if (ctx) {
+                        new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                                datasets: [{
+                                    label: 'Gastos com Abastecimentos',
+                                    data: dadosDieselReabastecido,
+                                    borderWidth: 2,
+                                    backgroundColor: 'rgb(255, 0, 0)',
+                                    borderColor: 'rgb(255, 0, 0)'
+                                },
+                                {
+                                    label: 'Gastos com Abastecimentos reduzidos',
+                                    data: dadosDieselReabastecidoReduzido,
+                                    borderWidth: 2,
+                                    backgroundColor: 'rgb(0, 128, 0)',
+                                    borderColor: 'rgb(0, 128, 0)'
+                                }]
                             },
-                            {
-                                label: 'Abastecimentos reduzidos',
-                                data: dadosDieselReabastecidoReduzido,
-                                borderWidth: 2,
-                                backgroundColor: 'rgb(0, 0, 255)',
-                                borderColor: 'rgb(0, 0, 255)'
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
                                 }
                             }
-                        }
-                    });
-                } else {
-                    console.error('Erro ao obter o contexto do canvas.');
-                }
-            }, 200);
+                        });
+                    } else {
+                        console.error('Erro ao obter o contexto do canvas.');
+                    }
+                }, 200);
+            }
+
+            content5.innerHTML = `
+            <div class="caminho2">
+    
+                <div>
+                    <h1> Mesmo sem ter que lidar com pausas inesperadas durante a compra de diesel, ajudamos a verificar se há um estoque excessivo em suas produções </h1>
+    
+                    <p> Considerando um <b style="color: red;">gasto médio de ${gastoComDistribuidoras.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b> que você tenha com distribuidoras de Diesel durante seus reabastecimentos, podemos verificar a viabilidade ecônomica ao diminuir a quantidade de abastecimentos que você faça no mês economizando até: <b style ="color: green;"> ${economiaGerada2.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b></p>
+                </div>
+    
+                <div class="grafico">
+                    <canvas id="myChart2"></canvas>
+                </div>
+    
+                    <p>Com a diminuição de suas paradas de reabastecimentos, você garante principalmente uma melhor produtividade por reduzir as frequências de pausas em suas operações além de permitir a negociação de tarifas de frete mais favoráveis na compra de Diesel</p>
+    
+                    <button onclick="window.location.href='pagina 3.html';"> Continuar </button>
+    
+            </div>`
         }
 
-        // Content 7 -- Caso o usuário tenha apenas UMA PARADA para compra de Diesel e refazer seus estoques.
 
-        if (nextId === 'content7') {
+        // Content 6 -- Caso o usuário tenha apenas UMA PARADA para compra de Diesel e refazer seus estoques.
+
+        if (nextId === 'content6') {
             var armazenamentoUsuario = Number(armazenamento_usuario.value)
             var consumoUsuario = Number(consumo_diario.value)
             var dadosArmazenamento = []
             var dadosConsumo = []
             var qtdeDias = []
+            var diaReabastecimento = 0
+            var consumoTotal = 0
 
-            for (var diasPassados = 1; diasPassados <= 30; diasPassados++) {
+            for (var diasPassados = 0; diasPassados <= 30; diasPassados += 5) {
                 var estoqueAtual = armazenamentoUsuario - (consumoUsuario * diasPassados);
+                consumoTotal = (consumoUsuario * diasPassados)
 
                 // Verifica se o estoque acabou ou se o consumo é 0
                 if (estoqueAtual <= 0 || consumoUsuario === 0) {
@@ -321,9 +283,57 @@
                     qtdeDias.push(diasPassados);
                 }
             }
+            dieselParado = armazenamentoUsuario - dadosConsumo[dadosConsumo.length - 1]
         }
 
-        if (nextId === 'content7') {
+        if (estoqueAtual > consumoTotal) {
+
+            content6.innerHTML = `
+
+            <div class="area-grafico">
+            <h1> Com apenas um reabastecimento mensal de seus estoques, nossos sensores podem ajudar a avaliar se você
+            não mantém uma quantidade excessiva de diesel armazenada </h1>
+
+            <div class="grafico">
+            <canvas id="myChart3"></canvas>
+            </div>
+            </div>
+
+            <div id="condicao1">
+            <p> Diesel é um <b>ativo</b> em suas produções, ou seja, para uma boa gestão seria interessante que ele
+            sempre esteja em uso para te gerar lucros.</p>
+
+            <p> Mantê-lo parado por muito tempo pode impactar em perdas por degradação, gastos com manutenção do tanque
+            e drenagem de água do Diesel. Com os dados fornecidos, nota-se que dificilmente seu consumo mensal
+            ultrapassa seus estoques. </p>
+
+            <button onclick="window.location.href='pagina 3.html';"> Continuar </button>
+            </div>`
+
+        } else {
+
+            content6.innerHTML = `
+
+            <div id="condicao2">
+                <h1> Com apenas um reabastecimento mensal de seus estoques, nossos sensores podem ajudar a avaliar o melhor dia para você comprar seu Diesel sem impactar em <b style="color: red;"> paradas </b> nas suas produções </h1>
+
+                <p> Diesel é um <b>ativo</b> em suas produções, ou seja, para uma boa gestão seria interessante que ele
+                sempre esteja em uso para te gerar lucros. Com nossos sensores, podemos definir também se a quantidade comprada não está em excesso para o consumo estipulado de suas produções </p>
+
+                <div class="grafico">
+                    <canvas id="myChart3"></canvas>
+                </div>
+            </div>
+            
+                <p> Apenas um reabestecimento mensal pode impactar em paradas inesperadas, ocasiosando em gastos com operários, maquinários, depreciação de equipamentos e afins... </p>
+            
+                <p> Nossos sensores o ajudam a avaliar se sua compra de Diesel está sendo feita no momento mais pertinente! </p>
+                
+                <button onclick="window.location.href='pagina 3.html';"> Continuar </button>
+            </div>`
+        }
+
+        if (nextId === 'content6') {
             setTimeout(() => {
                 const ctx = document.getElementById('myChart3').getContext('2d');
                 if (ctx) {

@@ -54,9 +54,10 @@ body {
     font-weight: bold;
     text-align: center;
     align-items: center;
-    background-color: #bfd127;
+    background-color: whitesmoke;
     transform: rotateY(180deg);
-    color: rgba(10, 42, 30, 0.919);
+    color: #25767a;
+    padding: 5px;
 }
 
 .cards:hover .flip {
@@ -79,7 +80,9 @@ body {
 button {
     border: none;
     border-radius: 5px;
-    background-color: #bfd127;
+    background-color: #b1c40a;
     height: 50px;
     width: 100px;
+    color: white;
+    font-weight: bold;
 }
