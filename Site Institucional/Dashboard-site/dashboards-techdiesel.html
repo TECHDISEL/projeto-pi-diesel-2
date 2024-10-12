@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementando o ChartJS</title>
+    <link rel="stylesheet" href="cssdashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="background">
+    
+    <div class="header">
+        <div class="container">
+            <h1 class="titulo"><img src="../Dashboard-site/imagensparafundodashboard/logo_vetorizada.png">Tech Diesel</h1>
+            <ul class="navbar">
+                <li class="agora"><a href="#">Inicial</a></li>
+                <li><a href="../Pagina Simulador/pagina 1.html">Simulador</a></li>
+                <li><a href="../Login_Cadastro/login.html">Login</a></li>
+                <li><a href="../Login_Cadastro/cadastro.html">Cadastro</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="container2">
+        <div class="box1">
+            <h1>Níveis de Diesel</h1>
+            <canvas id="myChart"></canvas>
+        </div>
+        
+        <div class="right-side">
+            <div class="box2">
+                <h1>Consumo mensal (Litros)</h1>
+                <canvas id="myChart2"></canvas>
+            </div>
+            <div class="box3">
+                <h1>Valor investido (R$)</h1>
+                <canvas id="myChart3"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const labels = [
+            '00:00', '01:00', '02:00', '02:00', '04:00', '05:00', '06:00',
+            '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00',
+            '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00',
+            '21:00', '22:00', '23:00',
+        ];
+    
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Nível de Diesel',
+                backgroundColor: '#3d6e60',
+                borderColor: '#3d6e60',
+                data: [30, 29, 28, 25, 22, 23],
+            }]
+        };
+    
+        const labels2 = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+    
+        const data2 = {
+            labels: labels2,
+            datasets: [{
+                label: 'Consumo Mensal em Litros',
+                backgroundColor: '#6dc0c0',
+                borderColor: '#6dc0c0',
+                data: [200, 100, 120, 150, 220, 110],
+            }]
+        };
+    
+        const labels3 = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+    
+        const data3 = {
+            labels: labels3,
+            datasets: [{
+                label: 'Valor utilizado por mês R$',
+                backgroundColor: '#DAA520',
+                borderColor: '#DAA520',
+                data: [100, 50, 70, 90, 200, 230],
+            }]
+        };
+    
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+    
+        const config2 = {
+            type: 'bar',
+            data: data2,
+            options: {}
+        };
+    
+        const config3 = {
+            type: 'line',
+            data: data3,
+            options: {}
+        };
+    
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    
+        const myChart2 = new Chart(
+            document.getElementById('myChart2'),
+            config2
+        );
+    
+        const myChart3 = new Chart(
+            document.getElementById('myChart3'),
+            config3
+        );
+    </script>
+
+</body>
+
+</html>
