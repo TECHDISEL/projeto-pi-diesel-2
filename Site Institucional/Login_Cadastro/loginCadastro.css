@@ -20,6 +20,7 @@ body {
 .image-container {
     flex: 2; 
     height: 100%;
+    margin-left: -400px; 
 }
 
 .image-container img {
