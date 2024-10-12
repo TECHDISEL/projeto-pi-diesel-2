@@ -18,54 +18,43 @@ body {
     justify-content: space-between; /* Espaço entre os gráficos */
     align-items: flex-start; /* Alinha os elementos no início */
     width: 80%; /* Ajuste a largura conforme necessário */
+    padding: 20px;
+}
+
+.box1, .box2, .box3 {
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.2s;
+}
+
+.box1:hover, .box2:hover, .box3:hover {
+    transform: scale(1.03);
 }
 
 .box1 {
-    display: flex;
-    flex-direction: column;
-    background-color: whitesmoke;
-    width: 60%; /* Mais espaço para o gráfico principal */
-    margin-right: 20px; /* Espaçamento entre o gráfico principal e a coluna à direita */
-    padding: 10px; /* Espaçamento interno */
+    width: 60%;
+    margin-right: 20px;
+    margin-top: 10px;
 }
 
-.box1 h1 {
-    margin: 0;
+.box1 h1, .box2 h1, .box3 h1 {
     text-align: center;
     color: #25767a;
-}
-
-.box1 canvas {
-    margin: 10px 0;
-    width: 100%; /* Largura total do gráfico */
-    height: 300px; /* Ajuste a altura conforme necessário */
+    font-size: 1.5em;
+    margin-bottom: 20px;
 }
 
 .right-side {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Espaço entre os gráficos */
-    width: 30%; /* Largura da coluna à direita */
+    justify-content: space-between;
+    width: 35%;
 }
 
 .box2, .box3 {
-    display: flex;
-    flex-direction: column;
-    background-color: whitesmoke;
-    margin: 5px 0; /* Espaço entre os gráficos na coluna à direita */
-    padding: 10px; /* Espaçamento interno */
-}
-
-.box2 h1, .box3 h1 {
-    margin: 0;
-    text-align: center;
-    color: #25767a;
-}
-
-.box2 canvas, .box3 canvas {
     margin: 10px 0;
-    width: 100%; /* Largura total do gráfico */
-    height: 200px; /* Ajuste a altura conforme necessário */
 }
 
 /*header da página*/
