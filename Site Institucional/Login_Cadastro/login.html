@@ -6,39 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="loginCadastro.css">
     <link rel="icon" href="Images/logo_vetorizada.png" type="image/x-icon">
-    <title>Login</title>
+    <title> Cadastro e login </title>
 </head>
 
-<body>
-    <main class="container-main-login">
-        
-        <div class="login-container">
-            <div class="image-container">
-                <img src="images/arquivo frezza.jpeg">
+<div class="container" id="container">
+    <div class="form-container container-cadastro">
+        <form>
+            <h1>Cadastrar Usuário</h1>
+            <input type="text" placeholder="Responsavel Legal">
+            <input type="text" placeholder="Nome comercial da empresa">
+            <input type="text" placeholder="Razão Social">
+            <input type="text" placeholder="Digite o CNPJ">
+            <input type="text" placeholder="Digite seu telefone">
+            <input type="text" placeholder="Email para contato">
+            <input type="text" placeholder="Senha">
+            <button> Cadastre-se </button>
+        </form>
+    </div>
+    <div class="form-container container-login">
+        <img src="./images/logo_vetorizada.png" style= "width: 15%; position: absolute; top: 5%; left: 15%;"></img>
+        <p style=" font-size: 28px; width: 45%; position: absolute; top: 5%; left: 32%; color: #25767a; font-weight: bold;" > Tech Diesel</p>
+        <form>
+            <h1>Login do usuário</h1>
+            <input type="text" placeholder="Digite seu Email">
+            <input type="text" placeholder="Digite sua Senha">
+            <a href=""> Esqueceu sua senha? </a>
+            <button> Entrar </button>
+        </form>
+    </div>
+    <div class="alternar-container">
+        <div class="alternar">
+            <div class="alternar-painel painel-esquerda">
+                <h1> Já possuí conta? </h1>
+                <p> Entre com seus dados cadastrados para acessar o conteúdo de nosso site </p>
+                <button class="hidden" id="login" onclick="moverDireita()"> Entrar </button>
             </div>
-            <div class="formulario">
-                <header class="titulo">
-                    <img src="images/logo_vetorizada.png" alt="Logo Tech Diesel">
-                    <h1  class="titulo-principal">
-                     <a href="../HomePage/index.html">Tech Diesel</a>   
-                    </h1>
-                </header>
-                <h1 class="titulo-login">Login</h1>
-                <form action="login" class="login-form">
-                    <label for="email">Email</label>
-                    <input class="tipo-cadastro" id="email" name="email" type="email">
-                    
-                    <label for="senha">Senha</label>
-                    <input class="tipo-cadastro" id="senha" name="senha" type="password">
-                    
-                    <button type="submit">Login</button>
-                    <a href="cadastro.html"> Cadastre-se</a>
-                </form>
+            <div class="alternar-painel painel-direita">
+                <h1> Seja um de nossos parceiros </h1>
+                <p> Cadastre-se para entrar em contato conosco e iniciar um monitoramento eficiente de seu Diesel
+                </p>
+                <button class="hidden" id="cadastro" onclick="moverEsquerda()"> Cadastrar </button>
             </div>
+        </div>
+    </div>
+</div>
 
-            </div>
-            
-    </main>
 </body>
-
 </html>
+
+<script>
+const botaoCadastro = document.getElementById('cadastro')
+const container = document.getElementById('container')
+const botaoLogin = document.getElementById('login')
+
+function moverEsquerda() {
+    container.classList.add('active')
+}
+
+function moverDireita() {
+    container.classList.remove('active')
+}
+</script>

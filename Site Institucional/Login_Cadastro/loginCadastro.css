@@ -1,155 +1,225 @@
-body {
-    background: radial-gradient(circle, white, #25767aac);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+* {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    
-    
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-image: url(./images/arquivo\ frezza.jpeg);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh
+}
+
+body::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.636);
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+h1 {
+    margin-bottom: 15px;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    width: 25%;  
-    margin: 0;
-       
-}
-.container-main-login{
-    display: flex;
-    justify-content: center;
-    align-items: stretch;
-    width: 100%;  
-    margin: 300px; 
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 500px;
+    z-index: 99;
 }
 
-
- .titulo a {
-  text-decoration: none;
-  font-size: 24px;
-    color: #25767a;
-    margin-bottom: 5px;
+.container p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
 }
 
-.image-container {
-    flex: 2; 
-    padding:  35px 25px;
-     
+.container a {
+    color: #b1c40a;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+    list-style: none;
 }
 
-.image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    border-radius: 10px;
-    
+a:hover {
+    color: #6c7709;
 }
 
-.cadastroPai{
-    align-self: center;
-    justify-content: center;
-
-}
-
-.login-container{
-    flex: 1; 
-    background-color: white;
-    padding: 5px 20px;
-    border-radius: 10px;
-    text-align: center;
-    margin-left: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center; 
-
-}
-.cadastro-container {
-    flex: 1; 
-    background-color: white;
-    padding: 5px 20px;
-    border-radius: 10px;
-    text-align: center;
-    margin-left: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center; 
-}
-
-h1 {
-    font-size: 24px;
-    color: #25767a;
-    margin-bottom: 5px;
-}
-
-.cadastro-secao {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    text-align: left;
-    margin: 10px 0 5px;
-    font-weight: bold;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="tel"] {
-    width: 95%;
-    padding: 5px;
-    margin-bottom: 5px;
-    border: 1px solid #777;
-    border-radius: 5px;
-    font-size: 12px;
-}
-
-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: #25767a;
+.container button {
+    background-color: #b1c40a;
     color: white;
+    font-size: 12px;
+    padding: 10px 45px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
     cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#login, #cadastro {
+    background-color: #104e50;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
-    background-color: #1b5457;
+    transform: scale(1.25);
 }
 
-.formulario{
-    padding: 20px;
+.container button.hidden {
+    background-color: transparent;
+    border-color: #fff;
+
+}
+
+.container form {
+    background-color: #fff;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    margin-left: 10px;
-}
-.titulo img {
-    width: 30px;
-    height: auto;
-    margin-right: 5px;
-}
-
-.titulo {
-    display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    padding: 0 40px;
+    height: 100%;
+    
+}
+
+.container input {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.container-login {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.active .container-login {
+    transform: translateX(100%);
 
 }
 
-.titulo-login {
-    margin-top: 0;
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
+.container-cadastro {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
 
+.container.active .container-cadastro {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+@keyframes move {
+    0%, 50% {
+        opacity: 0;
+        z-index: 1;
+    }
+    51%, 100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.alternar-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    z-index: 1000;
+    border-radius: 150px 0 0 100px;
+}
+
+.container.active .alternar-container{
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+
+}
+
+.alternar {
+    background-color: #25767a;
+    height: 100%;
+    background: linear-gradient(to right, #25767a, #34a4aa);
+    color: #fff;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+    position: relative;
+}
+
+.container.active .alternar {
+    transform: translate(50%);
+}
+
+.alternar-painel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.painel-esquerda {
+    transform: translateX(-200%);
+}
+
+.container.active .painel-esquerda {
+    transform: translateX(0);
+}
+
+.painel-direita {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.active .painel-direita {
+    transform: translateX(200%);
 }
