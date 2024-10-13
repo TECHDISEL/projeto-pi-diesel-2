@@ -1,79 +1,89 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
     height: 100%;
     overflow: hidden;
-    background-color: #c2e6f5;
+    background-color: #c2e6f53d;
     font-family: "Raleway", sans-serif;
+    background-size: cover;
+}
+
+
+.header {
+    background-color: whitesmoke;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    z-index: 10;
+    padding: 3px 0;
+    border-radius: 60px;
+    margin-top: 20px;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 120px;
+}
+
+.titulo {
+    display: flex;
+    align-items: center;
+    color: #25767a;
+    font-size: 24px;
+}
+
+.header img {
+    margin-right: 10px;
+    width: 50px;
+    height: auto;
+}
+
+.navbar {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+}
+
+.navbar li {
+    margin: 0;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #25767a;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: #ffd900;
 }
 
 .scene {
     position: relative;
     width: 100%;
     height: 100%;
+    background-size: cover;
+    background-image: url(../images/taking\ notes.png);
 }
 
-.sun {
+.scene::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.636);
     position: absolute;
-    top: 10%;
-    left: 12.5%;
-    width: 100px;
-    height: 100px;
-    background: yellow;
-    border-radius: 50%;
-    transform: translateX(-50%);
-}
-
-.mountain {
-    position: absolute;
-    bottom: 0;
+    z-index: 1;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 25%;
-    background: rgb(212, 251, 186);
-    border-top-right-radius: 75%;
-    border-top-left-radius: 75%;
-}
-
-.cloud {
-    position: absolute;
-    top: 25%;
-    width: 190px;
-    height: 50px;
-    background: white;
-    border-radius: 50px;
-    animation: moveClouds 20s linear infinite;
-}
-
-.cloud::before, .cloud::after {
-    content: '';
-    position: absolute;
-    background: white;
-    width: 60px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.cloud::before {
-    top: -8px;
-    left: 10px;
-}
-
-.cloud::after {
-    top: -20px;
-    left: 60px;
-    width: 80px;
-}
-
-
-@keyframes moveClouds {
-    0% {
-        left: -100px;
-    }
-    100% {
-        left: 100%;
-    }
+    height: 100%;
 }
 
 .scene .texto-principal {
@@ -85,26 +95,25 @@ body, html {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 99;
-}
-
-.scene .texto-principal {
-    color: #3d6e60;
+    color: white;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 25px;
+    text-align: center;
 }
 
 .scene .texto-principal button {
     border-radius: 5px;
-    background-color: #1e90ff;
+    background-color: #b1c40a;
     border: none;
-    height: 30px;
-    width: 90px;
+    height: 50px;
+    width: 100px;
     font-weight: bold;
+    font-size: 15px;
     cursor: pointer;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .scene .texto-principal button:hover {
-    background-color: #5badff;
+    background-color: #8b9d00;
     transform: scale(1.25);
 }

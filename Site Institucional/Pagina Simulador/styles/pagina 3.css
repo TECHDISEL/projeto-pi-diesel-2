@@ -85,4 +85,13 @@ button {
     width: 100px;
     color: white;
     font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    
+}
+
+button:hover {
+    background-color: #8b9d00;
+    transform: scale(1.25);
+
 }

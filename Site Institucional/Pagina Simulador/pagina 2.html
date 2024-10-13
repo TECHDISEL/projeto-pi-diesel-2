@@ -28,10 +28,10 @@
     <div id="content2" class="hidden">
         <div class="entradas-usuario">
 
-            <h1> Informe qual a média de consumo mensal de diesel em suas produções? </h1>
+            <h2> Informe qual a média de consumo mensal de diesel em suas produções? </h2>
             <input type="number" id="consumo_diesel">
 
-            <h1> Qual a média de horas paradas que você enfrentou? </h1>
+            <h2> Qual a média de horas paradas que você enfrentou? </h2>
             <input type="number" id="horas_paradas">
 
             <button onclick="proximo('content2','content3')"> Continuar </button>
@@ -47,13 +47,11 @@
             <h1> Mesmo sem problemas com pausas para compra de Diesel em sua produção, você já ponderou se a quantidade
                 mantida em seus estoques está sendo gerida de maneira eficiente? </h1>
 
-            <h2> Veja como seus reabastecimentos impactam em seus gastos </h2>
-
-            <p> Informe qual a média de reabastecimentos mensais de diesel em suas produções </p>
+            <h2> Informe qual a média de reabastecimentos mensais de diesel em suas produções </h2>
             <input type="number" id="reabastecimentos_usuario">
 
-            <p> Qual os seus gastos com distribuidoras durante a compra de seus Diesel? (Frete, taxas, custos de
-                transportes...) </p>
+            <h2> Qual os seus gastos com distribuidoras durante a compra de seus Diesel? (Frete, taxas, custos de
+                transportes...) </h2>
             <input type="number" id="gasto_distribuidoras">
             <button onclick="proximo('content4','content5')"> Continuar </button>
 
@@ -65,9 +63,9 @@
 
             <h1> Como você mantém a frequência de apenas um abastecimento mensal, com nossos sistemas de monitoramento
                 podemos avaliar se a quantidade necessária para gerir sua produção não está sendo <b>excessiva</b> </h1>
-            <p> Informe sua capacidade de armazenamento </p>
+            <h2> Informe sua capacidade de armazenamento </h2>
             <input type="number" id="armazenamento_usuario">
-            <p> Qual a média de consumo diário de diesel em sua produção? </p>
+            <h2> Qual a média de consumo diário de diesel em sua produção? </h2>
             <input type="number" id="consumo_diario">
             <button onclick="proximo('content5','content6')"> Continuar </button>
 
@@ -325,9 +323,9 @@
                 </div>
             </div>
             
-                <p> Apenas um reabestecimento mensal pode impactar em paradas inesperadas, ocasiosando em gastos com operários, maquinários, depreciação de equipamentos e afins... </p>
+                <p> Apenas um reabestecimento mensal pode impactar em uma parada inesperada, ocasiosando em gastos imprevistos. </p>
             
-                <p> Nossos sensores o ajudam a avaliar se sua compra de Diesel está sendo feita no momento mais pertinente! </p>
+                <p> Nossos sensores o ajudam a avaliar se sua compra de Diesel está sendo feita no momento mais pertinente, sem afetar a logistica de sua produção! </p>
                 
                 <button onclick="window.location.href='pagina 3.html';"> Continuar </button>
             </div>`
