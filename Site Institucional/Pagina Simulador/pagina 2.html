@@ -19,8 +19,11 @@
                 monitoramento </h1>
 
             <h2> Nos diga, você já teve problemas com atrasos em sua produção devido a falta de estoque de diesel? </h2>
-            <button onclick="proximo('content1','content2')"> Sim </button>
-            <button onclick="proximo('content1','content4')"> Não </button>
+
+            <div style="display: flex; gap: 50px;">
+                <button onclick="proximo('content1','content2')"> Sim </button>
+                <button onclick="proximo('content1','content4')"> Não </button>
+            </div>
 
         </div>
     </div>
@@ -47,7 +50,7 @@
             <h1> Mesmo sem problemas com pausas para compra de Diesel em sua produção, você já ponderou se a quantidade
                 mantida em seus estoques está sendo gerida de maneira eficiente? </h1>
 
-            <h2> Informe qual a média de reabastecimentos mensais de diesel em suas produções </h2>
+            <h2> Informe qual a média de reabastecimentos mensais de diesel em suas produções. </h2>
             <input type="number" id="reabastecimentos_usuario">
 
             <h2> Qual os seus gastos com distribuidoras durante a compra de seus Diesel? (Frete, taxas, custos de
