@@ -96,24 +96,16 @@ body {
 .diagrama_negocios{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    padding-left: 120px;
-    padding-right: 120px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-
-.diagrama_negocios .maximizeEficiencia {
-    display: flex;
+    justify-content: center;
     flex-direction: column;
-    align-items: center;
-    padding: 50px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    color: #25767a;
 }
 
 .diagrama_negocios .maximizeEficiencia h4{
     font-size: 34px;
-    color: #383838;
 }
 
 .diagrama_negocios .maximizeEficiencia p{
@@ -121,8 +113,7 @@ body {
 }
 
 .diagrama_negocios img {
-    width: 55%;
-    height: auto;
+    width: 85%;
 }
 
 .entendaComoFunciona{
@@ -156,24 +147,6 @@ body {
 .entendaComoFunciona .sensor .imagem_sensor{
     display: flex;
     flex-direction: column;
-}
-
-.entendaComoFunciona .diagrama_solucao{
-    width: 100%;
-    height: 500px;
-    background-color: white;
-    margin-bottom: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0px;
-}
-
-.entendaComoFunciona .diagrama_solucao img{
-    width: 65%;
-    height: auto;
-    padding: 200px;
-    margin-bottom: 0px;
 }
 
 .chamada_simulador {
@@ -222,7 +195,7 @@ body {
 }
 
 .simulador_imagem img {
-    width: 600px;
+    width: 700px;
     height: auto;
     border-radius: 10px;
 }
