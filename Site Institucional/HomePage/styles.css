@@ -41,6 +41,7 @@ body {
     list-style: none;
     gap: 30px;
     margin: 0;
+    padding: 0;
 }
 
 .navbar li {
@@ -378,4 +379,23 @@ body {
 
 .version {  
     font-size: 0.9em;  
-}  
+}
+
+#login-btn {
+    position: relative;
+    background-color: #b1c40a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 13px;
+    font-weight: bold;  
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    width: 65px;
+    height: 30px;
+}
+
+#login-btn:hover {
+    transform: scale(1.25);
+    background-color: rgb(84, 95, 1);
+}
