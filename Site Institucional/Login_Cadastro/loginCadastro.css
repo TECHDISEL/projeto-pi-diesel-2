@@ -223,3 +223,14 @@ button:hover {
 .container.active .painel-direita {
     transform: translateX(200%);
 }
+
+.container-erro {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    text-align: justify;
+    flex-direction: column;
+    color: red;
+    font-size: 12px;
+    font-weight: 700;
+}
