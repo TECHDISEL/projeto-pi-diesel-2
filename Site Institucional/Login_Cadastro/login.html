@@ -14,16 +14,16 @@
     <div class="form-container container-cadastro">
         <form>
             <h1>Cadastrar Usuário</h1>
-            <input type="text" placeholder="Responsavel Legal">
-            <input type="text" placeholder="Nome comercial da empresa">
-            <input type="text" placeholder="Razão Social">
-            <input type="text" placeholder="Digite o CNPJ">
-            <input type="text" placeholder="Digite seu telefone">
-            <input type="text" placeholder="Email para contato">
-            <input id="senha" onkeyup="validarSenha()" type="text" placeholder="Senha">
+            <input type="text" id="responsavel" placeholder="Responsável Legal">
+            <input type="text" id="nomeComercial" placeholder="Nome comercial da empresa">
+            <input type="text" id="razaoSocial" placeholder="Razão Social">
+            <input type="number" id="cnpj" placeholder="Digite o CNPJ">
+            <input type="tel" id="telefone" placeholder="Digite seu telefone">
+            <input type="email" id="email" placeholder="Email para contato">
+            <input type="password" id="senha" placeholder="Senha" onkeyup="validarSenha()">
             <div id="erro" class="container-erro"></div>
-            <button> Cadastre-se </button>
-        </form>
+            <button id="botaoCadastro" disabled> Cadastre-se </button>
+        </form>        
     </div>
     <div class="form-container container-login">
         <img src="./images/logo_vetorizada.png"
