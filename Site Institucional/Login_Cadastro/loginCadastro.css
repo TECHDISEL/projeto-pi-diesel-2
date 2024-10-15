@@ -77,19 +77,29 @@ a:hover {
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-#login, #cadastro {
-    background-color: #104e50;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
 button:hover {
     transform: scale(1.25);
 }
 
 .container button.hidden {
-    background-color: transparent;
+    background-color: #1f6164;
     border-color: #fff;
 
+}
+
+#botaoCadastro:hover {
+    background-color: #94a308;
+}
+
+#botaoCadastro:disabled {
+    background-color: #ccc; 
+    color: #666; 
+    cursor: not-allowed; 
+    transition: none; 
+}
+
+#botaoCadastro:disabled:hover {
+    background-color: #ccc;
 }
 
 .container form {
@@ -222,4 +232,15 @@ button:hover {
 
 .container.active .painel-direita {
     transform: translateX(200%);
+}
+
+.container-erro {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    text-align: justify;
+    flex-direction: column;
+    color: red;
+    font-size: 12px;
+    font-weight: 700;
 }

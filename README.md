@@ -39,7 +39,8 @@ Este projeto foi criado para monitorar e gerenciar o estoque de diesel em tanque
 
 ## Simulador Financeiro
 - Recurso de marketing que estima custos e estimula a compra do produto.
-![image](https://github.com/user-attachments/assets/a191b2c7-be40-4c53-a231-52b4c09aa918)
+![simulador](https://github.com/user-attachments/assets/e0652dcc-414a-4e46-b4d6-972c5bede33e)
+
 
 ## Contribuição
 Está restrito aos alunos da SPTech do 1 ADSA da São Paulo Tech School
