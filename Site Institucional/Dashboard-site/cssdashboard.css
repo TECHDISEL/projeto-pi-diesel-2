@@ -7,11 +7,15 @@ body {
     background-color: #25767a;
     display: flex;
     flex-direction: column;
-    padding-top: 120px;
+    padding-top: 50px;
     align-items: center;
     height: 100vh;
     width: 100%;
-    padding-left: 135px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    
 }
 
 .container2 {
@@ -20,6 +24,40 @@ body {
     align-items: flex-start; /* Alinha os elementos no início */
     width: 80%; /* Ajuste a largura conforme necessário */
     padding: 20px;
+}
+
+.kpis{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    justify-items:start;
+    margin-left: -30%;
+}
+
+.kpi1{
+    color: #25767a;
+    background-color: whitesmoke;
+    height: 150px;
+    width: 300px;
+    display: flex;
+    align-content: stretch;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    margin-right: 50px;
+    
+}
+
+.kpi2{
+    color: #25767a;
+    background-color: whitesmoke;
+    height: 150px;
+    width: 300px;
+    display: flex;
+    align-content: stretch;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
 }
 
 .box1, .box2, .box3 {
@@ -52,6 +90,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     width: 35%;
+    margin-top: -64px;
 }
 
 .box2, .box3 {
@@ -65,13 +104,17 @@ body {
     top: 0;
     left: 0; /* Posiciona o header à esquerda */
     width: 135px; /* Define a largura fixa */
-    height: 100%; /* O header ocupa toda a altura da página */
+    height: 99%; /* O header ocupa toda a altura da página */
     z-index: 10;
     padding: 20px; /* Ajuste o padding conforme necessário */
     display: flex;
     flex-direction: column; /* Itens em coluna */
     align-items: center; /* Alinha os itens ao centro horizontalmente */
+    align-content:space-between;
+    
 }
+
+
 
 .titulo {
     display: flex;
@@ -105,3 +148,4 @@ body {
 .navbar a:hover {
     color: #ffd900;
 }
+
