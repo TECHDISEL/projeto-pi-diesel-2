@@ -11,6 +11,7 @@ body {
     align-items: center;
     height: 100vh;
     width: 100%;
+    padding-left: 135px;
 }
 
 .container2 {
@@ -22,7 +23,7 @@ body {
 }
 
 .box1, .box2, .box3 {
-    background-color: #ffffff;
+    background-color: whitesmoke;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 20px;
@@ -57,18 +58,19 @@ body {
     margin: 10px 0;
 }
 
-/*header da página*/
+/* header da página */
 .header {
     background-color: whitesmoke;
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
+    left: 0; /* Posiciona o header à esquerda */
+    width: 135px; /* Define a largura fixa */
+    height: 100%; /* O header ocupa toda a altura da página */
     z-index: 10;
-    padding: 3px 0;
-    border-radius: 60px;
-    margin-top: 20px;
+    padding: 20px; /* Ajuste o padding conforme necessário */
+    display: flex;
+    flex-direction: column; /* Itens em coluna */
+    align-items: center; /* Alinha os itens ao centro horizontalmente */
 }
 
 .titulo {
@@ -76,25 +78,19 @@ body {
     align-items: center;
     color: #25767a;
     font-size: 24px;
-}
-
-.header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 120px;
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
 }
 
 .header img {
-    margin-right: 10px;
+    margin-bottom: 10px; /* Espaçamento entre a imagem e o texto */
     width: 50px;
     height: auto;
 }
 
 .navbar {
     display: flex;
+    flex-direction: column; /* Itens do menu em coluna */
     list-style: none;
-    gap: 30px;
     margin: 0;
 }
 
@@ -102,6 +98,7 @@ body {
     text-decoration: none;
     color: #25767a;
     font-weight: 500;
+    margin: 5px 0; /* Espaçamento entre os itens do menu */
     transition: color 0.3s ease;
 }
 
