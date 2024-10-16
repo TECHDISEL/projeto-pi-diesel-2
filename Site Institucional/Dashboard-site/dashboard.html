@@ -91,7 +91,7 @@
                                 <span class="material-symbols-outlined">
                                     oil_barrel
                                 </span>
-                                <span class="text-primary font-weight-bold"> 230 </span>
+                                <span class="text-primary font-weight-bold"> 800 </span>
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                                 <span class="material-symbols-outlined">
                                     monitoring
                                 </span>
-                                <span class="text-primary font-weight-bold"> 2 </span>
+                                <span class="text-primary font-weight-bold"> 3 </span>
                             </div>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                                 <span class="material-symbols-outlined">
                                     paid
                                 </span>
-                                <span class="text-primary font-weight-bold"> 13.000,00 </span>
+                                <span class="text-primary font-weight-bold"> 96.160,00 </span>
                             </div>
                         </div>
                     </div>
@@ -230,13 +230,13 @@
                 6.5,  // 14:00 - Máquinas em operação novamente
                 5.5,  // 15:00 - Pico de uso no campo
                 4.5,  // 16:00 - Uso contínuo de maquinário
-                4.0,  // 17:00 - Fim das operações principais
-                3.8,  // 18:00 - Manutenção de máquinas
-                3.8,  // 19:00 - Consumo leve no final do dia
-                3.7,  // 20:00 - Noite chegando, consumo reduzido
-                3.7,  // 21:00 - Consumo quase parado
-                3.7,  // 22:00 - Atividades mínimas
-                3.7,  // 23:00 - Consumo mínimo
+                3.8,  // 17:00 - Fim das operações principais
+                3.5,  // 18:00 - Manutenção de máquinas
+                3.2,  // 19:00 - Consumo leve no final do dia
+                2.8,  // 20:00 - Noite chegando, consumo reduzido
+                2.7,  // 21:00 - Consumo quase parado
+                2.7,  // 22:00 - Atividades mínimas
+                2.6,  // 23:00 - Consumo mínimo
             ],
         },]
     };
@@ -268,15 +268,15 @@
                     annotations: {
                         linhaConstante: {
                             type: 'line',
-                            yMin: 3,  // Posição da linha constante no eixo Y
-                            yMax: 3,  // Mesma posição no eixo Y para ser horizontal
-                            borderColor: 'red',  // Cor da linha
+                            yMin: 2.4,  // Posição da linha constante no eixo Y
+                            yMax: 2.4,  // Mesma posição no eixo Y para ser horizontal
+                            borderColor: 'yellow',  // Cor da linha
                             borderWidth: 1.5,      // Espessura da linha
                             label: {
-                                content: 'Ponto Crítico para reabastecer', // Texto a ser exibido
+                                content: 'Ponto ideal para reabastecer', // Texto a ser exibido
                                 enabled: true,
                                 position: 'start',   // Posição do texto (start, center, end)
-                                color: 'red',        // Cor do texto
+                                color: 'yellow',        // Cor do texto
                                 font: {
                                     size: 12,
                                     weight: 'bold'
