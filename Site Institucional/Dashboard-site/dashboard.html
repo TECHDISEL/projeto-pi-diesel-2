@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../HomePage/Images/logo_vetorizada.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header-main">
+            <header class="header">
+                <div class="menu-icon" onclick="abrirMenuLateral()">
+                    <span class="material-symbols-outlined">
+                        menu
+                    </span>
+                </div>
+
+                <div class="header-left">
+                    <span class="material-symbols-outlined">
+                        search
+                    </span>
+                </div>
+
+                <div class="header-right">
+                    <span class="material-symbols-outlined">
+                        notifications
+                    </span>
+                    <span class="material-symbols-outlined">
+                        mail
+                    </span>
+                    <span class="material-symbols-outlined">
+                        account_circle
+                    </span>
+                </div>
+            </header>
+
+            <main class="main">
+                <div class="main-title">
+                    <p class="font-weight-bold"> <b>DASHBOARD</b> </p>
+                </div>
+
+                <div class="main-cards">
+                    <div class="card">
+                        <table class="tanques-info">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Setor</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="linha">
+                                    <td> 1 </td>
+                                    <td> Irrigação </td>
+                                    <td><span style="color: green;" class="status ok"> <b>OK</b> </span></td>
+                                </tr>
+                                <tr class="linha">
+                                    <td> 2 </td>
+                                    <td> Tratores </td>
+                                    <td><span style="color: rgb(216, 177, 20);" class="status alerta"> <b>ALERTA</b>
+                                        </span></td>
+                                </tr>
+                                <tr class="linha">
+                                    <td> 3 </td>
+                                    <td> Maquinário Pesado </td>
+                                    <td><span style="color: rgb(128, 6, 0);" class="status critico"> <b>CRITICO</b>
+                                        </span></td>
+                                </tr>
+                                <tr class="linha">
+                                    <td> 4 </td>
+                                    <td> Maquinário Pesado </td>
+                                    <td><span style="color: rgb(128, 6, 0);" class="status critico"> <b>CRITICO</b>
+                                        </span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <p class="text-primary"> Consumo Diário (L) </p>
+                            <div class="card-content">
+                                <span class="material-symbols-outlined">
+                                    oil_barrel
+                                </span>
+                                <span class="text-primary font-weight-bold"> 230 </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <p class="text-primary"> Dias estimados de serviço </p>
+                            <div class="card-content">
+                                <span class="material-symbols-outlined">
+                                    monitoring
+                                </span>
+                                <span class="text-primary font-weight-bold"> 2 </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <p class="text-primary"> Alertas Totais </p>
+                            <div class="card-content">
+                                <span class="material-symbols-outlined">
+                                    warning
+                                </span>
+                                <span class="text-primary font-weight-bold"> 4 </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-inner">
+                            <p class="text-primary"> Gastos Mensais </p>
+                            <div class="card-content">
+                                <span class="material-symbols-outlined">
+                                    paid
+                                </span>
+                                <span class="text-primary font-weight-bold"> 13.000,00 </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts">
+                    <div class="charts-card">
+                        <p class="chart-title"> Monitoramento Diário </p>
+                        <canvas id="myChart"></canvas>
+                    </div>
+
+                    <div class="charts-card">
+                        <p class="chart-title"> Consumo médio </p>
+                        <canvas id="myChart2"></canvas>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <img src="../HomePage/Images/logo_vetorizada.png" style="width: 25px;">
+                    <p style="color: #3d6e60;">Tech Diesel</p>
+                </div>
+                <span class="material-symbols-outlined" onclick="fecharMenuLateral()">
+                    close
+                </span>
+            </div>
+
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">
+                        space_dashboard
+                    </span> Dashboard
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">
+                        history
+                    </span> Registros
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-symbols-outlined">
+                        construction
+                    </span> Métricas
+                </li>
+                <li class="sidebar-list-item"  onclick="window.location.href='../HomePage/index.html';">
+                    <span class="material-symbols-outlined">
+                        logout
+                    </span> Sair
+                </li>
+            </ul>
+        </aside>
+    </div>
+
+    <!-- Caso for necessário adcionar mais gráficos, vou deixar a estrutura aqui para copiarmos
+    
+        <div class="charts">
+        <div class="charts-card">
+            <p class="chart-title"> Monitoramento Diário </p>
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <div class="charts-card">
+            <p class="chart-title"> Consumo médio </p>
+            <canvas id="myChart2"></canvas>
+        </div>
+    </div> -->
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"></script>
+
+</html>
+<script>
+
+    const labels = [
+        '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00',
+        '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00',
+    ];
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Nível de Diesel',
+            backgroundColor: '#3d6e60',
+            borderColor: '#3d6e60',
+            tension: 0.4,
+            pointRadius: 0,
+            data: [
+                12.5, // 06:00 - Trabalho pesado nas plantações
+                11.0, // 07:00 - Tratores em operação
+                10.0, // 08:00 - Picos de uso de máquinas pesadas
+                9.5,  // 09:00
+                8.8,  // 10:00 - Continuação de colheita ou preparo
+                8.0,  // 11:00 - Alta demanda de diesel
+                7.8,  // 12:00 - Pausa para almoço, leve consumo
+                7.5,  // 13:00 - Retorno ao trabalho, consumo moderado
+                6.5,  // 14:00 - Máquinas em operação novamente
+                5.5,  // 15:00 - Pico de uso no campo
+                4.5,  // 16:00 - Uso contínuo de maquinário
+                4.0,  // 17:00 - Fim das operações principais
+                3.8,  // 18:00 - Manutenção de máquinas
+                3.8,  // 19:00 - Consumo leve no final do dia
+                3.7,  // 20:00 - Noite chegando, consumo reduzido
+                3.7,  // 21:00 - Consumo quase parado
+                3.7,  // 22:00 - Atividades mínimas
+                3.7,  // 23:00 - Consumo mínimo
+            ],
+        },]
+    };
+
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Litros (10³)',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    beginAtZero: true,
+                    responsive: true,
+                }
+            },
+            plugins: {
+                annotation: {
+                    annotations: {
+                        linhaConstante: {
+                            type: 'line',
+                            yMin: 3,  // Posição da linha constante no eixo Y
+                            yMax: 3,  // Mesma posição no eixo Y para ser horizontal
+                            borderColor: 'red',  // Cor da linha
+                            borderWidth: 1.5,      // Espessura da linha
+                            label: {
+                                content: 'Ponto Crítico para reabastecer', // Texto a ser exibido
+                                enabled: true,
+                                position: 'start',   // Posição do texto (start, center, end)
+                                color: 'red',        // Cor do texto
+                                font: {
+                                    size: 12,
+                                    weight: 'bold'
+                                },
+                                yAdjust: -10        // Ajuste a posição do texto acima da linha
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    const labels2 = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+
+    const data2 = {
+        labels: labels2,
+        datasets: [{
+            label: 'Consumo Mensal em Litros',
+            backgroundColor: '#6dc0c0',
+            borderColor: '#6dc0c0',
+            data: [200, 100, 120, 150, 220, 110],
+        }]
+    };
+
+    const config2 = {
+        type: 'bar',
+        data: data2,
+        options: {
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Litros (10³)',
+                        font: {
+                            size: 16
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+
+    const myChart2 = new Chart(
+        document.getElementById('myChart2'),
+        config2
+    );
+
+    var abrirMenuLateral = false
+    var sidebar = document.getElementById('sidebar')
+
+    function abrirMenuLateral() {
+
+        if (!abrirMenuLateral) {
+            sidebar.classList.add('sidebar-responsive')
+            abrirMenuLateral = true
+        }
+    }
+
+    function fecharMenuLateral() {
+
+        if (abrirMenuLateral) {
+            sidebar.classList.remove('sidebar-responsive')
+            abrirMenuLateral = false
+        }
+    }
+</script>
