@@ -80,25 +80,13 @@ INSERT INTO sensor VALUES
 (3, 3, 'Monitoramento Abastecimento Sistema de Irrigação');
 
 CREATE TABLE medida (
-idMedida INT,
+idMedida INT PRIMARY KEY,
 fkSensor INT,
 leitura DECIMAL(12,2),
 dataLeitura DATETIME DEFAULT CURRENT_TIMESTAMP,
 
 CONSTRAINT fkMedidaSensor FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
-
-INSERT INTO medida (idMedida, fkSensor, leitura, dataLeitura) VALUES 
-(1, 1, 10000.00, '2024-10-11 08:00:00'),
-(2, 1, 9500.00, '2024-10-11 09:00:00'),
-(3, 1, 9000.00, '2024-10-11 10:00:00'),
-(4, 1, 8500.00, '2024-10-11 11:00:00'),
-(5, 1, 8000.00, '2024-10-11 12:00:00'),
-(6, 1, 7500.00, '2024-10-11 13:00:00'),
-(7, 1, 7000.00, '2024-10-11 14:00:00'),
-(8, 1, 6500.00, '2024-10-11 15:00:00'),
-(9, 1, 6000.00, '2024-10-11 16:00:00'),
-(10, 1, 5500.00, '2024-10-11 17:00:00');
 
 SELECT 
 	tanque.nome AS 'Nome do tanque',
