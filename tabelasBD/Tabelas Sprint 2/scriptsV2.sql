@@ -80,7 +80,7 @@ INSERT INTO sensor VALUES
 (3, 3, 'Monitoramento Abastecimento Sistema de Irrigação');
 
 CREATE TABLE medida (
-idMedida INT PRIMARY KEY,
+idMedida INT PRIMARY KEY AUTO_INCREMENT,
 fkSensor INT,
 leitura DECIMAL(12,2),
 dataLeitura DATETIME DEFAULT CURRENT_TIMESTAMP,
