@@ -1,5 +1,5 @@
-CREATE DATABASE tech_dieselV2;
-USE tech_dieselV2;
+CREATE DATABASE tech_diesel;
+USE tech_diesel;
 
 /*  TABELAS PARA USUÁRIO E CADASTRO  */
 CREATE TABLE cliente (
