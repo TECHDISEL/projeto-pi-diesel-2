@@ -6,24 +6,50 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
+<style>
+    .charts-card {
+        background-color: #fff;
+        margin-bottom: 20px;
+        padding: 25px;
+        box-sizing: border-box;
+        -webkit-column-break-inside: avoid;
+        border: 1px solid #d2d2d3;
+        border-radius: 5px;
+        box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+        width: 75%;
+    }
+
+    div {
+        display: flex;
+        justify-content: center;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 0;
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
+
 <body>
 
-    <h1>Tech Diesel DashBoard</h1>
-    <div style="display: flex;">
-        <div style="width: 25%;">
+    <h1 style="color: #3d6e60;"><img src="./logo_vetorizada.png" style="width: 25px;">Tech Diesel</h1>
+    <div>
+        <div style="height: 50px;">
             <canvas id="sensorAnalogico"></canvas>
         </div>
-        <div style="width: 50%;">
+        <div class="charts-card">
             <canvas id="sensorDigital"></canvas>
         </div>
     </div>
 
     <script>
+        
         var sensorDigital = new Chart(document.getElementById('sensorDigital').getContext('2d'), {
             type: 'line',
             data: {
                 datasets: [{
-                    label: 'Digital',
+                    label: 'Nível de diesel',
                     borderColor: '#63B1BC',
                     backgroundColor: '#0762C8'
                 }]
@@ -31,12 +57,18 @@
             options: {
                 scales: {
                     x: {
+                        grid: {
+                            display: false
+                        },
                         beginAtZero: true
                     },
                     y: {
                         title: {
                             display: true,
-                            text: '(0-1)'
+                            text: 'Volume diesel (L)',
+                            font: {
+                                size: 20
+                            }
                         },
                         beginAtZero: true
                     }

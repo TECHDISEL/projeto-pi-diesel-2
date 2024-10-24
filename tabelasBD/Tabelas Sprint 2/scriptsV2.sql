@@ -13,8 +13,7 @@ CONSTRAINT fkClienteResponsavel FOREIGN KEY (fkResponsavel) REFERENCES cliente (
 INSERT INTO cliente (idCliente, fkResponsavel, nome) VALUES 
 (1, NULL, 'Admin'),
 (2, 1, 'Frizza'),     
-(3, 1, 'Julia'),    
-(4, 2, 'Xambson');
+(3, 1, 'Julia');
 
 CREATE TABLE cadastro (
 CNPJ CHAR(18) PRIMARY KEY,
