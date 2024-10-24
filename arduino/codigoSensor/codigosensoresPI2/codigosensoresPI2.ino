@@ -20,7 +20,7 @@ void loop() {
     // float volume = 3.14 * (50^2) * (1000 - distancia) // supondo medidas do tanque. float volume = 3.14 * (r^2) * (altura tanque - distancia)
 
     if(isnan(distancia)){
-      Serial.println("Umidade: Erro ao ler os dados do sensor");
+      Serial.println("Unidade: Erro ao ler os dados do sensor");
     } else {
       Serial.println(distancia);
     }

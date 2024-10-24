@@ -270,13 +270,47 @@
                             type: 'line',
                             yMin: 2.4,  // Posição da linha constante no eixo Y
                             yMax: 2.4,  // Mesma posição no eixo Y para ser horizontal
-                            borderColor: 'yellow',  // Cor da linha
+                            borderColor: 'orange',  // Cor da linha
                             borderWidth: 1.5,      // Espessura da linha
                             label: {
                                 content: 'Ponto ideal para reabastecer', // Texto a ser exibido
                                 enabled: true,
                                 position: 'start',   // Posição do texto (start, center, end)
-                                color: 'yellow',        // Cor do texto
+                                color: 'orange',        // Cor do texto
+                                font: {
+                                    size: 12,
+                                    weight: 'bold'
+                                },
+                                yAdjust: -10        // Ajuste a posição do texto acima da linha
+                            }
+                        },
+                        linhaConstante2: {
+                            type: 'line',
+                            yMin: 4.8,  // Posição da linha constante no eixo Y
+                            yMax: 4.8,  // Mesma posição no eixo Y para ser horizontal
+                            borderColor: 'green',  // Cor da linha
+                            borderWidth: 1.5,      // Espessura da linha
+                            label: {
+                                enabled: true,
+                                position: 'start',   // Posição do texto (start, center, end)
+                                color: 'green',        // Cor do texto
+                                font: {
+                                    size: 12,
+                                    weight: 'bold'
+                                },
+                                yAdjust: -10        // Ajuste a posição do texto acima da linha
+                            }
+                        },
+                        linhaConstante3: {
+                            type: 'line',
+                            yMin: 1.6,  // Posição da linha constante no eixo Y
+                            yMax: 1.6,  // Mesma posição no eixo Y para ser horizontal
+                            borderColor: 'red',  // Cor da linha
+                            borderWidth: 1.5,      // Espessura da linha
+                            label: {
+                                enabled: true,
+                                position: 'start',   // Posição do texto (start, center, end)
+                                color: 'red',        // Cor do texto
                                 font: {
                                     size: 12,
                                     weight: 'bold'
