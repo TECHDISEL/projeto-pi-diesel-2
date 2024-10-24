@@ -244,3 +244,12 @@ button:hover {
     font-size: 12px;
     font-weight: 700;
 }
+
+.form2{
+    display: none;
+    width: 100%;
+}
+
+.form, visible{
+    display: flex;
+}

@@ -2,6 +2,18 @@ const botaoAbreFormularioDeCadastro = document.getElementById('cadastro');
 const container = document.getElementById('container');
 const botaoAbreFormularioDeLogin = document.getElementById('login');
 
+function continuarCadastro() {
+    event.preventDefault()
+    form.style.display = 'None'
+    form2.style.display = 'Flex'
+}
+
+function voltar() {
+    event.preventDefault()
+    form.style.display = 'Flex'
+    form2.style.display = 'None'
+}
+
 function moverEsquerda() {
     container.classList.add('active');
 }
