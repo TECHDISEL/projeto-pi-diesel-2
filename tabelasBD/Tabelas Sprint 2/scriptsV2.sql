@@ -67,8 +67,8 @@ INSERT INTO tanque VALUES
 (3, 2, 'Tanque 3', 15000);
 
 CREATE TABLE sensor (
-idSensor INT UNIQUE, 
-fkTanque INT UNIQUE,
+idSensor INT, 
+fkTanque INT,
 identificacao VARCHAR(100),
 
 CONSTRAINT pkCompostaSensor PRIMARY KEY (idSensor, fkTanque),
@@ -89,55 +89,56 @@ dataLeitura DATETIME DEFAULT CURRENT_TIMESTAMP,
 CONSTRAINT fkMedidaSensor FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
 
+/* Consulta */
 SELECT 
-	tanque.nome AS 'Nome do tanque',
+    tanque.nome AS 'Nome do tanque',
     tanque.capacidade AS 'Capacidade do tanque',
-	sensor.identificacao AS 'Identificação do Sensor',
+    sensor.identificacao AS 'Identificação do Sensor',
     medida.leitura AS 'Leitura do Sensor', 
-    dataLeitura AS 'Data da leitura'
+    medida.dataLeitura AS 'Data da leitura'
 FROM 
-	tanque
+    tanque
 JOIN
-	sensor
-ON
-	idTanque = fkTanque
-JOIN 
-	medida 
+    sensor 
 ON 
-	idSensor = fkSensor
-ORDER BY leitura LIMIT 5; 
+    tanque.idTanque = sensor.fkTanque
+JOIN 
+    medida 
+ON 
+    sensor.idSensor = medida.fkSensor
+ORDER BY medida.leitura LIMIT 5;
 
 /* Select para unir todos os dados */
 SELECT
-	usuario.nome AS 'Nome Funcionário', -- Usuario
+    usuario.nome AS 'Nome Funcionário', -- Usuario
     responsavel.nome AS 'Responsavel Legal', -- Usuario
-    concat(rua, ', ', bairro, ', ',  numero, ', ',  CEP, ', ', cidade, ' - ', uf) AS 'Endereço', -- Endereco
+    concat(endereco.rua, ', ', endereco.bairro, ', ', endereco.numero, ', ', endereco.CEP, ', ', endereco.cidade, ' - ', endereco.uf) AS 'Endereço', -- Endereco
     tanque.nome AS 'Nome do Tanque', -- Tanque
     sensor.identificacao, -- Sensor
-    leitura, dataLeitura -- Medida
+    medida.leitura, medida.dataLeitura -- Medida
 FROM 
-	usuario
+    usuario
 LEFT JOIN
-	usuario AS responsavel
+    usuario AS responsavel
 ON
-	usuario.fkResponsavel = responsavel.idUsuario
+    usuario.fkResponsavel = responsavel.idUsuario
 LEFT JOIN
-	usuario
+    cadastro
 ON
-	usuario.fkUsuario = usuario.idUsuario
+    usuario.fkCNPJ = cadastro.cnpj -- JOIN correto com a tabela cadastro
 LEFT JOIN
-	endereco
+    endereco
 ON
-	endereco.fkCNPJ = cadastro.CNPJ
+    endereco.fkCNPJ = cadastro.CNPJ -- CNPJ relacionado à tabela cadastro
 LEFT JOIN
-	tanque
+    tanque
 ON
-	tanque.fkUsuario = usuario.idUsuario
+    tanque.fkUsuario = usuario.idUsuario
 LEFT JOIN
-	sensor
+    sensor
 ON
-	sensor.fkTanque = tanque.idTanque
+    sensor.fkTanque = tanque.idTanque
 LEFT JOIN
-	medida
+    medida
 ON
-	medida.fkSensor = sensor.idSensor;
+    medida.fkSensor = sensor.idSensor;
