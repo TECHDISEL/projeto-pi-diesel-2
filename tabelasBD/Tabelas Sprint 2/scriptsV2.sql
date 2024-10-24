@@ -17,9 +17,9 @@ INSERT INTO cadastro (CNPJ, nome, nomeFantasia, razaoSocial, telefone, email, se
 
 /*  TABELAS PARA USUÁRIO E CADASTRO  */
 CREATE TABLE usuario (
-idUsuario INT PRIMARY KEY,
+idUsuario INT,
+fkCNPJ INT,
 fkResponsavel INT,
-fkCadastro INT,
 nome VARCHAR(45),
 senha VARCHAR(45),
 
@@ -27,10 +27,10 @@ CONSTRAINT pkCompostaUsuario PRIMARY KEY (idUsuario, fkCNPJ),
 CONSTRAINT fkUsuarioResponsavel FOREIGN KEY (fkResponsavel) REFERENCES usuario (idUsuario)
 );
 
-INSERT INTO usuario (idUsuario, fkResponsavel, nome, senha) VALUES 
-(1, NULL, 'Admin', 'Admin123@'),
-(2, 1, 'Frizza', 'Fr@123'),     
-(3, 1, 'Julia', 'Ju@123');
+INSERT INTO usuario (idUsuario, fkCNPJ,fkResponsavel, nome, senha) VALUES 
+(1, 1, 1,'Admin', 'Admin123@'),
+(2, 1, 1, 'Frizza', 'Fr@123'),     
+(3, 1, 1, 'Julia', 'Ju@123');
 
 
 CREATE TABLE endereco (
@@ -53,12 +53,12 @@ INSERT INTO endereco (idEndereco, fkCNPJ, rua, bairro, numero, CEP, cidade, uf) 
 /*  TABELAS PARA TANQUE E SENSOR  */
 CREATE TABLE tanque (
 idTanque INT,
-fkCliente INT,
+fkUsuario INT,
 nome VARCHAR(45),
 capacidade INT,
 
-CONSTRAINT pkCompostaTanque PRIMARY KEY (idTanque, fkCliente),
-CONSTRAINT fkClienteTanque FOREIGN KEY (fkCliente) REFERENCES cliente (idCliente)
+CONSTRAINT pkCompostaTanque PRIMARY KEY (idTanque, fkUsuario),
+CONSTRAINT fkUsuarioTanque FOREIGN KEY (fkUsuario) REFERENCES usuario (idUsuario)
 );
 
 INSERT INTO tanque VALUES
@@ -122,9 +122,9 @@ LEFT JOIN
 ON
 	usuario.fkResponsavel = responsavel.idUsuario
 LEFT JOIN
-	cadastro
+	usuario
 ON
-	cadastro.fkUsuario = usuario.idUsuario
+	usuario.fkUsuario = usuario.idUsuario
 LEFT JOIN
 	endereco
 ON
@@ -132,7 +132,7 @@ ON
 LEFT JOIN
 	tanque
 ON
-	tanque.fkUsuario = cliente.idCliente
+	tanque.fkUsuario = usuario.idUsuario
 LEFT JOIN
 	sensor
 ON
