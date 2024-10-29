@@ -1,6 +1,7 @@
 CREATE DATABASE tech_diesel;
 USE tech_diesel;
 
+
 /*TABELA DE CADASTRO DA EMPRESA*/
 CREATE TABLE cadastro (
 CNPJ CHAR(18) PRIMARY KEY,
@@ -14,6 +15,7 @@ senha VARCHAR(45)
 
 INSERT INTO cadastro (CNPJ, nome, nomeFantasia, razaoSocial, telefone, email, senha) VALUES 
 ('12.345.678/0001-90', 'Claudio Frizzarini', 'Fazendas Frizza', 'Agro & Comércio Ltda', '12345678901', 'frizza@example.com', 'senhaFrizza');
+
 
 /*  TABELAS PARA USUÁRIO E CADASTRO  */
 CREATE TABLE usuario (
@@ -33,6 +35,7 @@ INSERT INTO usuario (idUsuario, fkCNPJ,fkResponsavel, nome, senha) VALUES
 (3, 1, 1, 'Julia', 'Ju@123');
 
 
+/* TABELA PARA ENDEREÇO*/
 CREATE TABLE endereco (
 idEndereco INT,
 fkCNPJ CHAR(18) UNIQUE,
@@ -50,36 +53,38 @@ CONSTRAINT fkCNPJEndereco FOREIGN KEY (fkCNPJ) REFERENCES cadastro (CNPJ)
 INSERT INTO endereco (idEndereco, fkCNPJ, rua, bairro, numero, CEP, cidade, uf) VALUES 
 (1, '12.345.678/0001-90', 'Rua das Flores', 'Centro', 123, '01234567', 'São Paulo', 'SP');
 
-/*  TABELAS PARA TANQUE E SENSOR  */
-CREATE TABLE tanque (
-idTanque INT,
-fkUsuario INT,
-nome VARCHAR(45),
-capacidade INT,
 
-CONSTRAINT pkCompostaTanque PRIMARY KEY (idTanque, fkUsuario),
-CONSTRAINT fkUsuarioTanque FOREIGN KEY (fkUsuario) REFERENCES usuario (idUsuario)
-);
-
-INSERT INTO tanque VALUES
-(1, 2, 'Tanque 1', 10000),
-(2, 2, 'Tanque 2', 10000),
-(3, 2, 'Tanque 3', 15000);
-
+/* TABELA PARA SENSOR*/
 CREATE TABLE sensor (
-idSensor INT, 
-fkTanque INT,
-identificacao VARCHAR(100),
-
-CONSTRAINT pkCompostaSensor PRIMARY KEY (idSensor, fkTanque),
-CONSTRAINT fkTanqueSensor FOREIGN KEY (fkTanque) REFERENCES tanque (idTanque)
+idSensor INT PRIMARY KEY AUTO_INCREMENT, 
+identificacao VARCHAR(100)
 );
 
 INSERT INTO sensor VALUES 
-(1, 1, 'Monitoramento Abastecimento de Tratores'),
-(2, 2, 'Monitoramento Abastecimento de Máquinas Pesadas'),
-(3, 3, 'Monitoramento Abastecimento Sistema de Irrigação');
+(DEFAULT, 'Monitoramento Abastecimento de Tratores'),
+(DEFAULT, 'Monitoramento Abastecimento de Máquinas Pesadas'),
+(DEFAULT, 'Monitoramento Abastecimento Sistema de Irrigação');
 
+
+/*  TABELAS PARA TANQUE*/
+CREATE TABLE tanque (
+idTanque INT PRIMARY KEY AUTO_INCREMENT,
+fkCadastro CHAR(18),
+fkSensor INT,
+nome VARCHAR(45),
+capacidade INT,
+
+CONSTRAINT fkCadastroTanque FOREIGN KEY (fkCadastro) REFERENCES cadastro (CNPJ),
+CONSTRAINT fkSensorTanque FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
+);
+
+INSERT INTO tanque VALUES
+(DEFAULT, '12.345.678/0001-90', 1, 'Tanque 1', 10000),
+(DEFAULT, '12.345.678/0001-90', null, 'Tanque 2', 10000),
+(DEFAULT, '12.345.678/0001-90', null, 'Tanque 3', 15000);
+
+
+/*  TABELAS PARA MEDIDA*/
 CREATE TABLE medida (
 idMedida INT PRIMARY KEY AUTO_INCREMENT,
 fkSensor INT,
@@ -88,6 +93,27 @@ dataLeitura DATETIME DEFAULT CURRENT_TIMESTAMP,
 
 CONSTRAINT fkMedidaSensor FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
+
+
+SELECT t.idTanque, t.nome AS nome_tanque, c.nome AS nome_empresa
+FROM tanque t
+LEFT JOIN cadastro c ON t.fkCadastro = c.CNPJ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Consulta */
 SELECT 
