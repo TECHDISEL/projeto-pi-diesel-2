@@ -32,6 +32,8 @@ body {
     flex-direction: column;
     text-align: center;
     align-items: center;
+    height: 100vh;
+    justify-content: center;
 }
 
 #caminho1 h1 {
@@ -62,6 +64,8 @@ body {
     flex-direction: column;
     text-align: center;
     align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
 /* -------------- ESTTILIZAÇÃO SOMENTE DO CONTENT6 (ÁREA DO USUÁRIO QUE REALIZA APENAS UM REABASTECIMENTO MENSAL) -------------- */
@@ -130,4 +134,8 @@ h1 {
 h2 {
     margin-bottom: 2px;
     margin-top: 0;
+}
+
+p {
+    font-size: 20px;
 }

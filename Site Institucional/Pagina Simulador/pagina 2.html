@@ -120,10 +120,10 @@
                 <div class="grafico-text">
                     <p> Para o seu consumo fornecido, <b style="color: red;"> APENAS COM ${horasParadas} HORA(s) PARADA(s) POR MÊS EM SUAS PRODUÇÕES
                             PARA COMPRA DE DIESEL </b> os seus investimentos chegam a
-                        ${(dadosSemMonitoramento[dadosSemMonitoramento.length - 1]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} </p>
+                        <b style="color: red;">${(dadosSemMonitoramento[dadosSemMonitoramento.length - 1]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b> </p>
 
                     <p> Com nossos sistemas, sem considerar os acréscimos por conta dessas paradas, chega-se em economias de
-                        até ${economiaGerada.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} </p>
+                        até <b style="color: green;">${economiaGerada.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</b> </p>
                 </div>
 
                 <div class="grafico">
@@ -134,9 +134,6 @@
             <p> Você sabia que cada hora parada para compra de Diesel pode te acrescentar gastos desnecessários? <b
                     style="color: red;"> Principalmente no custo horário para o uso do equipamento, incluindo
                     depreciação, juros, manutenção, seguro. Além do custo-hora por mão de obra!</b> </p>
-
-            <p> Nós da TECH DIESEL promovemos um monitoramento eficiente em seus estoques, evitando paradas
-                desnecessárias e <b style="color: green;">garantindo um total aproveitamento de seus recursos.</b> </p>
 
             <button onclick="window.location.href='pagina 3.html';"> Continuar </button>
 
