@@ -69,7 +69,8 @@ body {
     display: flex;
     gap: 25px;
     justify-content: center;
-}
+    align-items: center;
+}   
 
 #area-btn {
     display: flex;
@@ -98,4 +99,11 @@ button:hover {
 
 h1{
     color: #3d6e60;
+}
+
+.principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
 }
