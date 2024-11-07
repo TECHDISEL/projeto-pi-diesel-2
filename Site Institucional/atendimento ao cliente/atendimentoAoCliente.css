@@ -1,0 +1,63 @@
+body {
+    background-color: rgb(238, 244, 244);
+}
+
+
+.header {
+    background: linear-gradient(90deg,rgb(219, 214, 214),rgb(37, 118, 122));
+    height: 90px;
+    color: rgb(0, 0, 0);
+    margin-top: -10;
+    margin: 0;
+    border-radius: 20px;
+}
+
+ #img {
+    max-width: 60px;
+    display: flex;
+    margin-top: -79px;
+    margin-left: 15px;
+    display: block;
+    
+    
+}
+
+#atendimento {
+    display: flex;
+    justify-content: center;
+    margin-top: -70px;
+    font-family: sans-serif;
+}
+
+#p {
+    display: flex;
+    margin-top: -57px;
+    margin-left: 91px;
+    font-size: xx-large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.logo {
+    margin-left: 20px;
+}
+
+.faleConosco {
+display: flex;
+justify-content: center;
+margin-top: 40px;
+font-size: 40px;
+font-family:sans-serif ;
+}
+
+.chamado {
+   display: flex;
+   justify-content: center;
+   margin-top: 150px;
+}
+
+.descricao {
+  display: flex;
+  justify-content: center;
+  margin-top: 340px;
+}
+
