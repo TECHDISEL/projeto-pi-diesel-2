@@ -4,17 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanques</title>
     <link rel="icon" href="../HomePage/Images/logo_vetorizada.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>Dashboard</title>
 </head>
 
 <body>
-
     <div class="container">
-
         <div class="header-main">
             <header class="header">
                 <div class="menu-icon" onclick="abrirMenuLateral()">
@@ -44,62 +41,48 @@
 
             <main class="main">
                 <div class="main-title">
-                    <p class="font-weight-bold"> <b>Monitoramento Tanque 2 - Setor Abastecimento Tratores <span style="color: orange;">(ALERTA)</span></b> </p>
+                    <p class="font-weight-bold"> <b>Visão Geral<span</p>
                 </div>
 
-                <div class="main-cards">
-                    <div class="card">
-                        <div class="card-inner">
-                            <p class="text-primary"> Consumo Diário (L) </p>
-                            <div class="card-content">
-                                <span class="material-symbols-outlined">
-                                    oil_barrel
-                                </span>
-                                <span class="text-primary font-weight-bold"> 800 </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-inner">
-                            <p class="text-primary"> Dias estimados de serviço </p>
-                            <div class="card-content">
-                                <span class="material-symbols-outlined">
-                                    monitoring
-                                </span>
-                                <span class="text-primary font-weight-bold"> 3 </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-inner">
-                            <p class="text-primary"> Alertas Totais </p>
-                            <div class="card-content">
-                                <span class="material-symbols-outlined">
-                                    warning
-                                </span>
-                                <span class="text-primary font-weight-bold"> 4 </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="charts">
-                    <div class="charts-card">
-                        <p class="chart-title"> Nível de Diesel(Hora) </p>
-                        <canvas id="sensorDigital"></canvas>
-                    </div>
-
-                    <div class="charts-card">
-                        <p class="chart-title"> Consumo Médio(Mês) </p>
-                        <canvas id="myChart2"></canvas>
+                <div>
+                    <div>
+                        <table class="tanques-info">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Setor</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="linha">
+                                    <td> 1 </td>
+                                    <td> Irrigação </td>
+                                    <td><span style="color: green;" class="status ok"> <b>OK</b> </span></td>
+                                </tr>
+                                <tr class="linha">
+                                    <td> 2 </td>
+                                    <td>     Tratores</td>
+                                    <td><span style="color: rgb(216, 177, 20);" class="status alerta"> <b>ALERTA</b>
+                                        </span></td>
+                                </tr>
+                                <tr class="linha">
+                                    <td> 3 </td>
+                                    <td> Maquinário Pesado </td>
+                                    <td><span style="color: rgb(128, 6, 0);" class="status critico"> <b>CRITICO</b>
+                                        </span></td>
+                                </tr>
+                                <tr class="linha">
+                                    <td> 4 </td>
+                                    <td> Maquinário Pesado </td>
+                                    <td><span style="color: rgb(128, 6, 0);" class="status critico"> <b>CRITICO</b>
+                                        </span></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-
-            </main>
         </div>
-
         <aside id="sidebar">
             <div class="sidebar-title">
                 <div class="sidebar-brand">
@@ -135,21 +118,6 @@
             </ul>
         </aside>
     </div>
-
-    <!-- Caso for necessário adcionar mais gráficos, vou deixar a estrutura aqui para copiarmos
-    
-        <div class="charts">
-        <div class="charts-card">
-            <p class="chart-title"> Monitoramento Diário </p>
-            <canvas id="myChart"></canvas>
-        </div>
-
-        <div class="charts-card">
-            <p class="chart-title"> Consumo médio </p>
-            <canvas id="myChart2"></canvas>
-        </div>
-    </div> -->
-
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"></script>

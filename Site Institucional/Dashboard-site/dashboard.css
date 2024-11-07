@@ -100,10 +100,11 @@
 }
 
 .tanques-info {
-  max-height: 50px;
+  height: 50vh;
+  width: 100%;
   overflow-y: auto;
-  padding: 0 !important;
-  margin: 0 !important;
+  padding: 0;
+  margin: 0;
   border-spacing: 5px;
   text-align: center;
   border: 0;
