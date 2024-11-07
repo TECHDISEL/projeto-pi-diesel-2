@@ -57,13 +57,13 @@ INSERT INTO endereco (idEndereco, fkCNPJ, rua, bairro, numero, CEP, cidade, uf) 
 /* TABELA PARA SENSOR*/
 CREATE TABLE sensor (
 idSensor INT PRIMARY KEY AUTO_INCREMENT, 
-identificacao VARCHAR(100)
+dataInstalacao DATE
 );
 
 INSERT INTO sensor VALUES 
-(DEFAULT, 'Monitoramento Abastecimento de Tratores'),
-(DEFAULT, 'Monitoramento Abastecimento de Máquinas Pesadas'),
-(DEFAULT, 'Monitoramento Abastecimento Sistema de Irrigação');
+(DEFAULT, '2024-10-31'),
+(DEFAULT, '2024-11-01'),
+(DEFAULT, '2024-11-01');
 
 
 /*  TABELAS PARA TANQUE*/
