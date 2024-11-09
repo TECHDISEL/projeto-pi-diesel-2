@@ -74,26 +74,6 @@
   min-width: 200px;
 }
 
-.card:first-child {
-  border-left: 7px solid #727272;
-}
-
-.card:nth-child(2) {
-  border-left: 7px solid #54a700;
-}
-
-.card:nth-child(3) {
-  border-left: 7px solid #246dec;
-}
-
-.card:nth-child(4) {
-  border-left: 7px solid #f5b74f;
-}
-
-.card:nth-child(5) {
-  border-left: 7px solid #8b2b2b;
-}
-
 .card > span {
   font-size: 20px;
   font-weight: 600;
