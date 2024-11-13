@@ -63,7 +63,7 @@ body {
     position: relative;
     height: 800px;
     width: 100%;
-    background-image: url("Images/trator_gasolina.jpg");
+    background-image: url("../assets/img/trator_gasolina.jpg");
     background-position: center;
     background-size: cover;
     display: flex;
