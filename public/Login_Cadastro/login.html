@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loginCadastro.css">
+    <link rel="icon" href="Images/logo_vetorizada.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <title> Cadastro e login </title>
+</head>
+
+<body>
+    <div class="container" id="container">
+
+        <div class="alerta_erro">
+            <div class="card_erro" id="cardErro">
+                <span id="mensagem_erro"></span>
+            </div>
+        </div>
+
+        <div class="form-container container-cadastro">
+            <form id="form">
+                <h1>Cadastrar Usuário</h1>
+                <input type="text" id="codigo_input" placeholder="Código da empresa">
+                <input type="text" id="nome_input" placeholder="Responsável">
+                <input type="text" id="razaoSocial" placeholder="Razão Social">
+                <input type="number" id="cnpj" placeholder="Digite o CNPJ">
+                <input type="tel" id="telefone" placeholder="Digite seu telefone">
+                <input type="email" id="email_input" placeholder="Email para contato">
+                <input type="password" id="senha_input" placeholder="Senha" onkeyup="validarSenha()">
+                <div id="erro" class="container-erro"></div>
+                <button onclick="continuarCadastro()"> Continuar </button>
+            </form>
+
+            <form id="form2">
+                <span class="material-symbols-outlined" onclick="voltar()" style="cursor: pointer;">arrow_back</span>
+                <h1>Endereço</h1>
+                <input type="text" id="rua" placeholder="Digite a Rua">
+                <input type="text" id="bairro" placeholder="Digite o Bairro">
+                <input type="text" id="numero" placeholder="Digite o Número">
+                <input type="number" id="cep" placeholder="Digite o CEP">
+                <input type="text" id="cidade" placeholder="Digite a cidade">
+
+                <label for="estados">Selecione seu estado:</label>
+                <select id="estados" name="estados">
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP">SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
+                </select>
+
+                <div id="erro" class="container-erro"></div>
+                <button id="botaoCadastro" onclick="cadastrar()"> Cadastre-se </button>
+            </form>
+        </div>
+
+        <div class="form-container container-login">
+            <img src="./images/logo_vetorizada.png"
+                style="width: 15%; position: absolute; top: 5%; left: 15%; cursor: pointer;"
+                onclick="window.location.href='../HomePage/index.html';"></img>
+            <p style=" font-size: 28px; width: 45%; position: absolute; top: 5%; left: 32%; color: #25767a; font-weight: bold; cursor: pointer;"
+                onclick="window.location.href='../HomePage/index.html';"> Tech Diesel </p>
+            <form>
+                <h1>Login do usuário</h1>
+                <input type="text" placeholder="Digite seu Email" id="login_usuario">
+                <input type="password" placeholder="Digite sua Senha" id="senha_usuario">
+                <a href=""> Esqueceu sua senha? </a>
+                <button type="button" onclick="entrar()"> Entrar </button>
+            </form>
+        </div>
+        <div class="alternar-container">
+            <div class="alternar">
+                <div class="alternar-painel painel-esquerda">
+                    <h1> Já possuí conta? </h1>
+                    <p> Entre com seus dados cadastrados para acessar o conteúdo de nosso site </p>
+                    <button class="hidden" id="login" onclick="moverDireita()"> Entrar </button>
+                </div>
+                <div class="alternar-painel painel-direita">
+                    <h1> Seja um de nossos parceiros </h1>
+                    <p> Cadastre-se para entrar em contato conosco e iniciar um monitoramento eficiente de seu Diesel
+                    </p>
+                    <button class="hidden" id="cadastro" onclick="moverEsquerda()"> Cadastrar </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+<script>
+
+    function logar() {
+
+        const loginUsuario = login_usuario.value
+        const senhaUsuario = senha_usuario.value
+
+        if (loginUsuario == 'admin@sptech.school' && senhaUsuario == 'urubu100') {
+
+            window.location.href = '../Dashboard-site/dashboard.html'
+
+        }
+    }
+
+</script>

@@ -1,0 +1,141 @@
+body {
+    margin: 0 40px 0 40px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.5;
+}
+
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+/* -------------- ESTILIZAÇÃO DA ÁREA INICIAL -------------- */
+.entradas-usuario {
+    text-align: center;
+}
+
+/* -------------- ESTTILIZAÇÃO SOMENTE DO CONTENT3 (ÁREA DO USUÁRIO QUE POSSUI PROBLEMAS COM ATRASOS EM SUA PRODUÇÃO) -------------- */
+#content3 {
+    margin: 5px 0 15px 0;
+}
+
+#content3 #caminho1 .center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#caminho1 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+}
+
+#caminho1 h1 {
+    text-align: center;
+}
+
+#caminho1 .caminho1-center .grafico1 {
+    width: 60%;
+}
+
+#caminho1 .caminho1-center .grafico-text {
+    align-self: center;
+    width: 40%;
+}
+
+.grafico {
+    display: flex;
+}
+
+#myChart, #myChart2, #myChart3 {
+    height: 375px !important; 
+    justify-self: center;
+}
+
+/* -------------- ESTTILIZAÇÃO SOMENTE DO CONTENT5 (ÁREA DO USUÁRIO QUE POSSUI PROBLEMAS COM ATRASOS EM SUA PRODUÇÃO) -------------- */
+.caminho2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* -------------- ESTTILIZAÇÃO SOMENTE DO CONTENT6 (ÁREA DO USUÁRIO QUE REALIZA APENAS UM REABASTECIMENTO MENSAL) -------------- */
+#content6 {
+    text-align: center;
+    margin: 2px 2px 5px 5px;
+}
+
+.entradas-usuario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    gap: 20px;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    background-color: aliceblue;
+}
+
+button {
+    border-radius: 5px;
+    background-color: #b1c40a;
+    border: none;
+    height: 30px;
+    width: 90px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+    color: white;
+}
+
+button:hover {
+    background-color: #8b9d00;
+    transform: scale(1.25);
+
+}
+
+input {
+    background-color: #ededed;
+    outline: #f5f5f5;
+    border-radius: 8px;
+    border: none;
+    height: 25px;
+    width: 180px;
+}
+
+#condicao2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 2px;
+    color: #3d6e60;
+}
+
+h2 {
+    margin-bottom: 2px;
+    margin-top: 0;
+}
+
+p {
+    font-size: 20px;
+}
