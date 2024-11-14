@@ -300,6 +300,7 @@ function entrar() {
                 sessionStorage.ID_USUARIO = json.id;
                 sessionStorage.TANQUES = JSON.stringify(json.tanques)
 
+                
                 setTimeout(function () {
                     window.location = "./dashboard.html";
                 }, 1000); // apenas para exibir o loading

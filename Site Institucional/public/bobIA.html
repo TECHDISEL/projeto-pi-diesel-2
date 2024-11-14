@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bob IA</title>
+    <link rel="stylesheet" href="./css/bobIA.css">
+</head>
+
+<body>
+    <div id="chat-container">
+        <div class="header">
+            <h1>Bob IA </h1>
+            <img src="./assets/img/bot-de-bate-papo.gif" alt="BobIA">
+        </div>
+        <div id="chat-box">
+            <div id="mensagens"></div>
+        </div>
+        <div class="envioMensagem">
+            <input id="input-mensagem" placeholder="Digite sua mensagem...">
+            <button onclick="enviarMensagem()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+
+        // validar a entrada apenas de um usuário administratio
+        // if (sessionStorage.ID_USUARIO != 1) {
+        //     window.location = '../HomePage/index.html'
+        // }
+
+        async function enviarMensagem() {
+            const input = document.getElementById('input-mensagem');
+            const mensagens = document.getElementById('mensagens');
+
+            // Adiciona a mensagem do usuário
+            const msgUsuario = document.createElement('div');
+            msgUsuario.className = 'mensagem usuario';
+            msgUsuario.innerText = input.value;
+            mensagens.appendChild(msgUsuario);
+
+            // Captura a mensagem do usuário para enviar ao servidor
+            const pergunta = input.value;
+            input.value = ''; // Limpa o campo de entrada
+
+            try {
+                // Faz a requisição para o servidor usando a lógica de `gerarResposta()`
+                const response = await fetch('/perguntar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ pergunta })
+                });
+
+                const data = await response.json();
+
+                // Adiciona a resposta da IA
+                const msgIA = document.createElement('div');
+                msgIA.className = 'mensagem ia';
+                msgIA.innerText = data.resultado;
+                mensagens.appendChild(msgIA);
+
+                // Rolagem automática para a nova mensagem
+                mensagens.scrollTop = mensagens.scrollHeight;
+
+            } catch (error) {
+                console.error('Erro ao obter a resposta:', error);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
