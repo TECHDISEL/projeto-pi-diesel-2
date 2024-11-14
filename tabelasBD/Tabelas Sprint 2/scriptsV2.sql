@@ -1,44 +1,49 @@
+-- BANCO DE DADOS DA TECH DIESEL - SPRINT 3 --
+
 CREATE DATABASE tech_diesel;
 USE tech_diesel;
 
 
 /*TABELA DE CADASTRO DA EMPRESA*/
-CREATE TABLE cadastro (
-CNPJ CHAR(18) PRIMARY KEY,
-nome VARCHAR(45),
+CREATE TABLE empresa (
+idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+CNPJ CHAR(18),
 nomeFantasia VARCHAR(45),
 razaoSocial VARCHAR(45),
 telefone CHAR(11),
-email VARCHAR(45),
-senha VARCHAR(45)
+codigo_ativacao CHAR(6)
 );
 
-INSERT INTO cadastro (CNPJ, nome, nomeFantasia, razaoSocial, telefone, email, senha) VALUES 
-('12.345.678/0001-90', 'Claudio Frizzarini', 'Fazendas Frizza', 'Agro & Comércio Ltda', '12345678901', 'frizza@example.com', 'senhaFrizza');
+INSERT INTO Empresa (idEmpresa,CNPJ,nomeFantasia, razaoSocial, telefone, codigo_ativacao) VALUES 
+(DEFAULT,'12.345.678/0001-90', 'Fazendas Frizza', 'Agro & Comércio Ltda', '12345678901', 'TCHDL001');
 
 
 /*  TABELAS PARA USUÁRIO E CADASTRO  */
 CREATE TABLE usuario (
-idUsuario INT,
-fkCNPJ CHAR(18),
+idUsuario INT AUTO_INCREMENT,
+fkEmpresa INT,
 fkResponsavel INT,
 nome VARCHAR(45),
+email VARCHAR(45),
 senha VARCHAR(45),
+cargo VARCHAR(45),
 
-CONSTRAINT pkCompostaUsuario PRIMARY KEY (idUsuario, fkCNPJ),
+CONSTRAINT pkCompostaUsuario PRIMARY KEY (idUsuario, fkEmpresa),
+CONSTRAINT fkUsuarioEmpresa foreign key (fkEmpresa) REFERENCES empresa(idEmpresa),
 CONSTRAINT fkUsuarioResponsavel FOREIGN KEY (fkResponsavel) REFERENCES usuario (idUsuario)
 );
 
-INSERT INTO usuario (idUsuario, fkCNPJ,fkResponsavel, nome, senha) VALUES 
-(1, '12.345.678/0001-90', 1,'Admin', 'Admin123@'),
-(2, '12.345.678/0001-90', 1, 'Frizza', 'Fr@123'),     
-(3, '12.345.678/0001-90', 1, 'Julia', 'Ju@123');
+INSERT INTO usuario (idUsuario, fkEmpresa,fkResponsavel, nome, email, senha, cargo) VALUES 
+(1, 1, 1,'Admin', 'admin@admin.com', 'Admin123@', 'Admin'),
+(2, 1, 1, 'Frizza', 'frizza@example.com', 'Fr@123', 'Dono'),     
+(3, 1, 1, 'Julia', 'julia@example.com', 'Ju@123', 'Supervisora');
+
 
 
 /* TABELA PARA ENDEREÇO*/
 CREATE TABLE endereco (
-idEndereco INT,
-fkCNPJ CHAR(18) UNIQUE,
+idEndereco INT AUTO_INCREMENT,
+fkEmpresa INT,
 rua VARCHAR(45),
 bairro VARCHAR(45),
 numero INT,
@@ -46,12 +51,12 @@ CEP CHAR(8),
 cidade VARCHAR(45),
 uf CHAR(2),
 
-CONSTRAINT pkCompostaEndereco PRIMARY KEY (idEndereco, fkCNPJ),
-CONSTRAINT fkCNPJEndereco FOREIGN KEY (fkCNPJ) REFERENCES cadastro (CNPJ)
+CONSTRAINT pkCompostaEndereco PRIMARY KEY (idEndereco, fkEmpresa),
+CONSTRAINT fkEmpresaEndereco FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa)
 );
 
-INSERT INTO endereco (idEndereco, fkCNPJ, rua, bairro, numero, CEP, cidade, uf) VALUES 
-(1, '12.345.678/0001-90', 'Rua das Flores', 'Centro', 123, '01234567', 'São Paulo', 'SP');
+INSERT INTO endereco (idEndereco, fkEmpresa, rua, bairro, numero, CEP, cidade, uf) VALUES 
+(1, 1, 'Rua das Flores', 'Centro', 123, '01234567', 'São Paulo', 'SP');
 
 
 /* TABELA PARA SENSOR*/
@@ -69,39 +74,53 @@ INSERT INTO sensor VALUES
 /*  TABELAS PARA TANQUE*/
 CREATE TABLE tanque (
 idTanque INT PRIMARY KEY AUTO_INCREMENT,
-fkCadastro CHAR(18),
+fkEmpresa INT,
 fkSensor INT,
-nome VARCHAR(45),
-capacidade INT,
+setor VARCHAR(45),
+alturaMetro INT,
+raio DECIMAL(2,1),
 
-CONSTRAINT fkCadastroTanque FOREIGN KEY (fkCadastro) REFERENCES cadastro (CNPJ),
+CONSTRAINT fkEmpresaTanque FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa),
 CONSTRAINT fkSensorTanque FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
 
 INSERT INTO tanque VALUES
-(DEFAULT, '12.345.678/0001-90', 1, 'Tanque 1', 10000),
-(DEFAULT, '12.345.678/0001-90', null, 'Tanque 2', 10000),
-(DEFAULT, '12.345.678/0001-90', null, 'Tanque 3', 15000);
+(DEFAULT, 1, 1, 'Irrigação', '4', '2.0');
+
 
 
 /*  TABELAS PARA MEDIDA*/
 CREATE TABLE medida (
-idMedida INT PRIMARY KEY AUTO_INCREMENT,
+idMedida INT,
 fkSensor INT,
-leitura DECIMAL(12,2),
+leitura DECIMAL(6,2),
 dataLeitura DATETIME DEFAULT CURRENT_TIMESTAMP,
 
+CONSTRAINT pkSensorMedida PRIMARY KEY (idMedida, fkSensor),
 CONSTRAINT fkMedidaSensor FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
 
+
+
+CREATE TABLE alerta(
+idAlerta INT AUTO_INCREMENT,
+fkMedida INT,
+leitura DECIMAL(6,2),
+dataLeitura DATETIME,
+
+CONSTRAINT pkAlertaMedida PRIMARY KEY (idAlerta, fkMedida),
+CONSTRAINT  fkAlertaMedida FOREIGN KEY (fkMedida) REFERENCES medida(idMedida)
+);
+
+
 SELECT 
-    t.idTanque,
-    t.nome AS tanque_nome,
-    t.capacidade,
+    tanque.idTanque,
+    tanque.nome AS tanque_nome,
+    tanque.capacidade,
     s.idSensor,
-    s.identificacao AS sensor_identificacao,
-    m.idMedida,
-    m.leitura,
+    s.dataInstalacao AS dataInstalacao,
+    medida.idMedida,
+    medida.leitura,
     m.dataLeitura
 FROM 
     tanque t
@@ -111,37 +130,36 @@ LEFT JOIN
     medida m ON m.fkSensor = s.idSensor;
     
 SELECT 
-    c.CNPJ,
-    c.nome AS empresa_nome,
-    c.nomeFantasia,
-    c.razaoSocial,
-    u.idUsuario,
-    u.nome AS usuario_nome,
-    e.rua,
-    e.bairro,
-    e.numero,
-    e.CEP,
-    e.cidade,
-    e.uf,
-    s.idSensor,
-    s.identificacao AS sensor_identificacao,
-    t.idTanque,
-    t.nome AS tanque_nome,
-    t.capacidade,
-    m.idMedida,
-    m.leitura,
-    m.dataLeitura
+    empresa.CNPJ,
+    empresa.nomeFantasia,
+    empresa.razaoSocial,
+    usuario.nome AS usuario_nome,
+    usuario.email AS email_usuario,
+    endereco.rua,
+    endereco.bairro,
+    endereco.numero,
+    endereco.CEP,
+    endereco.cidade,
+    endereco.uf,
+    sensor.idSensor,
+    sensor.dataInstalacao AS dataInstalacao,
+    tanque.idTanque,
+    tanque.nome AS tanque_nome,
+    tanque.capacidade,
+    medida.idMedida,
+    medida.leitura,
+    medida.dataLeitura
 FROM 
-    cadastro c
+    empresa
 LEFT JOIN 
-    usuario u ON c.CNPJ = u.fkCNPJ
+    usuario ON empresa.idEmpresa = usuario.fkEmpresa
 LEFT JOIN 
-    endereco e ON c.CNPJ = e.fkCNPJ
+    endereco ON empresa.idEmpresa = endereco.fkEmpresa
 LEFT JOIN 
-    tanque t ON c.CNPJ = t.fkCadastro
+    tanque ON empresa.idEmpresa = tanque.fkEmpresa
 LEFT JOIN 
-    sensor s ON t.fkSensor = s.idSensor
+    sensor ON tanque.fkSensor = sensor.idSensor
 LEFT JOIN 
-    medida m ON s.idSensor = m.fkSensor;
+    medida ON sensor.idSensor = medida.fkSensor;
     
 SELECT*FROM medida;
