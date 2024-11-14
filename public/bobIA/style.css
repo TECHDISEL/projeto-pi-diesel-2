@@ -1,65 +1,98 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f4f8;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.container {
+#chat-container {
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    width: 100%;
+    height: 50px;
+    background-color: #25767a;
+    color: white;
     display: flex;
     flex-direction: row;
-    justify-content: end;
-    align-items: end;
-    width: 100%;
-    height: 80vh;
-    margin-right: 100px;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
-.container img{
-    width: 100px;
-    height: 100px;
-}
-
-.bate-papo {
-    display: none;
+.header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-left: 20px;
 }
 
 
-h1 {
-    color: #1F2A44;
+#chat-box {
+    width: 90%;
+    height: 500px;
+    padding: 10px;
+    overflow-y: auto;
 }
 
-textarea[type="text"] {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 5px;
-    width: 400px;
+.envioMensagem {
+    width: 50%;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+    box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.4);
 }
 
-select,
-button {
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button {
-    background-color: #ED145B;
-    color: #FFFFFF;
+#input-mensagem {
+    padding: 10px;
     border: none;
+    border-top: 1px solid whitesmoke;
+    outline: none;
+    flex-grow: 1;
+}
+
+button {
+    background-color: #25767a;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50px;
 }
 
 button:hover {
-    background-color: #EFB661;
+    background-color: #25767a;
 }
 
-#resposta {
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #D0D3D4;
-    border: 1px solid #63666A;
-    text-align: left;
-    display: none;
+.mensagem {
+    margin: 10px auto; 
+    padding: 8px;
+    border-radius: 8px;
+    width: 50%; 
+}
+
+.usuario {
+    background-color: #d1e7dd;
+    align-self: flex-end;
+}
+
+.ia {
+    background-color: #ced4d9;
+    align-self: flex-start;
 }

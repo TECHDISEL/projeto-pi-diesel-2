@@ -4,53 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BobIA</title>
+    <title>Bob IA</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
-    <div class="container" id="container">
-        <img onclick="batepapo()" src="bot-de-bate-papo.gif" alt="Abrir bate papo">
-
-        <div id="batepapo" class="bate-papo">
-            <h1>BobIA</h1>
-            <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
-            <br><br>
-            <button onclick="gerarResposta()">Gerar Resposta</button>
-            <h3>Resposta da IA:</h3>
-            <div id="resposta"></div>
+    <div id="chat-container">
+        <div class="header">
+            <h1>Bob IA </h1>
+            <img src="bot-de-bate-papo.gif" alt="BobIA">
         </div>
-
+        <div id="chat-box">
+            <div id="mensagens"></div>
+        </div>
+        <div class="envioMensagem">
+            <input id="input-mensagem" placeholder="Digite sua mensagem...">
+            <button onclick="enviarMensagem()">Enviar</button>
+        </div>
     </div>
 
     <script>
 
-        function batepapo() {
-            const batepapo = document.getElementById('batepapo')
+        // validar a entrada apenas de um usuário administratio
+        // if (sessionStorage.ID_USUARIO != 1) {
+        //     window.location = '../HomePage/index.html'
+        // }
 
-            batepapo.style.display = 'block'
-        }
+        async function enviarMensagem() {
+            const input = document.getElementById('input-mensagem');
+            const mensagens = document.getElementById('mensagens');
 
-        async function gerarResposta() {
-            const pergunta = document.getElementById('pergunta').value;
+            // Adiciona a mensagem do usuário
+            const msgUsuario = document.createElement('div');
+            msgUsuario.className = 'mensagem usuario';
+            msgUsuario.innerText = input.value;
+            mensagens.appendChild(msgUsuario);
 
-            const response = await fetch('/perguntar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ pergunta })
-            });
+            // Captura a mensagem do usuário para enviar ao servidor
+            const pergunta = input.value;
+            input.value = ''; // Limpa o campo de entrada
 
-            const data = await response.json();
+            try {
+                // Faz a requisição para o servidor usando a lógica de `gerarResposta()`
+                const response = await fetch('/perguntar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ pergunta })
+                });
 
-            resposta.style.display = 'block';
-            document.getElementById('resposta').innerText = data.resultado;
+                const data = await response.json();
+
+                // Adiciona a resposta da IA
+                const msgIA = document.createElement('div');
+                msgIA.className = 'mensagem ia';
+                msgIA.innerText = data.resultado;
+                mensagens.appendChild(msgIA);
+
+                // Rolagem automática para a nova mensagem
+                mensagens.scrollTop = mensagens.scrollHeight;
+
+            } catch (error) {
+                console.error('Erro ao obter a resposta:', error);
+            }
         }
 
     </script>
-
 </body>
 
 </html>
