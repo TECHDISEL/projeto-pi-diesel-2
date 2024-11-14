@@ -12,6 +12,7 @@ email VARCHAR(45),
 senha VARCHAR(45)
 );
 
+
 /*  TABELAS PARA USUÁRIO E CADASTRO  */
 CREATE TABLE usuario (
 idUsuario INT,
