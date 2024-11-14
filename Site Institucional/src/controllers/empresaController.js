@@ -1,12 +1,12 @@
 var empresaModel = require("../models/empresaModel");
 
-// function buscarPorCnpj(req, res) {
-//   var cnpj = req.query.cnpj;
+function buscarPorCnpj(req, res) {
+  var cnpj = req.query.cnpjServer;
 
-//   empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
-//     res.status(200).json(resultado);
-//   });
-// }
+  empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
 
 // function listar(req, res) {
 //   empresaModel.listar().then((resultado) => {
@@ -28,22 +28,23 @@ function cadastrarEmpresa(req, res) {
   var numero = req.body.numeroServer;
   var cep = req.body.cepServer;
   var cidade = req.body.cidadeServer;
+  var cnpj = req.query.cnpjServer;
 
-//   empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
-//     if (resultado.length > 0) {
-//       res
-//         .status(401)
-//         .json({ mensagem: `a empresa com o cnpj ${cnpj} já existe` });
-//     } else {
+  empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
+    if (resultado.length > 0) {
+      res
+        .status(401)
+        .json({ mensagem: `a empresa com o cnpj ${cnpj} já existe` });
+    } else {
       empresaModel.cadastrarEmpresa(rua, bairro, numero, cep, cidade).then((resultado) => {
         res.status(201).json(resultado);
       });
     }
-//   });
-// }
+  });
+}
 
 module.exports = {
-//   buscarPorCnpj,
+  buscarPorCnpj,
 //   buscarPorId,
   cadastrarEmpresa
 //   listar

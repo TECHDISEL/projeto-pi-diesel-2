@@ -214,6 +214,7 @@ function cadastrarEmpresa() {
     var numeroVar = numero.value;
     var cepVar = cep.value;
     var cidadeVar = cidade.value;
+    var cnpjVar = cnpj_input.value;
 
     fetch("/empresa/cadastrarEmpresa", {
         method: "POST",
@@ -227,7 +228,8 @@ function cadastrarEmpresa() {
             bairroServer: bairroVar,
             numeroServer: numeroVar,
             cepServer: cepVar,
-            cidadeServer: cidadeVar
+            cidadeServer: cidadeVar,
+            cnpjServer: cnpjVar
         }),
     })
         .then(function (resposta) {
