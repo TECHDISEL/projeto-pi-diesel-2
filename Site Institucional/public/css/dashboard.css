@@ -126,6 +126,7 @@
   background-color: whitesmoke;
   color: #3d6e60; 
   width: 18vw;
+  height: 100vh;
   overflow-y: auto;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
@@ -204,4 +205,52 @@
   font-weight: 600;
 }
 
+.metrica {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 50px;
+}
 
+.regua {
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+  border-radius: 15px; 
+  border: 2px solid black;
+  overflow: hidden; 
+}
+
+
+.estado {
+  height: 50px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.normal {
+  background-color: whitesmoke;
+  border-right: 2px solid black;
+}
+
+.alerta {
+  background-color: #f4d62a;
+  color: #645815;
+  border-right: 2px solid black;
+}
+
+.critico {
+  background-color: #db221c;
+  color: #560d0a;
+}
+
+.porcentagem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0px 30px;
+  margin-top: 5px;
+  flex-wrap: wrap;
+}
