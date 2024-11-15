@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/dashboard.css">
 </head>
 
-<body>
+<body onload="exibirTanques()">
     <div class="container">
         <div class="header-main">
             <header class="header">
@@ -46,52 +46,7 @@
                 </div>
 
                 <div>
-                    <div class="main-cards">
-
-                        <div class="card">
-                            <div class="card-inner">
-                                <p class="text-primary"> Tanque 1 </p>
-                                <div class="card-content">
-                                    <span class="text-primary font-weight-bold"> <i class="fa fa-gas-pump"></i>
-                                    </span>
-                                </div>
-                                <p class="text-primary"> Irrigação </p>
-                            </div>
-                        </div>
-
-                        <div class="card" style="background-color: yellow;">
-                            <div class="card-inner">
-                                <p class="text-primary"> Tanque 2 </p>
-                                <div class="card-content">
-                                    <span class="text-primary font-weight-bold"> <i class="fa fa-gas-pump"></i>
-                                    </span>
-                                </div>
-                                <p class="text-primary"> Maquinário Pesado </p>
-                            </div>
-                        </div>
-
-                        <div class="card" style="background-color: red; color: white;">
-                            <div class="card-inner">
-                                <p class="text-primary"> Tanque 3 </p>
-                                <div class="card-content">
-                                    <span class="text-primary font-weight-bold"> <i class="fa fa-gas-pump"></i>
-                                    </span>
-                                </div>
-                                <p class="text-primary"> Tratores </p>
-                            </div>
-                        </div>
-
-                        <div class="card" style="background-color: red; color: white;">
-                            <div class="card-inner">
-                                <p class="text-primary"> Tanque 4 </p>
-                                <div class="card-content">
-                                    <span class="text-primary font-weight-bold"> <i class="fa fa-gas-pump"></i>
-                                    </span>
-                                </div>
-                                <p class="text-primary"> Setor XPTO </p>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="main-cards" id="cards-tanques"></div>
                 </div>
         </div>
         <aside id="sidebar">
@@ -121,7 +76,7 @@
                         construction
                     </span> Métricas
                 </li>
-                <li class="sidebar-list-item" onclick="window.location.href='../HomePage/index.html';">
+                <li class="sidebar-list-item" onclick="window.location.href='./index.html';">
                     <span class="material-symbols-outlined">
                         logout
                     </span> Sair
@@ -132,6 +87,38 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"></script>
-<script src="dash.js"></script>
 
 </html>
+
+<script>
+
+    function exibirTanques() {
+
+        if (sessionStorage.TANQUES == 0) {
+
+            document.getElementById("cards-tanques").innerHTML = `
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text-primary"> X </p>
+                        <div class="card-content">
+                            <span class="text-primary font-weight-bold"> Nenhum tanque cadastrado!!! </span>
+                        </div>
+                            <p class="text-primary"> X </p>
+                        </div>
+                </div>`
+        }
+
+        JSON.parse(sessionStorage.TANQUES).forEach(item => {
+            document.getElementById("cards-tanques").innerHTML += `
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="text-primary"> Tanque ${item.idTanque} </p>
+                        <div class="card-content">
+                            <span class="text-primary font-weight-bold"> <i class="fa fa-gas-pump"></i> </span>
+                        </div>
+                            <p class="text-primary"> ${item.setor} </p>
+                        </div>
+                </div>`
+        });
+    }
+</script>

@@ -1,4 +1,5 @@
 var usuarioModel = require("../models/usuarioModel.js");
+var tanqueModel = require("../models/tanqueModel.js");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
@@ -20,14 +21,20 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
-                        if (resultadoAutenticar.length > 0) {
-                            res.json({
-                                email: resultadoAutenticar[0].email,
-                                senha: resultadoAutenticar[0].senha
-                            });
-                        } else {
-                            res.status(204).json({ aquarios: [] });
-                        }
+                        tanqueModel.buscarTanquesPorEmpresa(resultadoAutenticar[0].idEmpresa)
+                            .then((resultadoTanques) => {
+
+                                if (resultadoTanques.length > 0) {
+                                    res.json({
+                                        idUsuario: resultadoAutenticar[0].idUsuario,
+                                        email: resultadoAutenticar[0].email,
+                                        senha: resultadoAutenticar[0].senha,
+                                        tanques: resultadoTanques
+                                    });
+                                } else {
+                                    res.status(204).json({ tanques: [] });
+                                }
+                            })
 
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
@@ -35,6 +42,7 @@ function autenticar(req, res) {
                         res.status(403).send("Mais de um usuário com o mesmo login e senha!");
                     }
                 }
+
             ).catch(
                 function (erro) {
                     console.log(erro);

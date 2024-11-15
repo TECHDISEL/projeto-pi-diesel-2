@@ -173,7 +173,6 @@ function cadastrar() {
         } else {
             cardErro.style.display = "block";
             mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-            finalizarAguardar();
         }
     }
 
@@ -328,13 +327,11 @@ function entrar() {
                 console.log(JSON.stringify(json));
                 sessionStorage.EMAIL_USUARIO = json.email;
                 sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.CPF_USUARIO = json.cpf;
                 sessionStorage.ID_USUARIO = json.idUsuario;
                 sessionStorage.TANQUES = JSON.stringify(json.tanques)
 
-
                 setTimeout(function () {
-                    window.location = "./dashboard.html";
+                    window.location = "./tanques.html";
                 }, 1000); // apenas para exibir o loading
 
             });
