@@ -103,18 +103,16 @@ function cadastrar() {
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
+    var codigoVar = codigo_input.value;
     var nomeVar = nome_input.value;
-    var razaoVar = razao_input.value;
-    var cnpjVar = cnpj_input.value;
-    var telVar = tel_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
+    var idEmpresaVincular 
 
     // validação dos campos
     const tamanhoNome = nomeVar.length > 1
     const emailConterArroba = emailVar.indexOf('@') != -1
     const tamanhoSenha = senhaVar.length > 6
-    const tamanhoCNPJ = cnpjVar.length == 14
 
     // Verificando se há algum campo em branco
     // if (
@@ -166,6 +164,19 @@ function cadastrar() {
 
     // }
 
+
+    // Verificando se o código de ativação é de alguma empresa cadastrada
+    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+        if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+            idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa
+            console.log("Código de ativação válido.");
+            break;
+        } else {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+        }
+    }
+
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
         method: "POST",
@@ -175,61 +186,10 @@ function cadastrar() {
         body: JSON.stringify({
             // crie um atributo que recebe o valor recuperado aqui
             // Agora vá para o arquivo routes/usuario.js
+            idEmpresaVincularServer: idEmpresaVincular,
             nomeServer: nomeVar,
-            razaoServer: razaoVar,
-            cnpjServer: cnpjVar,
-            telServer: telVar,
             emailServer: emailVar,
             senhaServer: senhaVar
-
-        }),
-    })
-        .then(function (resposta) {
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                cardErro.style.display = "block";
-
-                // mensagem_erro.innerHTML =
-                //     "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-                // setTimeout(() => {
-                //     window.location = "index.html";
-                // }, "2000");
-
-                // limparFormulario();
-            } else {
-                throw "Houve um erro ao tentar realizar o cadastro!";
-            }
-        })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-}
-
-function cadastrarEmpresa() {
-
-    var ruaVar = rua.value;
-    var bairroVar = bairro.value;
-    var numeroVar = numero.value;
-    var cepVar = cep.value;
-    var cidadeVar = cidade.value;
-    var cnpjVar = cnpj_input.value;
-
-    fetch("/empresa/cadastrarEmpresa", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/empresa.js
-            ruaServer: ruaVar,
-            bairroServer: bairroVar,
-            numeroServer: numeroVar,
-            cepServer: cepVar,
-            cidadeServer: cidadeVar,
-            cnpjServer: cnpjVar
         }),
     })
         .then(function (resposta) {
@@ -239,24 +199,72 @@ function cadastrarEmpresa() {
                 cardErro.style.display = "block";
 
                 mensagem_erro.innerHTML =
-                    "Cadastro da empresa realizado com sucesso! Redirecionando para tela de Login...";
+                    "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-                setTimeout(() => {
-                    window.location = "index.html";
-                }, "2000");
+                // setTimeout(() => {
+                //     window.location = "index.html";
+                // }, "2000");
 
                 limparFormulario();
             } else {
-                throw "Houve um erro ao tentar realizar o cadastro da empresa!";
+                throw "Houve um erro ao tentar realizar o cadastro!";
             }
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
-
-    return false;
-
 }
+
+// function cadastrarEmpresa() {
+
+//     var ruaVar = rua.value;
+//     var bairroVar = bairro.value;
+//     var numeroVar = numero.value;
+//     var cepVar = cep.value;
+//     var cidadeVar = cidade.value;
+//     var cnpjVar = cnpj_input.value;
+
+//     fetch("/empresa/cadastrarEmpresa", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({
+//             // crie um atributo que recebe o valor recuperado aqui
+//             // Agora vá para o arquivo routes/empresa.js
+//             ruaServer: ruaVar,
+//             bairroServer: bairroVar,
+//             numeroServer: numeroVar,
+//             cepServer: cepVar,
+//             cidadeServer: cidadeVar,
+//             cnpjServer: cnpjVar
+//         }),
+//     })
+//         .then(function (resposta) {
+//             console.log("resposta: ", resposta);
+
+//             if (resposta.ok) {
+//                 cardErro.style.display = "block";
+
+//                 mensagem_erro.innerHTML =
+//                     "Cadastro da empresa realizado com sucesso! Redirecionando para tela de Login...";
+
+//                 setTimeout(() => {
+//                     window.location = "index.html";
+//                 }, "2000");
+
+//                 limparFormulario();
+//             } else {
+//                 throw "Houve um erro ao tentar realizar o cadastro da empresa!";
+//             }
+//         })
+//         .catch(function (resposta) {
+//             console.log(`#ERRO: ${resposta}`);
+//         });
+
+//     return false;
+
+// }
 
 function entrar() {
 
@@ -302,7 +310,7 @@ function entrar() {
 
                 
                 setTimeout(function () {
-                    window.location = "./dashboard.html";
+                    window.location = "dashboard.html";
                 }, 1000); // apenas para exibir o loading
 
             });
@@ -321,6 +329,29 @@ function entrar() {
     })
 
     return false;
+}
+
+
+
+
+// Listando empresas cadastradas 
+function listar() {
+    fetch("/empresa/listar", {
+        method: "GET",
+    })
+        .then(function (resposta) {
+            resposta.json().then((empresas) => {
+                empresas.forEach((empresa) => {
+                    listaEmpresasCadastradas.push(empresa);
+
+                    console.log("listaEmpresasCadastradas")
+                    console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+                });
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
 }
 
 function sumirMensagem() {

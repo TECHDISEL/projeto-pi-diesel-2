@@ -47,21 +47,21 @@ function autenticar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var fkEmpresa = req.body.idEmpresaVincularServer;
     var nome = req.body.nomeServer;
-    var razao = req.body.razaoServer;
-    var cnpj = req.body.cnpjServer;
-    var tel = req.body.telServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+
+    console.log("fkEmpresa:", fkEmpresa);
+    console.log("nome:", nome);
+    console.log("email:", email);
+    console.log("senha:", senha);
+
 
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
-    } else if (razao == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (cnpj == undefined) {
-        res.status(400).send("Sua senha está undefined!");
-    } else if (tel == undefined) {
+    } else if (fkEmpresa == undefined) {
         res.status(400).send("Sua empresa a vincular está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Sua empresa a vincular está undefined!");
@@ -70,7 +70,8 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(cnpj, nome, razao, tel, email, senha)
+        console.log('Cadastrar na controller')
+        usuarioModel.cadastrar(fkEmpresa, nome, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
