@@ -6,11 +6,11 @@ var database = require("../database/config");
 //   return database.executar(instrucaoSql);
 // }
 
-// function listar() {
-//   var instrucaoSql = `SELECT id, razao_social, cnpj, codigo_ativacao FROM empresa`;
+function listar() {
+  var instrucaoSql = `SELECT idEmpresa, cnpj, nomeFantasia, razaoSocial, telefone, codigo_ativacao FROM empresa`;
 
-//   return database.executar(instrucaoSql);
-// }
+  return database.executar(instrucaoSql);
+}
 
 function buscarPorCnpj(cnpj) {
   var instrucaoSql = `SELECT * FROM cadastro WHERE cnpj = '${cnpj}'`;
@@ -29,6 +29,6 @@ function cadastrarEmpresa(rua, bairro, numero, cep, cidade) {
 module.exports = { 
     buscarPorCnpj, 
     // buscarPorId, 
-    cadastrarEmpresa
-    // listar 
+    cadastrarEmpresa,
+    listar 
 };

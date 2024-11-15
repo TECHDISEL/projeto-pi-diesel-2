@@ -131,6 +131,7 @@
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
   font-weight: bold;
+  height: 100vh;
 }
 
 .sidebar-title {

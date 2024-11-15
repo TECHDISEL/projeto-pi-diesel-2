@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/loginCadastro.css">
-    <link rel="icon" href="css/loginCadastro.css" type="image/x-icon">
+    <link rel="stylesheet" href="/css/loginCadastro.css">
+    <link rel="icon" href="/assets/img/logo_vetorizada.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <title> Cadastro e login </title>
 </head>
 
-<body>
+<body onload="listar()">
     <div class="container" id="container">
 
         <div class="alerta_erro">
@@ -24,16 +24,15 @@
                 <h1>Cadastrar Usuário</h1>
                 <input type="text" id="codigo_input" placeholder="Código da empresa">
                 <input type="text" id="nome_input" placeholder="Responsável">
-                <input type="text" id="razao_input" placeholder="Razão Social">
-                <input type="number" id="cnpj_input" placeholder="Digite o CNPJ">
-                <input type="tel" id="tel_input" placeholder="Digite seu telefone">
                 <input type="email" id="email_input" placeholder="Email para contato">
                 <input type="password" id="senha_input" placeholder="Senha">
+                <input type="password" id="confirmacao_senha_input" placeholder="Confirme a senha">
                 <div id="erro" class="container-erro"></div>
-                <button onclick="continuarCadastro()"> Continuar </button>
+                <button onclick="cadastrar()"> Cadastrar </button>
             </form>
-
-            <form id="form2">
+            
+            <!-- Até decidirmos se vamos fazer o cadastro de endereço ou o usuário -->
+            <!-- <form id="form2">
                 <span class="material-symbols-outlined" onclick="voltar()" style="cursor: pointer;">arrow_back</span>
                 <h1>Endereço</h1>
                 <input type="text" id="rua" placeholder="Digite a Rua">
@@ -75,7 +74,7 @@
 
                 <div id="erro" class="container-erro"></div>
                 <button id="botaoCadastro" onclick="cadastrar(); cadastrarEmpresa()"> Cadastre-se </button>
-            </form>
+            </form> -->
         </div>
 
         <div class="form-container container-login">
