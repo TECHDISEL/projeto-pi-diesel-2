@@ -190,7 +190,6 @@ function cadastrar() {
             nomeServer: nomeVar,
             emailServer: emailVar,
             senhaServer: senhaVar
-
         }),
     })
         .then(function (resposta) {
@@ -240,56 +239,56 @@ function sumirMensagem() {
     cardErro.style.display = "none";
 }
 
-function cadastrarEmpresa() {
+// function cadastrarEmpresa() {
 
-    var ruaVar = rua.value;
-    var bairroVar = bairro.value;
-    var numeroVar = numero.value;
-    var cepVar = cep.value;
-    var cidadeVar = cidade.value;
-    var cnpjVar = cnpj_input.value;
+//     var ruaVar = rua.value;
+//     var bairroVar = bairro.value;
+//     var numeroVar = numero.value;
+//     var cepVar = cep.value;
+//     var cidadeVar = cidade.value;
+//     var cnpjVar = cnpj_input.value;
 
-    fetch("/empresa/cadastrarEmpresa", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/empresa.js
-            ruaServer: ruaVar,
-            bairroServer: bairroVar,
-            numeroServer: numeroVar,
-            cepServer: cepVar,
-            cidadeServer: cidadeVar,
-            cnpjServer: cnpjVar
-        }),
-    })
-        .then(function (resposta) {
-            console.log("resposta: ", resposta);
+//     fetch("/empresa/cadastrarEmpresa", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({
+//             // crie um atributo que recebe o valor recuperado aqui
+//             // Agora vá para o arquivo routes/empresa.js
+//             ruaServer: ruaVar,
+//             bairroServer: bairroVar,
+//             numeroServer: numeroVar,
+//             cepServer: cepVar,
+//             cidadeServer: cidadeVar,
+//             cnpjServer: cnpjVar
+//         }),
+//     })
+//         .then(function (resposta) {
+//             console.log("resposta: ", resposta);
 
-            if (resposta.ok) {
-                cardErro.style.display = "block";
+//             if (resposta.ok) {
+//                 cardErro.style.display = "block";
 
-                mensagem_erro.innerHTML =
-                    "Cadastro da empresa realizado com sucesso! Redirecionando para tela de Login...";
+//                 mensagem_erro.innerHTML =
+//                     "Cadastro da empresa realizado com sucesso! Redirecionando para tela de Login...";
 
-                setTimeout(() => {
-                    window.location = "index.html";
-                }, "2000");
+//                 setTimeout(() => {
+//                     window.location = "index.html";
+//                 }, "2000");
 
-                limparFormulario();
-            } else {
-                throw "Houve um erro ao tentar realizar o cadastro da empresa!";
-            }
-        })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
+//                 limparFormulario();
+//             } else {
+//                 throw "Houve um erro ao tentar realizar o cadastro da empresa!";
+//             }
+//         })
+//         .catch(function (resposta) {
+//             console.log(`#ERRO: ${resposta}`);
+//         });
 
-    return false;
+//     return false;
 
-}
+// }
 
 function entrar() {
 
