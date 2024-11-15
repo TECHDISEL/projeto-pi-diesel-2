@@ -330,7 +330,7 @@ function entrar() {
                 sessionStorage.EMAIL_USUARIO = json.email;
                 sessionStorage.NOME_USUARIO = json.nome;
                 sessionStorage.CPF_USUARIO = json.cpf;
-                sessionStorage.ID_USUARIO = json.id;
+                sessionStorage.ID_USUARIO = json.idUsuario;
                 sessionStorage.TANQUES = JSON.stringify(json.tanques)
 
 
