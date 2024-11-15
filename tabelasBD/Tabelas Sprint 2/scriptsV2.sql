@@ -1,6 +1,6 @@
 -- BANCO DE DADOS DA TECH DIESEL - SPRINT 3 --
 
-
+CREATE DATABASE tech_diesel;
 USE tech_diesel;
 
 /*TABELA DE CADASTRO DA EMPRESA*/
@@ -16,6 +16,9 @@ codigo_ativacao CHAR(8)
 INSERT INTO Empresa (idEmpresa,CNPJ,nomeFantasia, razaoSocial, telefone, codigo_ativacao) VALUES 
 (DEFAULT,'12.345.678/0001-90', 'Fazendas Frizza', 'Agro & Comércio Ltda', '12345678901', 'TCHDL001');
 
+INSERT INTO Empresa (idEmpresa,CNPJ,nomeFantasia, razaoSocial, telefone, codigo_ativacao) VALUES 
+(DEFAULT, '000-000', 'Admin TECHDIESEL', 'TECHDIESEL INC', '123456', 'TCHDL999');
+
 /*  TABELAS PARA USUÁRIO E CADASTRO  */
 CREATE TABLE usuario (
 idUsuario INT AUTO_INCREMENT,
@@ -30,6 +33,9 @@ CONSTRAINT pkCompostaUsuario PRIMARY KEY (idUsuario, fkEmpresa),
 CONSTRAINT fkUsuarioEmpresa foreign key (fkEmpresa) REFERENCES empresa(idEmpresa),
 CONSTRAINT fkUsuarioResponsavel FOREIGN KEY (fkResponsavel) REFERENCES usuario (idUsuario)
 );
+
+ALTER TABLE usuario MODIFY COLUMN email VARCHAR(45) UNIQUE;
+SELECT * FROM usuario;
 
 /*
 INSERT INTO usuario (idUsuario, fkEmpresa, fkResponsavel, nome, email, senha, cargo) VALUES 
@@ -66,7 +72,6 @@ INSERT INTO sensor VALUES
 (DEFAULT, '2024-11-01'),
 (DEFAULT, '2024-11-01');
 
-
 /*  TABELAS PARA TANQUE*/
 CREATE TABLE tanque (
 idTanque INT PRIMARY KEY AUTO_INCREMENT,
@@ -81,7 +86,9 @@ CONSTRAINT fkSensorTanque FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
 
 INSERT INTO tanque (fkEmpresa, fkSensor, setor, alturaMetro, raio) VALUES
-(1, 1, 'Irrigação', '4', '2.0');
+(1, 1, 'Irrigação', '4', '2.0'),
+(1, 1, 'Abastecimento Tratores', '3', '2.2'),
+(1, 1, 'Abastecimento Maquinario Pesado', '3', '2.2');
 
 /*  TABELAS PARA MEDIDA*/
 CREATE TABLE medida (
@@ -93,8 +100,6 @@ dataLeitura DATETIME DEFAULT CURRENT_TIMESTAMP,
 CONSTRAINT pkSensorMedida PRIMARY KEY (idMedida, fkSensor),
 CONSTRAINT fkMedidaSensor FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
-
-
 
 CREATE TABLE alerta(
 idAlerta INT AUTO_INCREMENT,
