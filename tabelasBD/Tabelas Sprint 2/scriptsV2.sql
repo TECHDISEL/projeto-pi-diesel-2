@@ -1,8 +1,7 @@
 -- BANCO DE DADOS DA TECH DIESEL - SPRINT 3 --
 
-CREATE DATABASE tech_diesel;
-USE tech_diesel;
 
+USE tech_diesel;
 
 /*TABELA DE CADASTRO DA EMPRESA*/
 CREATE TABLE empresa (
@@ -11,12 +10,11 @@ CNPJ CHAR(18),
 nomeFantasia VARCHAR(45),
 razaoSocial VARCHAR(45),
 telefone CHAR(11),
-codigo_ativacao CHAR(6)
+codigo_ativacao CHAR(8)
 );
 
 INSERT INTO Empresa (idEmpresa,CNPJ,nomeFantasia, razaoSocial, telefone, codigo_ativacao) VALUES 
 (DEFAULT,'12.345.678/0001-90', 'Fazendas Frizza', 'Agro & Comércio Ltda', '12345678901', 'TCHDL001');
-
 
 /*  TABELAS PARA USUÁRIO E CADASTRO  */
 CREATE TABLE usuario (
@@ -33,12 +31,11 @@ CONSTRAINT fkUsuarioEmpresa foreign key (fkEmpresa) REFERENCES empresa(idEmpresa
 CONSTRAINT fkUsuarioResponsavel FOREIGN KEY (fkResponsavel) REFERENCES usuario (idUsuario)
 );
 
-INSERT INTO usuario (idUsuario, fkEmpresa,fkResponsavel, nome, email, senha, cargo) VALUES 
+/*
+INSERT INTO usuario (idUsuario, fkEmpresa, fkResponsavel, nome, email, senha, cargo) VALUES 
 (1, 1, 1,'Admin', 'admin@admin.com', 'Admin123@', 'Admin'),
 (2, 1, 1, 'Frizza', 'frizza@example.com', 'Fr@123', 'Dono'),     
-(3, 1, 1, 'Julia', 'julia@example.com', 'Ju@123', 'Supervisora');
-
-
+(3, 1, 1, 'Julia', 'julia@example.com', 'Ju@123', 'Supervisora'); */
 
 /* TABELA PARA ENDEREÇO*/
 CREATE TABLE endereco (
@@ -57,7 +54,6 @@ CONSTRAINT fkEmpresaEndereco FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpre
 
 INSERT INTO endereco (idEndereco, fkEmpresa, rua, bairro, numero, CEP, cidade, uf) VALUES 
 (1, 1, 'Rua das Flores', 'Centro', 123, '01234567', 'São Paulo', 'SP');
-
 
 /* TABELA PARA SENSOR*/
 CREATE TABLE sensor (
@@ -84,10 +80,8 @@ CONSTRAINT fkEmpresaTanque FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa
 CONSTRAINT fkSensorTanque FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
 
-INSERT INTO tanque VALUES
-(DEFAULT, 1, 1, 'Irrigação', '4', '2.0');
-
-
+INSERT INTO tanque (fkEmpresa, fkSensor, setor, alturaMetro, raio) VALUES
+(1, 1, 'Irrigação', '4', '2.0');
 
 /*  TABELAS PARA MEDIDA*/
 CREATE TABLE medida (

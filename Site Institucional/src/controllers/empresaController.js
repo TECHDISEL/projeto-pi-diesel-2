@@ -8,11 +8,11 @@ function buscarPorCnpj(req, res) {
   });
 }
 
-// function listar(req, res) {
-//   empresaModel.listar().then((resultado) => {
-//     res.status(200).json(resultado);
-//   });
-// }
+function listar(req, res) {
+  empresaModel.listar().then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
 
 // function buscarPorId(req, res) {
 //   var id = req.params.id;
@@ -46,6 +46,6 @@ function cadastrarEmpresa(req, res) {
 module.exports = {
   buscarPorCnpj,
 //   buscarPorId,
-  cadastrarEmpresa
-//   listar
+  cadastrarEmpresa,
+  listar
 };
