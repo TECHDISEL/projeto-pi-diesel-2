@@ -22,12 +22,12 @@
                 </div>
 
                 <div class="header-left">
+                    <span id="nome_usuario">
+                        Bem vindo,
+                    </span>
                 </div>
 
                 <div class="header-right">
-                    <span class="material-symbols-outlined">
-                        account_circle
-                    </span>
                 </div>
             </header>
 
@@ -70,23 +70,8 @@
             <ul class="sidebar-list">
                 <li class="sidebar-list-item">
                     <span class="material-symbols-outlined">
-                        check_box
-                    </span> Tanques
-                </li>
-                <li class="sidebar-list-item">
-                    <span class="material-symbols-outlined">
-                        space_dashboard
-                    </span> Dashboard
-                </li>
-                <li class="sidebar-list-item">
-                    <span class="material-symbols-outlined">
-                        history
-                    </span> Registros
-                </li>
-                <li class="sidebar-list-item">
-                    <span class="material-symbols-outlined">
-                        construction
-                    </span> Métricas
+                        account_circle
+                    </span> Perfil
                 </li>
                 <li class="sidebar-list-item" onclick="window.location.href='./index.html';">
                     <span class="material-symbols-outlined">
@@ -106,6 +91,8 @@
 </html>
 
 <script>
+
+   nome_usuario.innerHTML += `${sessionStorage.NOME_USUARIO}`
 
     function exibirTanques() {
 

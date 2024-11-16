@@ -16,28 +16,19 @@
     <div class="container">
         <div class="header-main">
             <header class="header">
-                <div class="menu-icon">
+                <div class="menu-icon" onclick="abrirMenuLateral()">
                     <span class="material-symbols-outlined">
                         menu
                     </span>
                 </div>
 
                 <div class="header-left">
-                    <span class="material-symbols-outlined">
-                        search
+                    <span id="nome_usuario">
+                        Bem vindo,
                     </span>
                 </div>
 
                 <div class="header-right">
-                    <span class="material-symbols-outlined">
-                        notifications
-                    </span>
-                    <span class="material-symbols-outlined">
-                        mail
-                    </span>
-                    <span class="material-symbols-outlined">
-                        account_circle
-                    </span>
                 </div>
             </header>
 
@@ -104,18 +95,8 @@
                 </li>
                 <li class="sidebar-list-item">
                     <span class="material-symbols-outlined">
-                        space_dashboard
-                    </span> Dashboard
-                </li>
-                <li class="sidebar-list-item">
-                    <span class="material-symbols-outlined">
-                        history
-                    </span> Registros
-                </li>
-                <li class="sidebar-list-item">
-                    <span class="material-symbols-outlined">
-                        construction
-                    </span> Métricas
+                        account_circle
+                    </span> Perfil
                 </li>
                 <li class="sidebar-list-item" onclick="window.location.href='./index.html';">
                     <span class="material-symbols-outlined">
@@ -150,6 +131,7 @@
 </html>
 
 <script>
+    nome_usuario.innerHTML += `${sessionStorage.NOME_USUARIO}`
 
     let proximaAtualizacao;
 
