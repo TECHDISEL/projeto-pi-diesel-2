@@ -44,14 +44,26 @@
 
             <main class="main">
                 <div class="main-title">
-                    <p class="font-weight-bold"> <b>Monitoramento Tanque 2 - Setor Abastecimento Tratores <span
-                                style="color: orange;">(ALERTA)</span></b> </p>
+                    <p class="font-weight-bold"> <b> Monitoramento Tanque 2 - Setor Abastecimento Tratores </p>
+                </div>
+
+                <div class="metrica">
+                    <div class="regua">
+                        <div class="estado normal">NORMAL</div>
+                        <div class="estado alerta">ALERTA</div>
+                        <div class="estado critico">CRÍTICO</div>
+                    </div>
+                    <div class="porcentagem">
+                        <h4>X % NÍVEL DE DIESEL OK</h4>
+                        <h4>Y % NÍVEL IDEAL PARA REABASTECER</h4>
+                        <h4>Z % RISCO DE FALTA DE DIESEL</h4>
+                    </div>
                 </div>
 
                 <div class="main-cards">
                     <div class="card">
                         <div class="card-inner">
-                            <p class="text-primary"> Consumo Diário (L) </p>
+                            <p class="text-primary"> Consumo Diário (L) - Média dos Últimos 10 Dias </p>
                             <div class="card-content">
                                 <span class="material-symbols-outlined">
                                     oil_barrel
@@ -75,7 +87,7 @@
 
                     <div class="card">
                         <div class="card-inner">
-                            <p class="text-primary"> Alertas Totais </p>
+                            <p class="text-primary"> Alertas Totais - Últimos 10 dias </p>
                             <div class="card-content">
                                 <span class="material-symbols-outlined">
                                     warning
@@ -88,20 +100,19 @@
 
                 <div class="charts">
                     <div class="charts-card">
-                        <p class="chart-title"> Nível de Diesel(Hora) </p>
-                        <canvas id="sensorDigital"></canvas>
+                        <div class="btns-dash" id="btnTanque">
+                            <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
+                        </div>
+                        <div id="graficos">
+                        </div>
+
+                        <div class="charts-card">
+                            <p class="chart-title"> Consumo Médio(Mês) </p>
+                            <canvas id="myChart2"></canvas>
+                        </div>
                     </div>
 
-                    <div class="charts-card">
-                        <p class="chart-title"> Consumo Médio(Mês) </p>
-                        <canvas id="myChart2"></canvas>
-                    </div>
-                </div>
 
-                <div class="btns-dash" id="btnTanque">
-                    <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-                </div>
-                <div id="graficos">
 
             </main>
         </div>
@@ -118,6 +129,11 @@
             </div>
 
             <ul class="sidebar-list">
+                <li class="sidebar-list-item" onclick="window.location.href ='./tanques.html'">
+                    <span class="material-symbols-outlined">
+                        check_box
+                    </span> Tanques
+                </li>
                 <li class="sidebar-list-item">
                     <span class="material-symbols-outlined">
                         space_dashboard
@@ -170,38 +186,73 @@
     let proximaAtualizacao;
 
     function exibirTanquesUsuarios() {
-        var tanques = JSON.parse(sessionStorage.TANQUES);
-        tanques.forEach(item => {
-            document.getElementById("btnTanque").innerHTML += `
-        <button class="btn-chart" onclick="exibirTanque(${item.idTanque})" id="btnAquario${item.idTanque}">${item.setor}</button>
-        `
+        // Recuperar tanques monitorados e o ID do tanque selecionado
+        const tanques = JSON.parse(sessionStorage.TANQUES);
+        const tanqueSelecionado = sessionStorage.ID_TANQUE_SELECIONADO;
 
-            document.getElementById("graficos").innerHTML += `
-            <div id="grafico${item.idTanque}" class="display-none">
-                <h3 class="tituloGraficos">
-                    <span id="tituloTanque${item.idTanque}">${item.setor}</span>
-                </h3>
-                <div class="graph">
-                    <canvas id="myChartCanvas${item.idTanque}"></canvas>
-                </div>
-                <div class="label-captura">
-                    <p id="avisoCaptura${item.idTanque}" style="color: white"></p>
-                </div>
-            </div>
-        `
-
-            obterDadosGrafico(item.idTanque)
-        });
-
-        if (tanques.length > 0) {
-            exibirTanque(tanques[0].idTanque)
+        // Verificar se o ID do tanque selecionado está definido
+        if (!tanqueSelecionado) {
+            console.error('Nenhum tanque selecionado.');
+            return;
         }
+
+        // Encontrar o tanque correspondente
+        const tanque = tanques.find(item => item.idTanque == tanqueSelecionado);
+
+        // Verificar se o tanque foi encontrado
+        if (!tanque) {
+            console.error('Tanque selecionado não encontrado.');
+            return;
+        }
+
+        // Renderizar o gráfico do tanque selecionado
+        document.getElementById("graficos").innerHTML = `
+        <div id="grafico${tanque.idTanque}">
+            <h3 class="tituloGraficos">
+                <span id="tituloTanque${tanque.idTanque}">${tanque.setor}</span>
+            </h3>
+            <div class="graph">
+                <canvas id="myChartCanvas${tanque.idTanque}"></canvas>
+            </div>
+            <div class="label-captura">
+                <p id="avisoCaptura${tanque.idTanque}" style="color: white"></p>
+            </div>
+        </div>`;
+
+        // Obter dados e renderizar o gráfico
+        obterDadosGrafico(tanque.idTanque);
     }
+
+    // function exibirTanquesUsuarios() {
+    //     var tanques = JSON.parse(sessionStorage.TANQUES);
+    //     tanques.forEach(item => {
+
+    //         document.getElementById("graficos").innerHTML += `
+    //         <div id="grafico${item.idTanque}" class="display-none">
+    //             <h3 class="tituloGraficos">
+    //                 <span id="tituloTanque${item.idTanque}">${item.setor}</span>
+    //             </h3>
+    //             <div class="graph">
+    //                 <canvas id="myChartCanvas${item.idTanque}"></canvas>
+    //             </div>
+    //             <div class="label-captura">
+    //                 <p id="avisoCaptura${item.idTanque}" style="color: white"></p>
+    //             </div>
+    //         </div>
+    //     `
+
+    //         obterDadosGrafico(item.idTanque)
+    //     });
+
+    //     if (tanques.length > 0) {
+    //         exibirTanque(tanques[0].idTanque)
+    //     }
+    // }
 
     function alterarTitulo(idTanque) {
         var tituloTanque = document.getElementById(`tituloTanque${idTanque}`)
         var descricao = JSON.parse(sessionStorage.TANQUES).find(item => item.idTanque == idTanque).setor;
-        tituloTanque.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
+        tituloTanque.innerHTML = " Estoque de Diesel (L) <span style='color: #e6005a'>" + descricao + "</span>"
     }
 
     function exibirTanque(idTanque) {
@@ -270,6 +321,12 @@
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
     function plotarGrafico(resposta, idTanque) {
 
+        const tanques = JSON.parse(sessionStorage.TANQUES);
+        const tanqueSelecionado = sessionStorage.ID_TANQUE_SELECIONADO;
+        const tanque = tanques.find(item => item.idTanque == tanqueSelecionado);
+        const volumeTanque = Math.PI * Math.pow(parseFloat(tanque.raio), 2) * parseFloat(tanque.alturaMetro);
+        const volumeInteiro = Math.round(volumeTanque) * 1000
+
         console.log('iniciando plotagem do gráfico...');
 
         // Criando estrutura para plotar gráfico - labels
@@ -310,6 +367,19 @@
         const config = {
             type: 'line',
             data: dados,
+            options: {
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        min: 0,
+                        max: volumeInteiro
+                    } 
+                }
+            }
         };
 
         // Adicionando gráfico criado em div na tela
@@ -320,8 +390,6 @@
 
         setTimeout(() => atualizarGrafico(idTanque, dados, myChart), 2000);
     }
-
-
 
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
     // buscando a última medida inserida em tabela contendo as capturas, 
