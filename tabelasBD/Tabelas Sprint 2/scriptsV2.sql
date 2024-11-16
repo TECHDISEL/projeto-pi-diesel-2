@@ -35,6 +35,7 @@ CONSTRAINT pkCompostaUsuario PRIMARY KEY (idUsuario, fkEmpresa),
 CONSTRAINT fkUsuarioEmpresa foreign key (fkEmpresa) REFERENCES empresa(idEmpresa),
 CONSTRAINT fkUsuarioResponsavel FOREIGN KEY (fkResponsavel) REFERENCES usuario (idUsuario)
 );
+SELECT * FROM usuario;
 
 /* =================================================
 TABELA PARA ENDEREÇO (SERÃO CADASTRADOS PELA PRÓPRIA TECH DIESEL, VAMOS DISPONIBILIZAR QUE OS USUÁRIOS FAÇAM ALTERAÇÕES)
@@ -96,6 +97,7 @@ dataLeitura DATETIME DEFAULT CURRENT_TIMESTAMP,
 CONSTRAINT pkSensorMedida PRIMARY KEY (idMedida, fkSensor),
 CONSTRAINT fkMedidaSensor FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
+SELECT * FROM medida;
 
 CREATE TABLE alerta(
 idAlerta INT AUTO_INCREMENT,
