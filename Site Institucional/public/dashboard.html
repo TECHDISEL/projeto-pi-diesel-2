@@ -14,7 +14,6 @@
 <body onload="exibirTanquesUsuarios()">
 
     <div class="container">
-
         <div class="header-main">
             <header class="header">
                 <div class="menu-icon">
@@ -43,35 +42,11 @@
             </header>
 
             <main class="main">
-                <div class="main-title">
-                    <p class="font-weight-bold"> <b> Monitoramento Tanque 2 - Setor Abastecimento Tratores </p>
-                </div>
+                <div class="main-title" id="title"></div>
 
-                <div class="metrica">
-                    <div class="regua">
-                        <div class="estado normal">NORMAL</div>
-                        <div class="estado alerta">ALERTA</div>
-                        <div class="estado critico">CRÍTICO</div>
-                    </div>
-                    <div class="porcentagem">
-                        <h4>X % NÍVEL DE DIESEL OK</h4>
-                        <h4>Y % NÍVEL IDEAL PARA REABASTECER</h4>
-                        <h4>Z % RISCO DE FALTA DE DIESEL</h4>
-                    </div>
-                </div>
+                <div class="metrica" id="metrica"></div>
 
-                <div class="main-cards">
-                    <div class="card">
-                        <div class="card-inner">
-                            <p class="text-primary"> Consumo Diário (L) - Média dos Últimos 10 Dias </p>
-                            <div class="card-content">
-                                <span class="material-symbols-outlined">
-                                    oil_barrel
-                                </span>
-                                <span class="text-primary font-weight-bold"> 800 </span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="main-cards" id="cardsDinamicos">
 
                     <div class="card">
                         <div class="card-inner">
@@ -100,20 +75,13 @@
 
                 <div class="charts">
                     <div class="charts-card">
-                        <div class="btns-dash" id="btnTanque">
-                            <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-                        </div>
-                        <div id="graficos">
-                        </div>
-
-                        <div class="charts-card">
-                            <p class="chart-title"> Consumo Médio(Mês) </p>
-                            <canvas id="myChart2"></canvas>
-                        </div>
+                        <div id="graficos"></div>
                     </div>
-
-
-
+                    <div class="charts-card">
+                        <p class="chart-title"> Consumo Médio(Mês) </p>
+                        <canvas id="myChart2"></canvas>
+                    </div>
+                </div>
             </main>
         </div>
 
@@ -189,15 +157,33 @@
         // Recuperar tanques monitorados e o ID do tanque selecionado
         const tanques = JSON.parse(sessionStorage.TANQUES);
         const tanqueSelecionado = sessionStorage.ID_TANQUE_SELECIONADO;
+        const tanque = tanques.find(item => item.idTanque == tanqueSelecionado);
+        const volumeTanque = Math.PI * Math.pow(parseFloat(tanque.raio), 2) * parseFloat(tanque.alturaMetro);
+        const volumeInteiro = Math.round(volumeTanque) * 1000
+
+
+        // Título do tanque monitorado 
+        document.getElementById("title").innerHTML = `
+        <p class="font-weight-bold"> <b> Monitoramento Tanque ${tanque.idTanque} - Setor ${tanque.setor} </p>`
+        
+        // métricas do tanque selecionado 
+        metrica.innerHTML = `
+        <div class="regua">
+            <div class="estado normal">NORMAL</div>
+            <div class="estado alerta">ALERTA</div>
+            <div class="estado critico">CRÍTICO</div>
+        </div>
+        <div class="porcentagem">
+            <h4> > ${0.30 * volumeInteiro} Litros <br> ESTOQUE DE DIESEL OK</h4>
+            <h4> ${0.30 * volumeInteiro} Litros <br> ESTOQUE IDEAL PARA REABASTECER</h4>
+            <h4> ${0.10 * volumeInteiro} Litros <br> RISCO DE FALTA DE DIESEL</h4>
+        </div>`
 
         // Verificar se o ID do tanque selecionado está definido
         if (!tanqueSelecionado) {
             console.error('Nenhum tanque selecionado.');
             return;
         }
-
-        // Encontrar o tanque correspondente
-        const tanque = tanques.find(item => item.idTanque == tanqueSelecionado);
 
         // Verificar se o tanque foi encontrado
         if (!tanque) {
@@ -290,6 +276,8 @@
 
     function obterDadosGrafico(idTanque) {
 
+        var ultimasDezMedidas = []
+
         alterarTitulo(idTanque)
 
         if (proximaAtualizacao != undefined) {
@@ -302,6 +290,23 @@
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
+                    ultimasDezMedidas = resposta.map(item => item.leitura);
+
+                    var consumoTotal = ultimasDezMedidas[ultimasDezMedidas.length - 1] - ultimasDezMedidas[0]
+
+                    cardsDinamicos.innerHTML += `
+                    <div class="card">
+                        <div class="card-inner">
+                        <p class="text-primary" style="color: #3d6e60;"> Consumo Diário - Média dos Últimos 10 Dias </p>
+                            <div class="card-content">
+                                <span class="material-symbols-outlined">
+                                    oil_barrel
+                                </span>
+                                <span class="text-primary font-weight-bold"> ${parseInt(consumoTotal / 24)} Litros </span>
+                            </div>
+                        </div>
+                    </div>`
+
                     plotarGrafico(resposta, idTanque);
 
                 });
@@ -312,9 +317,9 @@
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
+
+
     }
-
-
 
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
@@ -340,7 +345,8 @@
                 data: [],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
+                tension: 0.1,
+                pointRadius: 0
             }]
         };
 
@@ -377,7 +383,7 @@
                     y: {
                         min: 0,
                         max: volumeInteiro
-                    } 
+                    }
                 }
             }
         };
@@ -410,7 +416,6 @@
 
                     let avisoCaptura = document.getElementById(`avisoCaptura${idTanque}`)
                     avisoCaptura.innerHTML = ""
-
 
                     if (novoRegistro[0].dataLeitura == dados.labels[dados.labels.length - 1]) {
                         console.log("---------------------------------------------------------------")

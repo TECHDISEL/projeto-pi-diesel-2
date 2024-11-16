@@ -70,9 +70,8 @@
   border: 1px solid #d2d2d3;
   box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  overflow-y: auto; 
   max-height: 125px;
-  min-width: 200px;
+  width: 100vw;
 }
 
 .card > span {
@@ -102,6 +101,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  gap: 5px;
 }
 
 .card-inner > p{
@@ -198,6 +199,10 @@
   box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
 }
 
+#graficos, #myChart2 {
+  height: 250px;
+}
+
 .chart-title {
   display: flex;
   align-items: center;
@@ -254,4 +259,6 @@
   padding: 0px 30px;
   margin-top: 5px;
   flex-wrap: wrap;
+  text-align: center;
+  margin-bottom: 0;
 }
