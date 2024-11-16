@@ -98,7 +98,7 @@ CONSTRAINT pkSensorMedida PRIMARY KEY (idMedida, fkSensor),
 CONSTRAINT fkMedidaSensor FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
 SELECT * FROM medida;
-
+INSERT INTO medida (fkSensor, leitura, dataLeitura) VALUES (1, 300, now());
 CREATE TABLE alerta(
 idAlerta INT AUTO_INCREMENT,
 fkMedida INT,
