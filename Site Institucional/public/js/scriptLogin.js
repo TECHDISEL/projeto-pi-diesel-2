@@ -99,7 +99,7 @@ function moverDireita() {
 let listaEmpresasCadastradas = [];
 
 function cadastrar() {
-    // aguardar();
+    //aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -115,54 +115,54 @@ function cadastrar() {
     const tamanhoSenha = senhaVar.length > 6
 
     // Verificando se há algum campo em branco
-    // if (
-    //     nomeVar == "" ||
-    //     emailVar == "" ||
-    //     senhaVar == "" ||
-    //     cnpjVar == ""
-    // ) {
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML =
-    //         "Campos obrigatórios estão vazios";
+    if (
+        nomeVar == "" ||
+        codigoVar == "" ||
+        emailVar == "" ||
+        senhaVar == "" 
+    ) {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML =
+            "Campos obrigatórios estão vazios";
 
-    //     return false;
-    // } else if (!tamanhoNome) {
+        return false;
+    } else if (!tamanhoNome) {
 
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML =
-    //         "O campo de nome deve ter mais que um caractére";
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML =
+            "O campo de nome deve ter mais que um caractére";
 
-    //     return false;
+        return false;
 
-    // } else if (!emailConterArroba) {
+    } else if (!emailConterArroba) {
 
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML =
-    //         "O campo de email deve conter @";
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML =
+            "O campo de email deve conter @";
 
-    //     return false;
+        return false;
 
-    // } else if (!tamanhoSenha) {
+    } else if (!tamanhoSenha) {
 
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML =
-    //         "A senha deve ter mais que 6 caractéres";
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML =
+            "A senha deve ter mais que 6 caractéres";
 
-    //     return false;
+        return false;
 
-    // } else if (!tamanhoCNPJ) {
+    } else if (!tamanhoCNPJ) {
 
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML =
-    //         "O CPF deve conter 11 caractéres";
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML =
+            "O CPF deve conter 11 caractéres";
 
-    //     return false;
+        return false;
 
-    // } else {
+    } else {
 
-    //     setInterval(sumirMensagem, 5000);
+        setInterval(sumirMensagem, 5000);
 
-    // }
+    }
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
     for (let i = 0; i < listaEmpresasCadastradas.length; i++) {

@@ -4,30 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/loginCadastro.css">
-    <link rel="icon" href="/assets/img/logo_vetorizada.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/loginCadastro.css">
+    <link rel="icon" href="assets/img/logo_vetorizada.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <title> Cadastro e login </title>
 </head>
 
 <body onload="listar()">
-    <div class="container" id="container">
-
-        <div class="alerta_erro">
-            <div class="card_erro" id="cardErro">
-                <span id="mensagem_erro"></span>
-            </div>
-        </div>
 
         <div class="form-container container-cadastro">
             <form id="form">
                 <h1>Cadastrar Usuário</h1>
                 <input type="text" id="codigo_input" placeholder="Código da empresa">
+                <div id="erro_codigo" class="container-erro"></div>
+
                 <input type="text" id="nome_input" placeholder="Responsável">
                 <input type="email" id="email_input" placeholder="Email para contato">
                 <input type="password" id="senha_input" placeholder="Senha">
                 <input type="password" id="confirmacao_senha_input" placeholder="Confirme a senha">
-                <div id="erro" class="container-erro"></div>
                 <button onclick="cadastrar()"> Cadastrar </button>
             </form>
             

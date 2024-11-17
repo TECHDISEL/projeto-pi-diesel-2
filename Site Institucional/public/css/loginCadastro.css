@@ -156,6 +156,17 @@ button:hover {
     animation: move 0.6s;
 }
 
+input.erro {
+    border-color: red;
+}
+
+/* Mensagens de erro */
+.container-erro {
+    color: red;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
 @keyframes move {
     0%, 50% {
         opacity: 0;
