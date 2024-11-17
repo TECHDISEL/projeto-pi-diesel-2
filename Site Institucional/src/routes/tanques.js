@@ -1,14 +1,18 @@
 var express = require("express");
 var router = express.Router();
-
-var aquarioController = require("../controllers/tanqueController");
+var tanqueController = require("../controllers/tanqueController");
 
 router.get("/:idEmpresa", function (req, res) {
-  aquarioController.buscarTanquesPorEmpresa(req, res);
+  tanqueController.buscarTanquesPorEmpresa(req, res);
 });
 
 router.post("/cadastrar", function (req, res) {
-  aquarioController.cadastrar(req, res);
+  tanqueController.cadastrar(req, res);
 })
+
+// Retornar o tanque selecionado
+router.get("/tanques/:idTanque", function (req, res) {
+  tanqueController.retornarTanque(req, res);
+});
 
 module.exports = router;

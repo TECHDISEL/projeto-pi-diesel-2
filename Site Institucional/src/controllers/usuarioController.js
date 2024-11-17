@@ -27,6 +27,7 @@ function autenticar(req, res) {
                                 if (resultadoTanques.length > 0) {
                                     res.json({
                                         idUsuario: resultadoAutenticar[0].idUsuario,
+                                        nome: resultadoAutenticar[0].nome,
                                         email: resultadoAutenticar[0].email,
                                         senha: resultadoAutenticar[0].senha,
                                         tanques: resultadoTanques

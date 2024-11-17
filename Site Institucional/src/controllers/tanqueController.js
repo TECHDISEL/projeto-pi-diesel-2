@@ -16,6 +16,24 @@ function buscarTanquesPorEmpresa(req, res) {
   });
 }
 
+function retornarTanque(req, res) {
+
+  res.json(retornarTanque(req.params.idTanque));
+
+  tanqueModel.retornarTanque(idTanque).then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).json([]);
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar os tanques: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
 module.exports = {
-    buscarTanquesPorEmpresa
+    buscarTanquesPorEmpresa,
+    retornarTanque
   }
