@@ -1,4 +1,4 @@
-function validarSessao() {
+function validarSessao(entrar) {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
 
@@ -7,6 +7,8 @@ function validarSessao() {
     if (email != null && nome != null) {
         b_usuario.innerHTML = nome;
     } else {
+        // Se o usuário não estiver logado, redireciona para o login e armazena a mensagem de erro
+        sessionStorage.setItem("mensagemErroLogin", "Você precisa estar logado para acessar esta página.");
         window.location = "../login.html";
     }
 }
@@ -16,19 +18,20 @@ function limparSessao() {
     window.location = "../login.html";
 }
 
-// carregamento (loading)
-function aguardar() {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "flex";
-}
 
-function finalizarAguardar(texto) {
-    var divAguardar = document.getElementById("div_aguardar");
-    divAguardar.style.display = "none";
+// // carregamento (loading)
+// function aguardar() {
+//     var divAguardar = document.getElementById("div_aguardar");
+//     divAguardar.style.display = "flex";
+// }
 
-    var divErrosLogin = document.getElementById("div_erros_login");
-    if (texto) {
-        divErrosLogin.style.display = "flex";
-        divErrosLogin.innerHTML = texto;
-    }
-}
+// function finalizarAguardar(texto) {
+//     var divAguardar = document.getElementById("div_aguardar");
+//     divAguardar.style.display = "none";
+
+//     var divErrosLogin = document.getElementById("div_erros_login");
+//     if (texto) {
+//         divErrosLogin.style.display = "flex";
+//         divErrosLogin.innerHTML = texto;
+//     }
+// }

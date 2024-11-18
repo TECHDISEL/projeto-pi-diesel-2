@@ -98,81 +98,80 @@ function moverDireita() {
 // Array para armazenar empresas cadastradas para validação de código de ativação 
 let listaEmpresasCadastradas = [];
 
+
+
+function limparFormulario() {
+    // Limpar os valores dos campos de input após o cadastro
+    codigo_input.value = "";
+    nome_input.value = "";
+    email_input.value = "";
+    senha_input.value = "";
+    confirmacao_senha_input.value = "";
+}
+
 function cadastrar() {
     //aguardar();
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
+    // Recupere o valor da nova input pelo nome do id
     var codigoVar = codigo_input.value;
     var nomeVar = nome_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
-    var idEmpresaVincular
+    var confirmarSenha = confirmacao_senha_input.value;
+    var idEmpresaVincular;
 
-    // validação dos campos
-    const tamanhoNome = nomeVar.length > 1
-    const emailConterArroba = emailVar.indexOf('@') != -1
-    const tamanhoSenha = senhaVar.length > 6
+    const mensagemErro = document.getElementById("mensagem_erro");
+
+    // Validação dos campos
+    const tamanhoNome = nomeVar.length > 1;
+    const emailConterArroba = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVar);
+    const tamanhoSenha = senhaVar.length > 6;
+    const confirmarSenhas = senhaVar == confirmarSenha;
+
+    mensagemErro.innerHTML = "";
+    mensagemErro.style.display = "none";
 
     // Verificando se há algum campo em branco
     if (
         nomeVar == "" ||
         codigoVar == "" ||
         emailVar == "" ||
-        senhaVar == "" 
+        senhaVar == "" ||
+        confirmarSenha == ""
     ) {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML =
-            "Campos obrigatórios estão vazios";
-
+        mensagemErro.innerHTML = "Campos obrigatórios estão vazios";
+        mensagemErro.style.display = "block";
         return false;
     } else if (!tamanhoNome) {
-
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML =
-            "O campo de nome deve ter mais que um caractére";
-
+        mensagemErro.innerHTML = "O campo de nome deve ter mais que um caractere";
+        mensagemErro.style.display = "block";
         return false;
-
     } else if (!emailConterArroba) {
-
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML =
-            "O campo de email deve conter @";
-
+        mensagemErro.innerHTML = "O campo de email deve conter '@' e '.'";
+        mensagemErro.style.display = "block";
         return false;
-
     } else if (!tamanhoSenha) {
-
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML =
-            "A senha deve ter mais que 6 caractéres";
-
+        mensagemErro.innerHTML = "A senha precisa ter mais que 6 caracteres";
+        mensagemErro.style.display = "block";
         return false;
-
-    } else if (!tamanhoCNPJ) {
-
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML =
-            "O CPF deve conter 11 caractéres";
-
+    } else if (!confirmarSenhas) {
+        mensagemErro.innerHTML = "As senhas precisam ser iguais!";
+        mensagemErro.style.display = "block";
         return false;
-
-    } else {
-
-        setInterval(sumirMensagem, 5000);
-
     }
 
+    let codigoValido = false;
     // Verificando se o código de ativação é de alguma empresa cadastrada
     for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
         if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-            idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa
+            idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa;
             console.log("Código de ativação válido.");
+            codigoValido = true;
             break;
         } else {
-            cardErro.style.display = "block";
-            mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+            mensagemErro.innerHTML = "Código de ativação inválido";
+            mensagemErro.style.display = "block";
+            return false;
         }
     }
 
@@ -183,8 +182,6 @@ function cadastrar() {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
             idEmpresaVincularServer: idEmpresaVincular,
             nomeServer: nomeVar,
             emailServer: emailVar,
@@ -195,24 +192,34 @@ function cadastrar() {
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                cardErro.style.display = "block";
+                // Exibe a mensagem de sucesso
+                mensagemErro.innerHTML = "Cadastro realizado com sucesso! Você será redirecionado para o login!";
+                mensagemErro.style.color = "green";
+                mensagemErro.style.display = "block";
 
-                mensagem_erro.innerHTML =
-                    "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                // Redireciona para o login
+                setTimeout(() => {
+                    window.location.href = "/login.html"; // Redirecionando para a página de login após 5 segundos
+                }, 3000);
 
-                // setTimeout(() => {
-                //     window.location = "index.html";
-                // }, "2000");
-
-                limparFormulario();
+                limparFormulario(); // Chama a função para limpar os campos após o cadastro
             } else {
                 throw "Houve um erro ao tentar realizar o cadastro!";
             }
         })
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
+            mensagemErro.innerHTML = "Ocorreu um erro ao realizar o cadastro!";
+            mensagemErro.style.color = "red";
+            mensagemErro.style.display = "block";
         });
+
+    // Ocultar a mensagem após 5 segundos
+    setTimeout(() => {
+        mensagemErro.style.display = "none";
+    }, 5000);
 }
+
 
 // Listando empresas cadastradas 
 function listar() {
@@ -232,10 +239,6 @@ function listar() {
         .catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
         });
-}
-
-function sumirMensagem() {
-    cardErro.style.display = "none";
 }
 
 // function cadastrarEmpresa() {
@@ -290,22 +293,28 @@ function sumirMensagem() {
 // }
 
 function entrar() {
-
+    // Pegando os valores dos campos de email e senha
     var emailVar = email_login.value;
     var senhaVar = senha_login.value;
 
-    if (emailVar == "" || senhaVar == "") {
-        cardErro.style.display = "block"
-        mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+    var mensagemErroLogin = document.getElementById("mensagem_erro_login");
 
-    }
-    else {
-        setInterval(sumirMensagem, 5000)
+    // Verificando se os campos estão vazios
+    if (emailVar == "" || senhaVar == "") {
+        // Exibe a mensagem de erro se os campos estiverem vazios
+        mensagemErroLogin.innerHTML = "Por favor, preencha ambos os campos!";
+        mensagemErroLogin.style.display = "block";
+
+        // Impede o envio do formulário
+        return false;
+    } else {
+        mensagemErroLogin.style.display = "none";
     }
 
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
 
+    // Realiza a requisição para a autenticação
     fetch("/usuarios/autenticar", {
         method: "POST",
         headers: {
@@ -316,42 +325,36 @@ function entrar() {
             senhaServer: senhaVar
         })
     }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!")
+        console.log("ESTOU NO THEN DO entrar()!");
 
         if (resposta.ok) {
-            console.log('AAAAAAAAAAAAAAAAAA')
-            console.log(resposta);
-
             resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
                 sessionStorage.EMAIL_USUARIO = json.email;
                 sessionStorage.NOME_USUARIO = json.nome;
                 sessionStorage.ID_USUARIO = json.idUsuario;
-                sessionStorage.TANQUES = JSON.stringify(json.tanques)
+                sessionStorage.TANQUES = JSON.stringify(json.tanques);
+
+                mensagemErroLogin.innerHTML = "Login realizado com sucesso!";
+                mensagemErroLogin.style.color = "green";
+                mensagemErroLogin.style.display = "block";
 
                 setTimeout(function () {
-                    window.location = "./tanques.html";
-                }, 1000); // apenas para exibir o loading
-
+                    window.location = "tanques.html";
+                }, 3000);
             });
 
         } else {
-
             console.log("Houve um erro ao tentar realizar o login!");
-
             resposta.text().then(texto => {
                 console.error(texto);
+                mensagemErroLogin.innerHTML = "Falha no login: " + texto;
+                mensagemErroLogin.style.display = "block";
             });
         }
 
     }).catch(function (erro) {
         console.log(erro);
-    })
+    });
 
     return false;
-}
-
-function sumirMensagem() {
-    cardErro.style.display = "none"
 }

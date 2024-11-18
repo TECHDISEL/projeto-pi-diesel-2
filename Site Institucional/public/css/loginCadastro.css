@@ -160,12 +160,6 @@ input.erro {
     border-color: red;
 }
 
-/* Mensagens de erro */
-.container-erro {
-    color: red;
-    font-size: 0.9em;
-    margin-bottom: 10px;
-}
 
 @keyframes move {
     0%, 50% {
@@ -245,16 +239,20 @@ input.erro {
     transform: translateX(200%);
 }
 
-.container-erro {
-    width: 100%;
-    display: flex;
-    justify-content: start;
-    text-align: justify;
-    flex-direction: column;
+#mensagem_erro {
     color: red;
-    font-size: 12px;
-    font-weight: 700;
+    font-weight: bold;
+    margin-top: 10px;
+    display: none; /* Inicialmente escondida */
 }
+
+#mensagem_erro_login{
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+    display: none; /* Inicialmente escondida */
+}
+
 
 .form2{
     display: none;

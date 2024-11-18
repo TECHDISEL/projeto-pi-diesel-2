@@ -6,96 +6,72 @@
 comandos para mysql server
 */
 
-CREATE DATABASE tech_diesel;
-USE tech_diesel;
+CREATE DATABASE aquatech;
 
+USE aquatech;
 
-/*TABELA DE CADASTRO DA EMPRESA*/
-CREATE TABLE cadastro (
-CNPJ CHAR(18) PRIMARY KEY,
-nome VARCHAR(45),
-nomeFantasia VARCHAR(45),
-razaoSocial VARCHAR(45),
-telefone CHAR(11),
-email VARCHAR(45),
-senha VARCHAR(45)
+CREATE TABLE empresa (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	razao_social VARCHAR(50),
+	cnpj CHAR(14),
+	codigo_ativacao VARCHAR(50)
 );
 
-
-/*  TABELAS PARA USUÁRIO E CADASTRO  */
 CREATE TABLE usuario (
-idUsuario INT,
-fkCNPJ CHAR(18),
-fkResponsavel INT,
-nome VARCHAR(45),
-senha VARCHAR(45),
-
-CONSTRAINT pkCompostaUsuario PRIMARY KEY (idUsuario, fkCNPJ),
-CONSTRAINT fkUsuarioResponsavel FOREIGN KEY (fkResponsavel) REFERENCES usuario (idUsuario)
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(50),
+	cpf CHAR(11),
+	email VARCHAR(50),
+	senha VARCHAR(50),
+	fk_empresa INT,
+	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
 );
 
-INSERT INTO usuario (idUsuario, fkCNPJ,fkResponsavel, nome, senha) VALUES 
-(1, '12.345.678/0001-90', 1,'Admin', 'Admin123@'),
-(2, '12.345.678/0001-90', 1, 'Frizza', 'Fr@123'),     
-(3, '12.345.678/0001-90', 1, 'Julia', 'Ju@123');
-
-
-/* TABELA PARA ENDEREÇO*/
-CREATE TABLE endereco (
-idEndereco INT,
-fkCNPJ CHAR(18) UNIQUE,
-rua VARCHAR(45),
-bairro VARCHAR(45),
-numero INT,
-CEP CHAR(8),
-cidade VARCHAR(45),
-uf CHAR(2),
-
-CONSTRAINT pkCompostaEndereco PRIMARY KEY (idEndereco, fkCNPJ),
-CONSTRAINT fkCNPJEndereco FOREIGN KEY (fkCNPJ) REFERENCES cadastro (CNPJ)
+CREATE TABLE aviso (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	titulo VARCHAR(100),
+	descricao VARCHAR(150),
+	fk_usuario INT,
+	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
 );
 
-INSERT INTO endereco (idEndereco, fkCNPJ, rua, bairro, numero, CEP, cidade, uf) VALUES 
-(1, '12.345.678/0001-90', 'Rua das Flores', 'Centro', 123, '01234567', 'São Paulo', 'SP');
-
-
-/* TABELA PARA SENSOR*/
-CREATE TABLE sensor (
-idSensor INT PRIMARY KEY AUTO_INCREMENT, 
-dataInstalacao DATE
+create table aquario (
+/* em nossa regra de negócio, um aquario tem apenas um sensor */
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	descricao VARCHAR(300),
+	fk_empresa INT,
+	FOREIGN KEY (fk_empresa) REFERENCES empresa(id)
 );
 
-INSERT INTO sensor VALUES 
-(DEFAULT, '2024-10-31'),
-(DEFAULT, '2024-11-01'),
-(DEFAULT, '2024-11-01');
+/* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
 
-
-/*  TABELAS PARA TANQUE*/
-CREATE TABLE tanque (
-idTanque INT PRIMARY KEY AUTO_INCREMENT,
-fkCadastro CHAR(18),
-fkSensor INT,
-nome VARCHAR(45),
-capacidade INT,
-
-CONSTRAINT fkCadastroTanque FOREIGN KEY (fkCadastro) REFERENCES cadastro (CNPJ),
-CONSTRAINT fkSensorTanque FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
+create table medida (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	dht11_umidade DECIMAL,
+	dht11_temperatura DECIMAL,
+	luminosidade DECIMAL,
+	lm35_temperatura DECIMAL,
+	chave TINYINT,
+	momento DATETIME,
+	fk_aquario INT,
+	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
 );
 
-INSERT INTO tanque VALUES
-(DEFAULT, '12.345.678/0001-90', 1, 'Tanque 1', 10000),
-(DEFAULT, '12.345.678/0001-90', null, 'Tanque 2', 10000),
-(DEFAULT, '12.345.678/0001-90', null, 'Tanque 3', 15000);
+insert into empresa (razao_social, codigo_ativacao) values ('Empresa 1', 'ED145B');
+insert into empresa (razao_social, codigo_ativacao) values ('Empresa 2', 'A1B2C3');
+insert into aquario (descricao, fk_empresa) values ('Aquário de Estrela-do-mar', 1);
+insert into aquario (descricao, fk_empresa) values ('Aquário de Peixe-dourado', 2);
 
+insert into medida (dht11_umidade, dht11_temperatura, momento, fk_aquario) values 
+(10, 20, now(), 3),
+(15, 34, now(), 3),
+(20, 42, now(), 3); 
 
-/*  TABELAS PARA MEDIDA*/
-CREATE TABLE medida (
-idMedida INT PRIMARY KEY AUTO_INCREMENT,
-fkSensor INT,
-leitura DECIMAL(12,2),
-dataLeitura DATETIME DEFAULT CURRENT_TIMESTAMP,
+insert into medida (dht11_umidade, dht11_temperatura, momento, fk_aquario) values 
+(10, 20, now(), 4),
+(15, 34, now(), 4),
+(20, 42, now(), 4); 
 
-CONSTRAINT fkMedidaSensor FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
-);
+select * from aquario;
+
 

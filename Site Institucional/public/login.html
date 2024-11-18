@@ -17,12 +17,12 @@
                 <form id="form">
                     <h1>Cadastrar Usuário</h1>
                     <input type="text" id="codigo_input" placeholder="Código da empresa">
-                    <div id="erro_codigo" class="container-erro"></div>
                     <input type="text" id="nome_input" placeholder="Responsável">
                     <input type="email" id="email_input" placeholder="Email para contato">
                     <input type="password" id="senha_input" placeholder="Senha">
                     <input type="password" id="confirmacao_senha_input" placeholder="Confirme a senha">
-                    <button onclick="cadastrar()"> Cadastrar </button>
+                    <div id="mensagem_erro"></div>
+                    <button type="button" onclick="cadastrar()"> Cadastrar </button>
                 </form>
             
                 <!-- Até decidirmos se vamos fazer o cadastro de endereço ou o usuário -->
@@ -79,6 +79,7 @@
                     <input type="text" placeholder="Digite seu Email" id="email_login">
                     <input type="password" placeholder="Digite sua Senha" id="senha_login">
                     <a href=""> Esqueceu sua senha? </a>
+                    <div id="mensagem_erro_login"></div>
                     <button type="button" onclick="entrar()"> Entrar </button>
                 </form>
             </div>
@@ -104,3 +105,5 @@
 </body>
 
 </html>
+
+

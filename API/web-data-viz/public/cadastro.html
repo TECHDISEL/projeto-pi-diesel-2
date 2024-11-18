@@ -10,7 +10,7 @@
 
   <script src="./js/sessao.js"></script>
 
-  <link rel="stylesheet" href="./css/estilo.css" />
+  <link rel="stylesheet" href="/css/estilo.css" />
   <link rel="icon" href="./assets/icon/favicon2.ico" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
@@ -139,7 +139,7 @@
         break;
       } else {
         cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+        mensagem_erro.innerHTML = "(Codigo de ativação inválido!)";
         finalizarAguardar();
       }
     }
@@ -170,7 +170,7 @@
 
           setTimeout(() => {
             window.location = "login.html";
-          }, "2000");
+          }, "5000");
 
           limparFormulario();
           finalizarAguardar();
