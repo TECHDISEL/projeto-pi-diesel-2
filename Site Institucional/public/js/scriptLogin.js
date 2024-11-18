@@ -234,9 +234,9 @@ function listar() {
         });
 }
 
-function sumirMensagem() {
-    cardErro.style.display = "none";
-}
+// function sumirMensagem() {
+//     cardErro.style.display = "none";
+// }
 
 // function cadastrarEmpresa() {
 
@@ -299,9 +299,9 @@ function entrar() {
         mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
 
     }
-    else {
-        setInterval(sumirMensagem, 5000)
-    }
+    // else {
+    //     setInterval(sumirMensagem, 5000)
+    // }
 
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
@@ -352,6 +352,6 @@ function entrar() {
     return false;
 }
 
-function sumirMensagem() {
-    cardErro.style.display = "none"
-}
+// function sumirMensagem() {
+//     cardErro.style.display = "none"
+// }
