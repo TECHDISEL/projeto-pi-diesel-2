@@ -241,13 +241,6 @@ function listar() {
         });
 }
 
-<<<<<<< HEAD
-=======
-// function sumirMensagem() {
-//     cardErro.style.display = "none";
-// }
-
->>>>>>> cae96c5c92449b2f92e0c4de6ed41ba038c48204
 // function cadastrarEmpresa() {
 
 //     var ruaVar = rua.value;
@@ -306,7 +299,6 @@ function entrar() {
 
     var mensagemErroLogin = document.getElementById("mensagem_erro_login");
 
-<<<<<<< HEAD
     // Verificando se os campos estão vazios
     if (emailVar == "" || senhaVar == "") {
         // Exibe a mensagem de erro se os campos estiverem vazios
@@ -318,12 +310,6 @@ function entrar() {
     } else {
         mensagemErroLogin.style.display = "none";
     }
-=======
-    }
-    // else {
-    //     setInterval(sumirMensagem, 5000)
-    // }
->>>>>>> cae96c5c92449b2f92e0c4de6ed41ba038c48204
 
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
@@ -372,10 +358,3 @@ function entrar() {
 
     return false;
 }
-<<<<<<< HEAD
-=======
-
-// function sumirMensagem() {
-//     cardErro.style.display = "none"
-// }
->>>>>>> cae96c5c92449b2f92e0c4de6ed41ba038c48204

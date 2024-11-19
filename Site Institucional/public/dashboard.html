@@ -188,15 +188,15 @@
             </div>
         </div>`;
 
-        document.getElementById("graficos2").innerHTML = `
-        <div id="grafico2${tanque.idTanque}">
-            <h3 class="tituloGraficos">
-                <span> Consumo médio mensel (L) </span>
-            </h3>
-            <div class="graph">
-                <canvas id="myChartCanvas2${tanque.idTanque}"></canvas>
-            </div>
-        </div>`;
+        // document.getElementById("graficos2").innerHTML = `
+        // <div id="grafico2${tanque.idTanque}">
+        //     <h3 class="tituloGraficos">
+        //         <span> Consumo médio mensel (L) </span>
+        //     </h3>
+        //     <div class="graph">
+        //         <canvas id="myChartCanvas2${tanque.idTanque}"></canvas>
+        //     </div>
+        // </div>`;
 
         // Obter dados e renderizar o gráfico
         obterDadosGrafico(tanque.idTanque);
@@ -402,10 +402,10 @@
            ====================================================================================================*/
 
         // Adicionando gráfico criado em div na tela 
-        let myChart2 = new Chart(
-            document.getElementById(`myChartCanvas2${idTanque}`),
-            config2
-        );
+        // let myChart2 = new Chart(
+        //     document.getElementById(`myChartCanvas2${idTanque}`),
+        //     config2
+        // );
     }
 
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
