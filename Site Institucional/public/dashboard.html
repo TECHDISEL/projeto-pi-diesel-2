@@ -285,7 +285,9 @@
 
                     ultimasDezMedidas = resposta.map(item => item.leitura);
 
+                    
                     var consumoTotal = ultimasDezMedidas[ultimasDezMedidas.length - 1] - ultimasDezMedidas[0]
+                
 
                     cardsDinamicos.innerHTML += `
                     <div class="card">
@@ -301,6 +303,7 @@
                     </div>`
 
                     plotarGrafico(resposta, idTanque);
+
 
                 });
             } else {
@@ -351,6 +354,10 @@
             var registro = resposta[i];
             labels.push(registro.dataLeitura);
             dados.datasets[0].data.push(registro.leitura);
+        }
+
+        if (registro.leitura <= (0.3 * volumeInteiro)) {
+            alert('Risco de falta de diesel')
         }
 
         console.log('----------------------------------------------')
@@ -440,6 +447,8 @@
 
                         dados.datasets[0].data.shift();  // apagar o primeiro de umidade
                         dados.datasets[0].data.push(novoRegistro[0].leitura); // incluir uma nova medida de umidade
+
+
 
                         myChart.update();
                     }
