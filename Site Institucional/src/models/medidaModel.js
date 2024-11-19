@@ -7,7 +7,7 @@ function buscarUltimasMedidas(idTanque, limite_linhas) {
         round(PI() * POW(tanque.raio, 2) * (tanque.alturaMetro - (medida.leitura/100)),0) * 1000 AS leitura,
         medida.fkSensor,
         dataLeitura,
-        DATE_FORMAT(dataLeitura,'%d/%m %H:%i') as dataLeitura
+        DATE_FORMAT(dataLeitura,'%H:%i:%s') as dataLeitura
     FROM medida
     JOIN sensor ON medida.fkSensor = sensor.idSensor
     JOIN tanque ON sensor.idSensor = tanque.fkSensor
@@ -25,7 +25,7 @@ function buscarMedidasEmTempoReal(idTanque) {
         round(PI() * POW(tanque.raio, 2) * (tanque.alturaMetro - (medida.leitura/100)),0) * 1000 AS leitura,
         medida.fkSensor,
         dataLeitura,
-        DATE_FORMAT(dataLeitura,'%d/%m %H:%i') as dataLeitura
+        DATE_FORMAT(dataLeitura,'%H:%i:%s') as dataLeitura
     FROM medida
     JOIN sensor ON medida.fkSensor = sensor.idSensor
     JOIN tanque ON sensor.idSensor = tanque.fkSensor
