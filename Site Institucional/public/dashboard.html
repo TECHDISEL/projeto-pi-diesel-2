@@ -411,7 +411,7 @@
 
         // Criando estrutura para plotar gráfico - dados
         let dados2 = {
-            labels: labels,
+            labels: labels2,
             datasets: [{
                 data: [],
                 fill: false,
@@ -424,8 +424,8 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.dataLeitura);
-            dados.datasets[0].data.push(registro.leitura);
+            labels2.push(registro.mes);
+            dados2.datasets[0].data.push(registro.leitura);
         }
 
         if (registro.leitura <= (0.3 * volumeInteiro)) {
@@ -435,7 +435,7 @@
         // Criando estrutura para plotar gráfico - config
         const config2 = {
             type: 'bar',
-            data: dados,
+            data: dados2,
             options: {
                 plugins: {
                     legend: {
