@@ -18,9 +18,9 @@ const serial = async (valoresSensorDigital) => {
         {
             host: 'localhost',
             user: 'admin',
-            password: 'admin',
+            password: 'Admin24@',
             database: 'tech_diesel',
-            port: 3306
+            port: 3307
         }
     ).promise();
 
