@@ -2,7 +2,7 @@
 
 CREATE DATABASE tech_diesel;
 USE tech_diesel;
-
+SELECT * FROM usuario;
 /* =================================================
 		   TABELA DE CADASTRO DA EMPRESA
 ================================================= */

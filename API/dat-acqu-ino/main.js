@@ -8,7 +8,7 @@ const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3300;
 
 // habilita ou desabilita a inserção de dados no banco de dados
-const HABILITAR_OPERACAO_INSERIR = false;
+const HABILITAR_OPERACAO_INSERIR = true;
 
 // função para comunicação serial
 const serial = async (valoresSensorDigital) => {
@@ -17,8 +17,8 @@ const serial = async (valoresSensorDigital) => {
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'insert_user',
-            password: 'Sptech#2024',
+            user: 'admin',
+            password: 'Admin24@',
             database: 'tech_diesel',
             port: 3307
         }
@@ -58,7 +58,7 @@ const serial = async (valoresSensorDigital) => {
 
             // este insert irá inserir os dados na tabela "sensor"
             await poolBancoDados.execute(
-                'INSERT INTO medida (fkSensor, leitura) VALUES (1, ?)',
+                'INSERT INTO medida (fkSensor, leitura) VALUES (1, ?);',
                 [sensorDigital]            
             );
 
