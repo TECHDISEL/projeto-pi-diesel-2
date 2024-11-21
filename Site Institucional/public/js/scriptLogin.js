@@ -332,15 +332,23 @@ function entrar() {
                 sessionStorage.EMAIL_USUARIO = json.email;
                 sessionStorage.NOME_USUARIO = json.nome;
                 sessionStorage.ID_USUARIO = json.idUsuario;
+                sessionStorage.CARGO = json.cargo;
                 sessionStorage.TANQUES = JSON.stringify(json.tanques);
 
                 mensagemErroLogin.innerHTML = "Login realizado com sucesso!";
                 mensagemErroLogin.style.color = "green";
                 mensagemErroLogin.style.display = "block";
 
-                setTimeout(function () {
-                    window.location = "tanques.html";
-                }, 3000);
+
+                if(sessionStorage.CARGO == 'Suporte N3'){
+                    setTimeout(function() {
+                        window.location = "atendimentoAoCliente.html"
+                    }, 2000);
+                }else{
+                    setTimeout(function () {
+                        window.location = "tanques.html";
+                    }, 3000);
+                }
             });
 
         } else {

@@ -21,6 +21,8 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
+                        
+
                         tanqueModel.buscarTanquesPorEmpresa(resultadoAutenticar[0].idEmpresa)
                             .then((resultadoTanques) => {
 
@@ -30,6 +32,7 @@ function autenticar(req, res) {
                                         nome: resultadoAutenticar[0].nome,
                                         email: resultadoAutenticar[0].email,
                                         senha: resultadoAutenticar[0].senha,
+                                        cargo: resultadoAutenticar[0].cargo,
                                         tanques: resultadoTanques
                                     });
                                 } else {
