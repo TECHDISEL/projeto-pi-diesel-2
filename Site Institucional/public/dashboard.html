@@ -402,7 +402,7 @@
             config
         );
 
-        setTimeout(() => atualizarGrafico(idTanque, dados, myChart), 2000);
+        setTimeout(() => atualizarGrafico(idTanque, dados, myChart), 1000);
 
     }
 
@@ -416,6 +416,7 @@
         fetch(`/medidas/tempo-real/${idTanque}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
+                    
 
                     // obterdados(idTanque); PARA QUANDO DEFINIMOS OS ALERTAS
                     // alertar(novoRegistro, idTanque);
