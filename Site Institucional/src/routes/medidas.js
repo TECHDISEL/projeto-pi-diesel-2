@@ -11,5 +11,9 @@ router.get("/tempo-real/:idTanque", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 });
 
+router.get("/carregarDadosMensais/:idTanque", function (req, res) {
+    medidaController.buscarMedidasMensais(req, res);
+});
+
 
 module.exports = router;

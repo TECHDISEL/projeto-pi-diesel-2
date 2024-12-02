@@ -7,10 +7,6 @@ function buscarUltimasMedidas(idTanque, limite_linhas) {
         round(PI() * POW(tanque.raio, 2) * (tanque.alturaMetro - (medida.leitura/100)),0) * 1000 AS leitura,
         medida.fkSensor,
         dataLeitura,
-<<<<<<< HEAD
-=======
-        DATE_FORMAT(dataLeitura, '%M') AS mes,
->>>>>>> f71809a665a04a72f4fcbdc8197273df79ced0b0
         DATE_FORMAT(dataLeitura,'%H:%i:%s') as dataLeitura
     FROM medida
     JOIN sensor ON medida.fkSensor = sensor.idSensor
@@ -40,7 +36,24 @@ function buscarMedidasEmTempoReal(idTanque) {
     return database.executar(instrucaoSql);
 }
 
+function buscarMedidasMensais(idTanque) {
+
+    var instrucaoSql = `
+    SELECT 
+	    SUM(leitura) AS leituraDoMes,
+        MONTH(dataLeitura) AS mesAtual
+    FROM medida
+    JOIN sensor ON sensor.idSensor = medida.fkSensor 
+    JOIN tanque ON sensor.idSensor = tanque.fkSensor
+    WHERE idTanque = ${idTanque}
+    GROUP BY MONTH(dataLeitura);
+    `
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarMedidasMensais
 }
