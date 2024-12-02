@@ -73,6 +73,11 @@
                         account_circle
                     </span> Perfil
                 </li>
+                <li class="sidebar-list-item" id onclick="aparecerDivReabastecimentos()">
+                    <span class="material-symbols-outlined">
+                        local_gas_station
+                    </span> Reabastecimentos
+                </li>
                 <li class="sidebar-list-item" onclick="window.location.href='./index.html';">
                     <span class="material-symbols-outlined">
                         logout
@@ -92,7 +97,7 @@
 
 <script>
 
-   nome_usuario.innerHTML += `${sessionStorage.NOME_USUARIO}`
+    nome_usuario.innerHTML += `${sessionStorage.NOME_USUARIO}`
 
     function exibirTanques() {
 
@@ -113,6 +118,20 @@
     function retornarTanque(idTanque) {
         sessionStorage.ID_TANQUE_SELECIONADO = idTanque;
         window.location = "./dashboard.html";
+    }
+
+    function aparecerDivReabastecimentos() {
+
+        abrirAvaliacaoBtn.addEventListener('click', () => {
+            divAvaliar.style.display = 'block'; // Exibe a div suspensa
+            carregarJogos(); // Preenche a lista de jogos
+        });
+
+        // Função para fechar a div de avaliação
+        fecharAvaliarBtn.addEventListener('click', () => {
+            divAvaliar.style.display = 'none'; // Esconde a div suspensa
+        });
+
     }
 
 </script>

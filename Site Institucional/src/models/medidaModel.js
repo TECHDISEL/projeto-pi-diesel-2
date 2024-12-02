@@ -21,7 +21,8 @@ function buscarUltimasMedidas(idTanque, limite_linhas) {
 function buscarMedidasEmTempoReal(idTanque) {
 
     var instrucaoSql = `
-    SELECT 
+    SELECT
+        idMedida,
         round(PI() * POW(tanque.raio, 2) * (tanque.alturaMetro - (medida.leitura/100)),0) * 1000 AS leitura,
         medida.fkSensor,
         dataLeitura,

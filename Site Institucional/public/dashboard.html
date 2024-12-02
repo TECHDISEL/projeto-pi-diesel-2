@@ -72,6 +72,11 @@
                         <canvas id="graficos2"></canvas>
                     </div>
                 </div>
+
+                <div class="reabastecimentos" style="display: none;">
+
+                </div>
+
             </main>
         </div>
 
@@ -102,31 +107,16 @@
                         warning
                     </span> Métricas
                 </li>
-                <li class="sidebar-list-item" onclick="window.location.href='./index.html';">
+                <li class="sidebar-list-item">
                     <span class="material-symbols-outlined">
                         logout
                     </span> Sair
                 </li>
-
             </ul>
         </aside>
     </div>
-
-    <!-- Caso for necessário adcionar mais gráficos, vou deixar a estrutura aqui para copiarmos
-    
-        <div class="charts">
-        <div class="charts-card">
-            <p class="chart-title"> Monitoramento Diário </p>
-            <canvas id="myChart"></canvas>
-        </div>
-
-        <div class="charts-card">
-            <p class="chart-title"> Consumo médio </p>
-            <canvas id="myChart2"></canvas>
-        </div>
-    </div> -->
-
 </body>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"></script>
 <script src="js/dash.js"></script>
@@ -136,6 +126,7 @@
 </html>
 
 <script>
+
     nome_usuario.innerHTML += `${sessionStorage.NOME_USUARIO}`
 
     let proximaAtualizacao;
@@ -202,32 +193,6 @@
         obterDadosGrafico(tanque.idTanque);
     }
 
-    // function exibirTanquesUsuarios() {
-    //     var tanques = JSON.parse(sessionStorage.TANQUES);
-    //     tanques.forEach(item => {
-
-    //         document.getElementById("graficos").innerHTML += `
-    //         <div id="grafico${item.idTanque}" class="display-none">
-    //             <h3 class="tituloGraficos">
-    //                 <span id="tituloTanque${item.idTanque}">${item.setor}</span>
-    //             </h3>
-    //             <div class="graph">
-    //                 <canvas id="myChartCanvas${item.idTanque}"></canvas>
-    //             </div>
-    //             <div class="label-captura">
-    //                 <p id="avisoCaptura${item.idTanque}" style="color: white"></p>
-    //             </div>
-    //         </div>
-    //     `
-
-    //         obterDadosGrafico(item.idTanque)
-    //     });
-
-    //     if (tanques.length > 0) {
-    //         exibirTanque(tanques[0].idTanque)
-    //     }
-    // }
-
     function alterarTitulo(idTanque) {
         var tituloTanque = document.getElementById(`tituloTanque${idTanque}`)
         var descricao = JSON.parse(sessionStorage.TANQUES).find(item => item.idTanque == idTanque).setor;
@@ -285,9 +250,7 @@
 
                     ultimasDezMedidas = resposta.map(item => item.leitura);
 
-
                     var consumoTotal = ultimasDezMedidas[ultimasDezMedidas.length - 1] - ultimasDezMedidas[0]
-
 
                     cardsDinamicos.innerHTML += `
                     <div class="card">
@@ -303,7 +266,6 @@
                     </div>`
 
                     plotarGrafico(resposta, idTanque);
-
 
                 });
             } else {
@@ -416,7 +378,12 @@
         fetch(`/medidas/tempo-real/${idTanque}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
-                    
+
+                    const volumeTanque = 1000 * (Math.PI * Math.pow(parseFloat(novoRegistro[0].raio), 2) * parseFloat(novoRegistro[0].alturaMetro));
+
+                    if (novoRegistro[0].leitura <= volumeTanque * 0.30) {
+                        alert('Estado de alerta')
+                    }
 
                     // obterdados(idTanque); PARA QUANDO DEFINIMOS OS ALERTAS
                     // alertar(novoRegistro, idTanque);
@@ -538,6 +505,11 @@
             .catch(erro => {
                 console.error("Erro ao carregar os dados mensais:", erro);
             });
+    }
+
+    function aparecerDivReabastecimentos() {
+
+
     }
 
 
