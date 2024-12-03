@@ -88,7 +88,7 @@ INSERT INTO tanque (idTanque, fkEmpresa, fkSensor, setor, alturaMetro, raio) VAL
 
 
 /* =========================================================
-TABELAS PARA CONTROLES DAS MEDIDAS E ALERTAS DOS SENSORES
+TABELAS PARA ABASTECIMENTOS 
 ========================================================= */
 CREATE TABLE abastecimento(
 idAbastecimento INT AUTO_INCREMENT,
@@ -100,6 +100,20 @@ volumeReabastecido INT,
 CONSTRAINT pkCompostaAbastecimento PRIMARY KEY (idAbastecimento, fkEmpresa, fkTanque),
 CONSTRAINT fkAbastecimentoEmpresa FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa),
 CONSTRAINT fkAbastecimentoTanque FOREIGN KEY (fkTanque) REFERENCES tanque (idTanque)
+);
+
+
+
+/* =========================================================
+TABELAS PARA MÉTRICAS 
+========================================================= */
+CREATE TABLE metricas(
+idMetricas INT AUTO_INCREMENT,
+alerta INT,
+critico INT,
+fkTanque INT,
+CONSTRAINT pkCompostaMetricas PRIMARY KEY (idMetricas, fkTanque),
+CONSTRAINT fkMetricasTanque FOREIGN KEY (fkTanque) REFERENCES tanque(idTanque)
 );
 
 
