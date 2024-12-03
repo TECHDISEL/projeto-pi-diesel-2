@@ -65,6 +65,7 @@ idSensor INT PRIMARY KEY AUTO_INCREMENT,
 dataInstalacao DATETIME
 );
 
+
 CREATE TABLE tanque (
 idTanque INT PRIMARY KEY AUTO_INCREMENT,
 fkEmpresa INT,
@@ -85,6 +86,24 @@ INSERT INTO tanque (idTanque, fkEmpresa, fkSensor, setor, alturaMetro, raio) VAL
 (1, 1, 1, 'Maquinario', '4', '1.7'), -- 35000 L
 (2, 1, 2, 'Irrigação', '2', '1.5'); -- 15000 L
 
+
+/* =========================================================
+TABELAS PARA CONTROLES DAS MEDIDAS E ALERTAS DOS SENSORES
+========================================================= */
+CREATE TABLE abastecimento(
+idAbastecimento INT AUTO_INCREMENT,
+fkEmpresa INT,
+fkTanque INT,
+dataAbastecimento DATE,
+volumeReabastecido INT,
+
+CONSTRAINT pkCompostaAbastecimento PRIMARY KEY (idAbastecimento, fkEmpresa, fkTanque),
+CONSTRAINT fkAbastecimentoEmpresa FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa),
+CONSTRAINT fkAbastecimentoTanque FOREIGN KEY (fkTanque) REFERENCES tanque (idTanque)
+);
+
+
+
 /* =========================================================
 TABELAS PARA CONTROLES DAS MEDIDAS E ALERTAS DOS SENSORES
 ========================================================= */
@@ -99,6 +118,9 @@ CONSTRAINT fkMedidaSensor FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
 SELECT * FROM medida;
 INSERT INTO medida (fkSensor, leitura, dataLeitura) VALUES (1, 300, now());
+
+
+
 CREATE TABLE alerta(
 idAlerta INT AUTO_INCREMENT,
 fkMedida INT,
@@ -108,6 +130,7 @@ dataLeitura DATETIME,
 CONSTRAINT pkAlertaMedida PRIMARY KEY (idAlerta, fkMedida),
 CONSTRAINT  fkAlertaMedida FOREIGN KEY (fkMedida) REFERENCES medida(idMedida)
 );
+
 
  -- SELECT PARA CAPTAR MEDIDAS EM TEMPO REAL
 SELECT 
