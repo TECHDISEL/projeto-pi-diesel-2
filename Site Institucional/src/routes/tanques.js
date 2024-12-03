@@ -15,4 +15,8 @@ router.get("/tanques/:idTanque", function (req, res) {
   tanqueController.retornarTanque(req, res);
 });
 
+router.post("/alerta", function (req, res) {
+  tanqueController.alerta(req, res);
+});
+
 module.exports = router;
