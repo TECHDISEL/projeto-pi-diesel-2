@@ -382,10 +382,6 @@
                     const volumeTanque = 1000 * (Math.PI * Math.pow(parseFloat(novoRegistro[0].raio), 2) * parseFloat(novoRegistro[0].alturaMetro));
 
                     if (novoRegistro[0].leitura <= volumeTanque * 0.30) {
-<<<<<<< HEAD
-                        
-                        alert('Estado de alerta')
-=======
                         alert('O nível do seu tanque está em estado de alerta!')
 
                         fetch("/tanques/alerta", {
@@ -409,7 +405,6 @@
                                     throw "Houve um erro ao tentar inserir alertas";
                                 }
                             })
->>>>>>> fb4c77a497b4006840ffa52c356475b81c61cc7e
                     }
 
                     // obterdados(idTanque); PARA QUANDO DEFINIMOS OS ALERTAS
