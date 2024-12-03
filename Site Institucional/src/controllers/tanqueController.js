@@ -64,8 +64,31 @@ function alerta(req, res) {
 
 }
 
+function contarAlerta(req, res) {
+  tanqueModel.contarAlerta()
+    .then(function (resultado) {
+      console.log(`Resultado da contagem de alertas: ${JSON.stringify(resultado)}`);
+
+      if (resultado.length > 0) {
+        res.json({
+          numeroAlerta: resultado[0].numeroAlerta
+        });
+      } else {
+        res.status(204).json({ tanques: [] });
+      }
+
+    }).catch(
+      function (erro) {
+        console.log(erro);
+        console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+      }
+    );
+}
+
 module.exports = {
-    buscarTanquesPorEmpresa,
-    retornarTanque,
-    alerta
-  }
+  buscarTanquesPorEmpresa,
+  retornarTanque,
+  alerta,
+  contarAlerta
+}

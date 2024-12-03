@@ -58,7 +58,7 @@
                                 <span class="material-symbols-outlined">
                                     warning
                                 </span>
-                                <span class="text-primary font-weight-bold"> 4 </span>
+                                <span id="alerta" class="text-primary font-weight-bold"> Não encontrado </span>
                             </div>
                         </div>
                     </div>
@@ -400,7 +400,6 @@
                                 console.log("resposta: ", resposta);
 
                                 if (resposta.ok) {
-                
                                     contarAlertas();
                                 } else {
                                     throw "Houve um erro ao tentar inserir alertas";
@@ -448,6 +447,18 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
 
+    }
+
+    function contarAlertas() {
+        fetch("/tanques/contarAlerta")
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+                if (resposta.ok) {
+                    alerta.innerHTML += resposta[0].numeroAlerta
+                } else {
+                    throw "Houve um erro ao tentar contar os alertas";
+                }
+            })
     }
 
     function plotarSegundoGrafico() {
@@ -536,5 +547,5 @@
     }
 
 
-
+    contarAlertas();
 </script>
