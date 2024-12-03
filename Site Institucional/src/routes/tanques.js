@@ -19,8 +19,9 @@ router.post("/alerta", function (req, res) {
   tanqueController.alerta(req, res);
 });
 
-router.get("/contarAlerta", function (req, res) {
+router.get("/contarAlerta/:idTanque", function (req, res) {
   tanqueController.contarAlerta(req, res);
 });
+
 
 module.exports = router;

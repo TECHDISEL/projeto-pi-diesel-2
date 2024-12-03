@@ -18,24 +18,30 @@ function retornarTanque(idEmpresa) {
 
 }
 
-function alerta(fkTanque, fkSensor, leitura, dataLeitura){
+function alerta(idMedida, leitura) {
   var instrucaoSql = `
-  INSERT INTO alerta(fkTanque, fkSensor, leitura, dataLeitura) VALUES
-  (${fkTanque}, ${fkSensor}, ${leitura}, ${dataLeitura});
+  INSERT INTO alerta(fkMedida, leitura, dataLeitura) VALUES
+  (${idMedida}, ${leitura}, now());
   `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 
-function contarAlerta(){
-  var instrucaoSql = `
-  SELECT COUNT(leitura) as numeroAlerta FROM alerta;
+function contarAlerta(idTanque) {
+  const instrucaoSql = `
+      SELECT COUNT(*) AS numeroAlerta 
+      FROM alerta
+      JOIN medida ON medida.idMedida = alerta.fkMedida
+      JOIN tanque ON tanque.fkSensor = medida.fkSensor
+      WHERE tanque.idTanque = ${idTanque}
+      AND alerta.dataLeitura >= DATE_SUB(NOW(), INTERVAL 10 DAY);
   `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
+
 
 module.exports = {
   buscarTanquesPorEmpresa,

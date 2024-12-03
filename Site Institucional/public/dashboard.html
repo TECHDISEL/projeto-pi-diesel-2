@@ -58,7 +58,7 @@
                                 <span class="material-symbols-outlined">
                                     warning
                                 </span>
-                                <span id="alerta" class="text-primary font-weight-bold"> Não encontrado </span>
+                                <span id="contagemAlertas" class="text-primary font-weight-bold"> Não encontrado </span>
                             </div>
                         </div>
                     </div>
@@ -318,10 +318,6 @@
             dados.datasets[0].data.push(registro.leitura);
         }
 
-        if (registro.leitura <= (0.3 * volumeInteiro)) {
-            alert('Risco de falta de diesel')
-        }
-
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
         console.log('Labels:')
@@ -386,25 +382,21 @@
 
                         fetch("/tanques/alerta", {
                             method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
+                            headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
-                                fkTanqueServer: idTanque,
-                                fkSensorServer: novoRegistro[0].fkSensor,
-                                leituraServer: novoRegistro[0].leitura,
-                                dataLeituraServer: novoRegistro[0].dataLeituraIngles
+                                idMedidaServer: novoRegistro[0].idMedida,
+                                leituraServer: novoRegistro[0].leitura
                             }),
-                        })
-                            .then(function (resposta) {
-                                console.log("resposta: ", resposta);
+                        }).then(function (resposta) {
+                            if (resposta.ok) {
+                                clearTimeout(proximaAtualizacao); 
+                                console.log("Resposta OK. Recarregando a página...");
+                                return location.reload();
+                            } else {
+                                throw "Houve um erro ao tentar inserir alertas";
+                            }
+                        });
 
-                                if (resposta.ok) {
-                                    contarAlertas();
-                                } else {
-                                    throw "Houve um erro ao tentar inserir alertas";
-                                }
-                            })
                     }
 
                     // obterdados(idTanque); PARA QUANDO DEFINIMOS OS ALERTAS
@@ -449,17 +441,33 @@
 
     }
 
+    document.addEventListener("DOMContentLoaded", function () {
+        contarAlertas();
+    });
+
     function contarAlertas() {
-        fetch("/tanques/contarAlerta")
+        const idTanque = sessionStorage.ID_TANQUE_SELECIONADO;
+
+        fetch(`/tanques/contarAlerta/${idTanque}`)
             .then(function (resposta) {
-                console.log("resposta: ", resposta);
                 if (resposta.ok) {
-                    alerta.innerHTML += resposta[0].numeroAlerta
+                    resposta.json().then(function (json) {
+                        const elemento = document.getElementById("contagemAlertas");
+                        if (elemento) {
+                            elemento.innerHTML = json.numeroAlerta;
+                        } else {
+                            console.error("Erro: Elemento com ID 'contagemAlertas' não encontrado no DOM.");
+                        }
+                    });
                 } else {
                     throw "Houve um erro ao tentar contar os alertas";
                 }
             })
+            .catch(function (erro) {
+                console.error("Erro ao contar alertas: ", erro);
+            });
     }
+
 
     function plotarSegundoGrafico() {
 
@@ -545,7 +553,4 @@
 
 
     }
-
-
-    contarAlertas();
 </script>

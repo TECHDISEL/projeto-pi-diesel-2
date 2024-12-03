@@ -34,22 +34,16 @@ function retornarTanque(req, res) {
 }
 
 function alerta(req, res) {
-  var fkTanque = req.body.fkTanqueServer;
-  var fkSensor = req.body.fkSensorServer;
+  var idMedida = req.body.idMedidaServer;
   var leitura = req.body.leituraServer;
-  var dataLeitura = req.body.dataLeituraServer;
 
-  if (!fkTanque) {
-    res.status(400).send("fkTanque está undefined!");
-  } else if (!fkSensor) {
-    res.status(400).send("fkSensor está undefined!");
+  if (!idMedida) {
+    res.status(400).send("idMedida está undefined!");
   } else if (!leitura) {
     res.status(400).send("leitura está undefined!");
-  } else if (!dataLeitura) {
-    res.status(400).send("dataLeitura está undefined!");
   }
 
-  tanqueModel.alerta(fkTanque, fkSensor, leitura, dataLeitura)
+  tanqueModel.alerta(idMedida, leitura)
     .then(
       function (resultado) {
         console.log(`Resultado inserção de alerta: ${JSON.stringify(resultado)}`);
@@ -65,26 +59,30 @@ function alerta(req, res) {
 }
 
 function contarAlerta(req, res) {
-  tanqueModel.contarAlerta()
-    .then(function (resultado) {
-      console.log(`Resultado da contagem de alertas: ${JSON.stringify(resultado)}`);
+  const idTanque = req.params.idTanque;
 
-      if (resultado.length > 0) {
-        res.json({
-          numeroAlerta: resultado[0].numeroAlerta
-        });
-      } else {
-        res.status(204).json({ tanques: [] });
-      }
+  if (!idTanque) {
+      res.status(400).send("idTanque está undefined!");
+      return;
+  }
 
-    }).catch(
-      function (erro) {
-        console.log(erro);
-        console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-      }
-    );
+  tanqueModel.contarAlerta(idTanque)
+      .then(function (resultado) {
+          if (resultado.length > 0) {
+              res.json({
+                  numeroAlerta: resultado[0].numeroAlerta
+              });
+          } else {
+              res.status(204).json({ numeroAlerta: 0 });
+          }
+      })
+      .catch(function (erro) {
+          console.error("Erro ao contar alertas: ", erro.sqlMessage || erro);
+          res.status(500).json({ erro: "Erro ao contar alertas" });
+      });
 }
+
+
 
 module.exports = {
   buscarTanquesPorEmpresa,
