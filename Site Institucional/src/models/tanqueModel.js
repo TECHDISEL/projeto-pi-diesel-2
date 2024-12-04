@@ -42,10 +42,19 @@ function contarAlerta(idTanque) {
   return database.executar(instrucaoSql);
 }
 
+function inserirReabastecimentos(idEmpresa, idTanque, qtdeReabastecida, dataReabastecimento) {
+  var instrucaoSql = `
+      INSERT INTO abastecimento (fkEmpresa, fkTanque, dataAbastecimento, volumeReabastecido) VALUES (${idEmpresa}, ${idTanque}, '${dataReabastecimento}', '${qtdeReabastecida}')
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
   buscarTanquesPorEmpresa,
   retornarTanque,
   alerta,
-  contarAlerta
+  contarAlerta,
+  inserirReabastecimentos
 }

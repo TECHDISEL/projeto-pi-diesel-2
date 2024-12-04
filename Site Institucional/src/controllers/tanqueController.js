@@ -82,11 +82,35 @@ function contarAlerta(req, res) {
       });
 }
 
+function inserirReabastecimentos(req, res) {
+  var qtdeReabastecida = req.body.qtdeReabastecimento;
+  var dataReabastecimento = req.body.dataReabastecimento;
+  var idEmpresa = req.body.idEmpresa;
+  var idTanque = req.body.idTanque;
+
+  console.log('Cadastrar na controller')
+  tanqueModel.inserirReabastecimentos(idEmpresa, idTanque, qtdeReabastecida, dataReabastecimento)
+    .then(
+      function (resultado) {
+        res.json(resultado);
+      }
+    ).catch(
+      function (erro) {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao inserir o reabastecimento! Erro: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      }
+    );
+}
 
 
 module.exports = {
   buscarTanquesPorEmpresa,
   retornarTanque,
   alerta,
-  contarAlerta
+  contarAlerta,
+  inserirReabastecimentos
 }

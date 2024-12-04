@@ -23,5 +23,9 @@ router.get("/contarAlerta/:idTanque", function (req, res) {
   tanqueController.contarAlerta(req, res);
 });
 
+router.post("/reabastecimento", function (req, res) {
+  tanqueController.inserirReabastecimentos(req, res);
+});
+
 
 module.exports = router;

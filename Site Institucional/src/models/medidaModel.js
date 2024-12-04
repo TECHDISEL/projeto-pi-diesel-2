@@ -43,12 +43,19 @@ function buscarMedidasMensais(idTanque) {
 
     var instrucaoSql = `
     SELECT 
-	    SUM(leitura) AS leituraDoMes,
-        MONTH(dataLeitura) AS mesAtual
+    SUM(ROUND(PI() * POW(tanque.raio, 2) * (tanque.alturaMetro - (medida.leitura / 100)), 0) * 1000) 
+    - COALESCE(SUM(DISTINCT volumeReabastecido), 0) AS leituraDoMes,
+    MONTH(dataLeitura) AS mesAtual
     FROM medida
-    JOIN sensor ON sensor.idSensor = medida.fkSensor 
+    JOIN sensor ON fkSensor = idSensor
     JOIN tanque ON sensor.idSensor = tanque.fkSensor
-    WHERE idTanque = ${idTanque}
+    LEFT JOIN (
+    SELECT fkTanque, SUM(volumeReabastecido) AS volumeReabastecido
+    FROM abastecimento
+    WHERE fkTanque = ${idTanque}
+    GROUP BY fkTanque
+    ) AS abast ON tanque.idTanque = abast.fkTanque
+    WHERE tanque.idTanque = ${idTanque}
     GROUP BY MONTH(dataLeitura);
     `
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
