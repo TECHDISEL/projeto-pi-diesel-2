@@ -369,6 +369,7 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
+
     function atualizarGrafico(idTanque, dados, myChart) {
 
         fetch(`/medidas/tempo-real/${idTanque}`, { cache: 'no-store' }).then(function (response) {
@@ -377,26 +378,41 @@
 
                     const volumeTanque = 1000 * (Math.PI * Math.pow(parseFloat(novoRegistro[0].raio), 2) * parseFloat(novoRegistro[0].alturaMetro));
 
+                    // Variável para armazenar o timestamp do último alerta enviado
+                    let ultimoAlertaEnviado = null;
+
+                    // Intervalo mínimo entre alertas (em milissegundos)
+                    const INTERVALO_ALERTA = 5 * 60 * 1000; // 5 minutos
+
                     if (novoRegistro[0].leitura <= volumeTanque * 0.30) {
-                        alert('O nível do seu tanque está em estado de alerta!')
+                        const agora = Date.now();
 
-                        fetch("/tanques/alerta", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/json" },
-                            body: JSON.stringify({
-                                idMedidaServer: novoRegistro[0].idMedida,
-                                leituraServer: novoRegistro[0].leitura
-                            }),
-                        }).then(function (resposta) {
-                            if (resposta.ok) {
-                                clearTimeout(proximaAtualizacao); 
-                                console.log("Resposta OK. Recarregando a página...");
-                                return location.reload();
-                            } else {
-                                throw "Houve um erro ao tentar inserir alertas";
-                            }
-                        });
+                        // Verifica se já passou o intervalo mínimo desde o último alerta
+                        if (!ultimoAlertaEnviado || agora - ultimoAlertaEnviado > INTERVALO_ALERTA) {
+                            alert('O nível do seu tanque está em estado de alerta!');
 
+                            fetch("/tanques/alerta", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    idMedidaServer: novoRegistro[0].idMedida,
+                                    leituraServer: novoRegistro[0].leitura
+                                }),
+                            }).then(function (resposta) {
+                                if (resposta.ok) {
+                                    clearTimeout(proximaAtualizacao);
+                                    console.log("Resposta OK. Recarregando a página...");
+                                    location.reload();
+                                } else {
+                                    throw "Houve um erro ao tentar inserir alertas";
+                                }
+                            });
+
+                            // Atualiza o timestamp do último alerta enviado
+                            ultimoAlertaEnviado = agora;
+                        } else {
+                            console.log("Alerta já enviado recentemente. Aguardando intervalo mínimo.");
+                        }
                     }
 
                     // obterdados(idTanque); PARA QUANDO DEFINIMOS OS ALERTAS
