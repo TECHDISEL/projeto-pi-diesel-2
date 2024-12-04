@@ -98,8 +98,6 @@ function moverDireita() {
 // Array para armazenar empresas cadastradas para validação de código de ativação 
 let listaEmpresasCadastradas = [];
 
-
-
 function limparFormulario() {
     // Limpar os valores dos campos de input após o cadastro
     codigo_input.value = "";
@@ -161,18 +159,19 @@ function cadastrar() {
     }
 
     let codigoValido = false;
-    // Verificando se o código de ativação é de alguma empresa cadastrada
     for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
         if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
             idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa;
             console.log("Código de ativação válido.");
             codigoValido = true;
-            break;
-        } else {
-            mensagemErro.innerHTML = "Código de ativação inválido";
-            mensagemErro.style.display = "block";
-            return false;
+            break; // Sai do loop se o código for válido
         }
+    }
+
+    // Exibe mensagem de erro somente se o código não for encontrado
+    if (!codigoValido) {
+        mensagemErro.innerHTML = "Código de ativação inválido";
+        mensagemErro.style.display = "block";
     }
 
     // Enviando o valor da nova input
@@ -227,17 +226,21 @@ function listar() {
         method: "GET",
     })
         .then(function (resposta) {
-            resposta.json().then((empresas) => {
-                empresas.forEach((empresa) => {
-                    listaEmpresasCadastradas.push(empresa);
-
-                    console.log("listaEmpresasCadastradas")
-                    console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-                });
-            });
+            return resposta.json(); // Retorna o JSON resolvido
         })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
+        .then(function (empresas) {
+            empresas.forEach((empresa) => {
+                listaEmpresasCadastradas.push(empresa);
+
+                // Exibe cada empresa individualmente no console
+                console.log("Empresa adicionada:", empresa);
+            });
+
+            // Exibe a lista completa após todas as adições
+            console.log("Lista de empresas cadastradas:", listaEmpresasCadastradas);
+        })
+        .catch(function (erro) {
+            console.error(`#ERRO: ${erro}`);
         });
 }
 
@@ -341,11 +344,11 @@ function entrar() {
                 mensagemErroLogin.style.display = "block";
 
 
-                if(sessionStorage.CARGO == 'Suporte N3'){
-                    setTimeout(function() {
+                if (sessionStorage.CARGO == 'Suporte N3') {
+                    setTimeout(function () {
                         window.location = "atendimentoAoCliente.html"
                     }, 2000);
-                }else{
+                } else {
                     setTimeout(function () {
                         window.location = "tanques.html";
                     }, 3000);
