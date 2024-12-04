@@ -2,13 +2,7 @@ var database = require("../database/config");
 
 function buscarTanquesPorEmpresa(idEmpresa) {
 
-  var instrucaoSql = `SELECT 
-tanque.idTanque,
-tanque.fkSensor,
-tanque.setor
-FROM tanque 
-JOIN abastecimento ON abastecimento.fkTanque = tanque.idTanque
-JOIN empresa ON abastecimento.fkEmpresa = empresa.idEmpresa
+  var instrucaoSql = `SELECT * FROM tanque
 WHERE fkEmpresa = ${idEmpresa}`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
