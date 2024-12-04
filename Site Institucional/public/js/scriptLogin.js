@@ -334,6 +334,7 @@ function entrar() {
                 sessionStorage.ID_USUARIO = json.idUsuario;
                 sessionStorage.CARGO = json.cargo;
                 sessionStorage.TANQUES = JSON.stringify(json.tanques);
+                sessionStorage.ID_EMPRESA = json.idEmpresa
 
                 mensagemErroLogin.innerHTML = "Login realizado com sucesso!";
                 mensagemErroLogin.style.color = "green";

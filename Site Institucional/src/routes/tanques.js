@@ -19,4 +19,17 @@ router.post("/alerta", function (req, res) {
   tanqueController.alerta(req, res);
 });
 
+router.get("/contarAlerta/:idTanque", function (req, res) {
+  tanqueController.contarAlerta(req, res);
+});
+
+router.post("/reabastecimento", function (req, res) {
+  tanqueController.inserirReabastecimentos(req, res);
+});
+
+router.post("/metricas", function (req, res) {
+  tanqueController.inserirMetricas(req, res);
+});
+
+
 module.exports = router;

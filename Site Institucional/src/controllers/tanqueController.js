@@ -34,22 +34,16 @@ function retornarTanque(req, res) {
 }
 
 function alerta(req, res) {
-  var fkTanque = req.body.fkTanqueServer;
-  var fkSensor = req.body.fkSensorServer;
+  var idMedida = req.body.idMedidaServer;
   var leitura = req.body.leituraServer;
-  var dataLeitura = req.body.dataLeituraServer;
 
-  if (!fkTanque) {
-    res.status(400).send("fkTanque está undefined!");
-  } else if (!fkSensor) {
-    res.status(400).send("fkSensor está undefined!");
+  if (!idMedida) {
+    res.status(400).send("idMedida está undefined!");
   } else if (!leitura) {
     res.status(400).send("leitura está undefined!");
-  } else if (!dataLeitura) {
-    res.status(400).send("dataLeitura está undefined!");
   }
 
-  tanqueModel.alerta(fkTanque, fkSensor, leitura, dataLeitura)
+  tanqueModel.alerta(idMedida, leitura)
     .then(
       function (resultado) {
         console.log(`Resultado inserção de alerta: ${JSON.stringify(resultado)}`);
@@ -64,8 +58,59 @@ function alerta(req, res) {
 
 }
 
-module.exports = {
-    buscarTanquesPorEmpresa,
-    retornarTanque,
-    alerta
+function contarAlerta(req, res) {
+  const idTanque = req.params.idTanque;
+
+  if (!idTanque) {
+      res.status(400).send("idTanque está undefined!");
+      return;
   }
+
+  tanqueModel.contarAlerta(idTanque)
+      .then(function (resultado) {
+          if (resultado.length > 0) {
+              res.json({
+                  numeroAlerta: resultado[0].numeroAlerta
+              });
+          } else {
+              res.status(204).json({ numeroAlerta: 0 });
+          }
+      })
+      .catch(function (erro) {
+          console.error("Erro ao contar alertas: ", erro.sqlMessage || erro);
+          res.status(500).json({ erro: "Erro ao contar alertas" });
+      });
+}
+
+function inserirReabastecimentos(req, res) {
+  var qtdeReabastecida = req.body.qtdeReabastecimento;
+  var dataReabastecimento = req.body.dataReabastecimento;
+  var idEmpresa = req.body.idEmpresa;
+  var idTanque = req.body.idTanque;
+
+  console.log('Cadastrar na controller')
+  tanqueModel.inserirReabastecimentos(idEmpresa, idTanque, qtdeReabastecida, dataReabastecimento)
+    .then(
+      function (resultado) {
+        res.json(resultado);
+      }
+    ).catch(
+      function (erro) {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao inserir o reabastecimento! Erro: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      }
+    );
+}
+
+
+module.exports = {
+  buscarTanquesPorEmpresa,
+  retornarTanque,
+  alerta,
+  contarAlerta,
+  inserirReabastecimentos
+}
