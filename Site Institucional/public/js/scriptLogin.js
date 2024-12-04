@@ -159,19 +159,6 @@ function cadastrar() {
     }
 
     let codigoValido = false;
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-    //     if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-    //         idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa;
-    //         console.log("Código de ativação válido.");
-    //         codigoValido = true;
-    //         break;
-    //     } else {
-    //         mensagemErro.innerHTML = "Código de ativação inválido";
-    //         mensagemErro.style.display = "block";
-    //     }
-    // }
-
     for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
         if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
             idEmpresaVincular = listaEmpresasCadastradas[i].idEmpresa;
@@ -235,22 +222,6 @@ function cadastrar() {
 
 // Listando empresas cadastradas 
 function listar() {
-    // fetch("/empresa/listar", {
-    //     method: "GET",
-    // })
-    //     .then(function (resposta) {
-    //         resposta.json().then((empresas) => {
-    //             empresas.forEach((empresa) => {
-
-    //                 listaEmpresasCadastradas.push(empresa);
-    //                 console.log("listaEmpresasCadastradas")
-    //                 console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-    //             });
-    //         });
-    //     })
-    //     .catch(function (resposta) {
-    //         console.log(`#ERRO: ${resposta}`);
-    //     });
     fetch("/empresa/listar", {
         method: "GET",
     })
