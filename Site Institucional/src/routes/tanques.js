@@ -27,5 +27,9 @@ router.post("/reabastecimento", function (req, res) {
   tanqueController.inserirReabastecimentos(req, res);
 });
 
+router.post("/metricas", function (req, res) {
+  tanqueController.inserirMetricas(req, res);
+});
+
 
 module.exports = router;
