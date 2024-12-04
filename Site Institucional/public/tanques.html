@@ -89,7 +89,7 @@
                         <select id="tanqueMetricas">
                         </select>
 
-                        <button id="salvarReabastecimento" onclick="inserirReabastecimentos()"
+                        <button id="salvarMetricas" onclick="inserirMetricas()"
                             style="margin-top: 10px;">Salvar</button>
                     </div>
                 </div>
@@ -116,7 +116,7 @@
                         local_gas_station
                     </span> Reabastecimentos
                 </li>
-                <li class="sidebar-list-item" onclick="aparecerMetricas()">
+                <li class="sidebar-list-item" id onclick="aparecerMetricas()">
                     <span class="material-symbols-outlined">
                         warning
                     </span> Métricas
@@ -145,6 +145,7 @@
     function exibirTanques() {
 
         const selectTanques = document.getElementById("tanqueReabastecido");
+        const selectTanquesMetricas = document.getElementById("tanqueMetricas");
 
         JSON.parse(sessionStorage.TANQUES).forEach(item => {
             document.getElementById("cards-tanques").innerHTML += `
@@ -159,6 +160,10 @@
                 </div>`
 
             selectTanques.innerHTML += `
+                <option value="${item.idTanque}">Tanque ${item.idTanque}</option>`;
+
+
+            selectTanquesMetricas.innerHTML += `
                 <option value="${item.idTanque}">Tanque ${item.idTanque}</option>`;
         });
     }
@@ -220,54 +225,53 @@
     }
 
 
-    function aparecerDivMetricas(){
-        const modal = document.getElementById('divMetricas');
+    function aparecerMetricas() {
+        const modal2 = document.getElementById('divMetricas');
 
-        // Exibir a modal
-        modal.style.display = 'flex';
+        // Exibir a modal2
+        modal2.style.display = 'flex';
 
         // Adicionar evento para fechar ao clicar fora do conteúdo
         window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
+            if (event.target === modal2) {
+                modal2.style.display = 'none';
             }
         });
     }
 
     function inserirMetricas() {
 
-    const metricaAlerta = Number(nivelAlerta.value)
-    const metricaCritico = Number(nivelCritico.value)
-    const idTanque = Number(tanqueMetricas.value)
+        const alerta = Number(metricaAlerta.value)
+        const critico = Number(metricaCritico.value)
+        const idTanque = Number(tanqueMetricas.value)
 
-    fetch("/tanques/metricas", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            metricaAlerta: alerta,
-            metricaCritico: critico,
-            idTanque: idTanque,
-             
-        }),
-    })
-        .then(function (resposta) {
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-
-                alert("Métricas cadastradas");
-
-            } else {
-
-                throw "Houve um erro ao tentar inserir as métricas !";
-
-            }
+        fetch("/tanques/metricas", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                alerta: alerta,
+                critico: critico,
+                idTanque: idTanque
+            }),
         })
-        .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+
+                    alert("Métricas cadastradas");
+
+                } else {
+
+                    throw "Houve um erro ao tentar inserir as métricas !";
+
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
     }
 
 

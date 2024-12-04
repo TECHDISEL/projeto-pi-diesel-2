@@ -62,24 +62,24 @@ function contarAlerta(req, res) {
   const idTanque = req.params.idTanque;
 
   if (!idTanque) {
-      res.status(400).send("idTanque está undefined!");
-      return;
+    res.status(400).send("idTanque está undefined!");
+    return;
   }
 
   tanqueModel.contarAlerta(idTanque)
-      .then(function (resultado) {
-          if (resultado.length > 0) {
-              res.json({
-                  numeroAlerta: resultado[0].numeroAlerta
-              });
-          } else {
-              res.status(204).json({ numeroAlerta: 0 });
-          }
-      })
-      .catch(function (erro) {
-          console.error("Erro ao contar alertas: ", erro.sqlMessage || erro);
-          res.status(500).json({ erro: "Erro ao contar alertas" });
-      });
+    .then(function (resultado) {
+      if (resultado.length > 0) {
+        res.json({
+          numeroAlerta: resultado[0].numeroAlerta
+        });
+      } else {
+        res.status(204).json({ numeroAlerta: 0 });
+      }
+    })
+    .catch(function (erro) {
+      console.error("Erro ao contar alertas: ", erro.sqlMessage || erro);
+      res.status(500).json({ erro: "Erro ao contar alertas" });
+    });
 }
 
 function inserirReabastecimentos(req, res) {
@@ -106,11 +106,53 @@ function inserirReabastecimentos(req, res) {
     );
 }
 
+function inserirMetricas(req, res) {
+  var estadoAlerta = req.body.alerta;
+  var estadoCritico = req.body.critico;
+  var idTanque = req.body.idTanque;
+
+  console.log('Cadastrar na controller')
+  tanqueModel.inserirMetricas(estadoAlerta, estadoCritico, idTanque)
+    .then(
+      function (resultado) {
+        res.json(resultado);
+      }
+    ).catch(
+      function (erro) {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao inserir o reabastecimento! Erro: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      }
+    );
+}
+
+function resgatarMetricas(req, res) {
+
+  const idTanque = req.params.idTanque
+
+  tanqueModel.retornarMetricas(idTanque).then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).json([]);
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar as metricas: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
 
 module.exports = {
   buscarTanquesPorEmpresa,
   retornarTanque,
   alerta,
   contarAlerta,
-  inserirReabastecimentos
+  inserirReabastecimentos,
+  inserirMetricas,
+  resgatarMetricas
 }

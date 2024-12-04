@@ -31,5 +31,9 @@ router.post("/metricas", function (req, res) {
   tanqueController.inserirMetricas(req, res);
 });
 
+router.get("/resgatarMetricas/:idTanque", function (req, res) {
+  tanqueController.resgatarMetricas(req, res);
+});
+
 
 module.exports = router;

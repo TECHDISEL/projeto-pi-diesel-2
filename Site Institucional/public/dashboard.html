@@ -11,7 +11,7 @@
     <title>Dashboard</title>
 </head>
 
-<body onload="exibirTanquesUsuarios(), plotarSegundoGrafico()">
+<body onload="exibirTanquesUsuarios(), plotarSegundoGrafico(), carregarMetricas()">
 
     <div class="container">
         <div class="header-main">
@@ -102,7 +102,7 @@
                         account_circle
                     </span> Perfil
                 </li>
-               
+
                 <li class="sidebar-list-item">
                     <span class="material-symbols-outlined">
                         logout
@@ -138,19 +138,6 @@
         // Título do tanque monitorado 
         document.getElementById("title").innerHTML = `
         <p class="font-weight-bold"> <b> Monitoramento Tanque ${tanque.idTanque} - Setor ${tanque.setor} </p>`
-
-        // métricas do tanque selecionado 
-        metrica.innerHTML = `
-        <div class="regua">
-            <div class="estado normal">NORMAL</div>
-            <div class="estado alerta">ALERTA</div>
-            <div class="estado critico">CRÍTICO</div>
-        </div>
-        <div class="porcentagem">
-            <h4> > ${0.30 * volumeInteiro} Litros <br> ESTOQUE DE DIESEL OK</h4>
-            <h4> ${0.30 * volumeInteiro} Litros <br> ESTOQUE IDEAL PARA REABASTECER</h4>
-            <h4> ${0.10 * volumeInteiro} Litros <br> RISCO DE FALTA DE DIESEL</h4>
-        </div>`
 
         // Verificar se o ID do tanque selecionado está definido
         if (!tanqueSelecionado) {
@@ -239,6 +226,7 @@
         }
 
         fetch(`/medidas/ultimas/${idTanque}`, { cache: 'no-store' }).then(function (response) {
+
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -356,6 +344,7 @@
             config
         );
 
+        carregarMetricas(myChart)
         setTimeout(() => atualizarGrafico(idTanque, dados, myChart), 1000);
 
     }
@@ -380,7 +369,7 @@
                     // Intervalo mínimo entre alertas (em milissegundos)
                     const INTERVALO_ALERTA = 5 * 60 * 1000; // 5 minutos
 
-                    if (novoRegistro[0].leitura <= volumeTanque * 0.30) {
+                    if (novoRegistro[0].leitura <= verificarMetricas()) {
                         const agora = Date.now();
 
                         // Verifica se já passou o intervalo mínimo desde o último alerta
@@ -561,8 +550,81 @@
             });
     }
 
-    function aparecerDivReabastecimentos() {
+    function carregarMetricas(myChart) {
+
+        const idTanque = sessionStorage.ID_TANQUE_SELECIONADO;
+        const tanques = JSON.parse(sessionStorage.TANQUES);
+        const tanqueSelecionado = sessionStorage.ID_TANQUE_SELECIONADO;
+        const tanque = tanques.find(item => item.idTanque == tanqueSelecionado);
+        const volumeTanque = Math.PI * Math.pow(parseFloat(tanque.raio), 2) * parseFloat(tanque.alturaMetro);
+        const volumeInteiro = Math.round(volumeTanque) * 1000
+
+        fetch(`/tanques/resgatarMetricas/${idTanque}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+            .then(resposta => {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    throw new Error(`Erro ao buscar estatísticas: ${resposta.status}`);
+                }
+            })
+            .then(metricas => {
+                console.log("Metricas recebidas:", metricas);
+
+                function verificarMetricas() {
+                    const alerta = (metricas[0].alerta / 100) * volumeInteiro;
+                    return  alerta;
+                }
+
+                const alerta = (metricas[0].alerta / 100) * volumeInteiro;
+                const critico = (metricas[0].critico / 100) * volumeInteiro;
+
+                // métricas do tanque selecionado 
+                metrica.innerHTML = `
+                <div class="regua">
+                    <div class="estado normal">NORMAL</div>
+                    <div class="estado alerta">ALERTA</div>
+                    <div class="estado critico">CRÍTICO</div>
+                </div>
+                <div class="porcentagem">
+                    <h4> > ${(metricas[0].alerta) / 100 * volumeInteiro} Litros <br> ESTOQUE DE DIESEL OK</h4>
+                    <h4> ${(metricas[0].alerta) / 100 * volumeInteiro} Litros <br> ESTOQUE IDEAL PARA REABASTECER</h4>
+                    <h4> ${(metricas[0].critico) / 100 * volumeInteiro} Litros <br> RISCO DE FALTA DE DIESEL</h4>
+                </div>`
 
 
+                // Adicionando as métricas ao gráfico existente
+                myChart.data.datasets.push({
+                    label: 'Alerta',
+                    data: new Array(myChart.data.labels.length).fill(alerta), // Linha horizontal
+                    borderColor: 'orange',
+                    borderWidth: 2,
+                    borderDash: [10, 5], // Linha pontilhada
+                    fill: false,
+                    pointRadius: 0
+                });
+
+                myChart.data.datasets.push({
+                    label: 'Crítico',
+                    data: new Array(myChart.data.labels.length).fill(critico), // Linha horizontal
+                    borderColor: 'red',
+                    borderWidth: 2,
+                    borderDash: [5, 5], // Linha pontilhada
+                    fill: false,
+                    pointRadius: 0
+                });
+
+                // Atualizando o gráfico
+                myChart.update();
+
+            })
+            .catch(erro => {
+                console.error("Erro ao carregar metricas:", erro);
+            });
     }
+
 </script>

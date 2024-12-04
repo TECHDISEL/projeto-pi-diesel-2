@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function buscarTanquesPorEmpresa(idEmpresa) {
 
-  var instrucaoSql = `SELECT * FROM tanque
+  var instrucaoSql = `SELECT * FROM tanque JOIN metricas ON idTanque = fkTanque 
 WHERE fkEmpresa = ${idEmpresa}`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -11,7 +11,7 @@ WHERE fkEmpresa = ${idEmpresa}`;
 
 function retornarTanque(idEmpresa) {
 
-  var instrucaoSql = `SELECT * FROM tanque WHERE idTanque = ?;`
+  var instrucaoSql = `SELECT * FROM tanque JOIN metricas ON idTanque = fkTanque WHERE idTanque = ?;`
   [req.params.idTanque];
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -51,12 +51,43 @@ function inserirReabastecimentos(idEmpresa, idTanque, qtdeReabastecida, dataReab
   return database.executar(instrucaoSql);
 }
 
-function inserirMetricas( idTanque, metricaAlerta, metricaCritico){
-  var instrucaoSql = `
-      INSERT INTO metricas (fkTanque, alerta, critico) VALUES (${idTanque}, '${metricaAlerta}', '${metricaCritico}')
-  `;
+function inserirMetricas(estadoAlerta, estadoCritico, idTanque) {
+
+  return new Promise((resolve, reject) => {
+    // Verifica se o usuário já tem um jogo favorito
+    var instrucaoSqlVerificar = `
+        SELECT * FROM metricas WHERE fkTanque = ${idTanque};
+    `;
+
+    database.executar(instrucaoSqlVerificar).then(resultados => {
+      if (resultados.length > 0) {
+        // Se o usuário já tem um favorito, faz o UPDATE
+        var instrucaoSql = `
+            UPDATE metricas SET alerta = ${estadoAlerta}, critico = ${estadoCritico} WHERE fkTanque = ${idTanque};
+            `;
+        return database.executar(instrucaoSql);
+      } else {
+        // Se o usuário não tem um favorito, faz o INSERT
+        var instrucaoSql = `
+            INSERT INTO metricas (alerta, critico, fkTanque) VALUES (${estadoAlerta}, ${estadoCritico}, ${idTanque});
+            `;
+        return database.executar(instrucaoSql);
+      }
+    }).then(resultado => {
+      resolve(resultado);
+    }).catch(erro => {
+      reject(erro);
+    });
+  });
+}
+
+function retornarMetricas(idTanque) {
+
+  var instrucaoSql = `SELECT * FROM tanque JOIN metricas ON idTanque = fkTanque WHERE fkTanque = ${idTanque};
+`;
+
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql)
+  return database.executar(instrucaoSql);
 }
 
 module.exports = {
@@ -65,5 +96,6 @@ module.exports = {
   retornarTanque,
   alerta,
   contarAlerta,
-  inserirMetricas
+  inserirMetricas,
+  retornarMetricas
 }
