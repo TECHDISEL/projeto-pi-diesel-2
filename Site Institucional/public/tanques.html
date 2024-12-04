@@ -121,7 +121,7 @@
                         warning
                     </span> Métricas
                 </li>
-                <li class="sidebar-list-item" onclick="window.location.href='./index.html';">
+                <li class="sidebar-list-item" onclick="sair()">
                     <span class="material-symbols-outlined">
                         logout
                     </span> Sair
@@ -139,6 +139,12 @@
 </html>
 
 <script>
+
+    function sair() {
+        sessionStorage.clear()
+        window.location.href = './index.html'
+    }
+
 
     nome_usuario.innerHTML += `${sessionStorage.NOME_USUARIO}`
 
