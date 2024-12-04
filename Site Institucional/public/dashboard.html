@@ -369,7 +369,7 @@
                     // Intervalo mínimo entre alertas (em milissegundos)
                     const INTERVALO_ALERTA = 5 * 60 * 1000; // 5 minutos
 
-                    if (novoRegistro[0].leitura <= verificarMetricas()) {
+                    if (novoRegistro[0].leitura <= metricaAtual) {
                         const agora = Date.now();
 
                         // Verifica se já passou o intervalo mínimo desde o último alerta
@@ -550,6 +550,8 @@
             });
     }
 
+    var metricaAtual = 0
+
     function carregarMetricas(myChart) {
 
         const idTanque = sessionStorage.ID_TANQUE_SELECIONADO;
@@ -575,10 +577,7 @@
             .then(metricas => {
                 console.log("Metricas recebidas:", metricas);
 
-                function verificarMetricas() {
-                    const alerta = (metricas[0].alerta / 100) * volumeInteiro;
-                    return  alerta;
-                }
+                metricaAtual = (metricas[0].alerta / 100) * volumeInteiro
 
                 const alerta = (metricas[0].alerta / 100) * volumeInteiro;
                 const critico = (metricas[0].critico / 100) * volumeInteiro;
