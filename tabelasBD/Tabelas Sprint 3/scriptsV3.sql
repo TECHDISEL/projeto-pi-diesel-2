@@ -15,10 +15,6 @@ telefone CHAR(11),
 codigo_ativacao CHAR(8)
 );
 
-INSERT INTO Empresa (idEmpresa,CNPJ,nomeFantasia, razaoSocial, telefone, codigo_ativacao) VALUES 
-(DEFAULT, '000-000', 'Admin TECHDIESEL', 'TECHDIESEL INC', '123456', 'TCHDL999'), -- CADASTRO DE EMPRESA PARA TESTES INTERNOS
-(DEFAULT,'12.345.678/0001-90', 'Fazendas Frizza', 'Agro & Comércio Ltda', '12345678901', 'TCHDL001');
-
 /* =================================================
 		 TABELAS PARA USUÁRIO E CADASTRO
 ================================================= */
@@ -35,7 +31,6 @@ CONSTRAINT pkCompostaUsuario PRIMARY KEY (idUsuario, fkEmpresa),
 CONSTRAINT fkUsuarioEmpresa foreign key (fkEmpresa) REFERENCES empresa(idEmpresa),
 CONSTRAINT fkUsuarioResponsavel FOREIGN KEY (fkResponsavel) REFERENCES usuario (idUsuario)
 );
-SELECT * FROM usuario;
 
 /* =================================================
 TABELA PARA ENDEREÇO (SERÃO CADASTRADOS PELA PRÓPRIA TECH DIESEL, VAMOS DISPONIBILIZAR QUE OS USUÁRIOS FAÇAM ALTERAÇÕES)
@@ -54,9 +49,6 @@ CONSTRAINT pkCompostaEndereco PRIMARY KEY (idEndereco, fkEmpresa),
 CONSTRAINT fkEmpresaEndereco FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa)
 );
 
-INSERT INTO endereco (idEndereco, fkEmpresa, rua, bairro, numero, CEP, cidade, uf) VALUES 
-(1, 1, 'Rua das Flores', 'Centro', 123, '01234567', 'São Paulo', 'SP');
-
 /* =========================================================
 TABELAS SENSOR, TANQUES E MEDIDAS (MANTIDAS INTERNAMENTE)
 ========================================================= */
@@ -65,25 +57,17 @@ idSensor INT PRIMARY KEY AUTO_INCREMENT,
 dataInstalacao DATETIME
 );
 
-
 CREATE TABLE tanque (
 idTanque INT PRIMARY KEY AUTO_INCREMENT,
 fkSensor INT,
+fkEmpresa INT,
 setor VARCHAR(45),
 alturaMetro INT,
 raio DECIMAL(2,1),
 
-CONSTRAINT fkSensorTanque FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
+CONSTRAINT fkSensorTanque FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor),
+CONSTRAINT fkEmpresaTanque FOREIGN KEY (fkEmpresa) REFERENCES empresa (idEmpresa)
 );
-
-INSERT INTO sensor (idSensor, dataInstalacao) VALUES 
-(1, '2024-11-16 15:30:00'),
-(2, '2024-11-16 16:00:30');
-
-INSERT INTO tanque (idTanque, fkSensor, setor, alturaMetro, raio) VALUES
-(1, 1, 'Maquinario', '4', '1.7'), -- 35000 L
-(2, 2, 'Irrigação', '2', '1.5'); -- 15000 L
-
 
 /* =========================================================
 TABELAS PARA ABASTECIMENTOS 
@@ -100,8 +84,6 @@ CONSTRAINT fkAbastecimentoEmpresa FOREIGN KEY (fkEmpresa) REFERENCES empresa (id
 CONSTRAINT fkAbastecimentoTanque FOREIGN KEY (fkTanque) REFERENCES tanque (idTanque)
 );
 
-
-
 /* =========================================================
 TABELAS PARA MÉTRICAS 
 ========================================================= */
@@ -113,8 +95,6 @@ fkTanque INT,
 CONSTRAINT pkCompostaMetricas PRIMARY KEY (idMetricas, fkTanque),
 CONSTRAINT fkMetricasTanque FOREIGN KEY (fkTanque) REFERENCES tanque(idTanque)
 );
-
-
 
 /* =========================================================
 TABELAS PARA CONTROLES DAS MEDIDAS E ALERTAS DOS SENSORES
@@ -128,10 +108,6 @@ dataLeitura DATETIME DEFAULT CURRENT_TIMESTAMP,
 CONSTRAINT pkSensorMedida PRIMARY KEY (idMedida, fkSensor),
 CONSTRAINT fkMedidaSensor FOREIGN KEY (fkSensor) REFERENCES sensor (idSensor)
 );
-SELECT * FROM medida;
-INSERT INTO medida (fkSensor, leitura, dataLeitura) VALUES (1, 300, now());
-
-
 
 CREATE TABLE alerta(
 idAlerta INT AUTO_INCREMENT,
@@ -142,6 +118,27 @@ dataLeitura DATETIME,
 CONSTRAINT pkAlertaMedida PRIMARY KEY (idAlerta, fkMedida),
 CONSTRAINT  fkAlertaMedida FOREIGN KEY (fkMedida) REFERENCES medida(idMedida)
 );
+
+INSERT INTO empresa (idEmpresa,CNPJ,nomeFantasia, razaoSocial, telefone, codigo_ativacao) VALUES 
+(DEFAULT, '000-000', 'Admin TECHDIESEL', 'TECHDIESEL INC', '123456', 'TCHDL999'), -- CADASTRO DE EMPRESA PARA TESTES INTERNOS
+(DEFAULT,'12.345.678/0001-90', 'Fazendas Frizza', 'Agro & Comércio Ltda', '12345678901', 'TCHDL001');
+
+INSERT INTO endereco (idEndereco, fkEmpresa, rua, bairro, numero, CEP, cidade, uf) VALUES 
+(1, 2, 'Rua das Flores', 'Centro', 123, '01234567', 'São Paulo', 'SP');
+
+INSERT INTO sensor (idSensor, dataInstalacao) VALUES 
+(1, '2024-11-16 15:30:00'),
+(2, '2024-11-16 16:00:30');
+
+INSERT INTO tanque (idTanque, fkSensor, fkEmpresa, setor, alturaMetro, raio) VALUES
+(1, 1, 1, 'Maquinario', '4', '1.7'), -- 35000 L
+(2, 2, 1, 'Irrigação', '2', '1.5'); -- 15000 L
+
+INSERT INTO usuario VALUES 
+(1, 1, 1, 'Ariel Cristina', 'ariel@tech.diesel', 'tech123@', 'DBA'),
+(2, 1, 1, 'Guilherme Gotardo', 'guilherme@tech.diesel', 'tech123@', 'DBA'),
+(3, 1, 1, 'Gustavo Barbosa', 'gustavo@tech.diesel', 'tech123@', 'DBA'),
+(4, 1, 1, 'Vitor Suave', 'vitor@tech.diesel', 'tech123@', 'Suporte N3');
 
 
  -- SELECT PARA CAPTAR MEDIDAS EM TEMPO REAL
@@ -164,4 +161,4 @@ tanque.setor
 FROM tanque 
 JOIN abastecimento ON abastecimento.fkTanque = tanque.idTanque
 JOIN empresa ON abastecimento.fkEmpresa = empresa.idEmpresa
-WHERE idEmpresa = 1;
+WHERE fkEmpresa = 1;

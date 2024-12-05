@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 
-<body onload="exibirTanques()">
+<body onload="exibirReabastecimentos(), exibirTanques()">
     <div class="container">
         <div class="header-main">
             <header class="header">
-                <div class="menu-icon" onclick="abrirMenuLateral()">
+                <div class="menu-icon">
                     <span class="material-symbols-outlined">
                         menu
                     </span>
@@ -33,27 +33,11 @@
 
             <main class="main">
                 <div class="main-title">
-                    <p class="font-weight-bold"> <b>Visão Geral<span< /p>
+                    <p class="font-weight-bold"> <b>Registros de reabastecimentos<span< /p>
                 </div>
 
-                <div class="metrica">
-                    <div class="regua">
-                        <div class="estado normal">NORMAL</div>
-                        <div class="estado alerta">ALERTA</div>
-                        <div class="estado critico">CRÍTICO</div>
-                    </div>
-                    <div class="porcentagem">
-                        <h4> ESTOQUE DE DIESEL <br> OK</h4>
-                        <h4> ESTOQUE <br> IDEAL PARA REABASTECER</h4>
-                        <h4> ESTOQUE COM <br> RISCO DE FALTA DE DIESEL</h4>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="main-title">
-                        <p class="font-weight-bold"> <b> Tanques monitorados <span< /p>
-                    </div>
-                    <div class="main-cards" id="cards-tanques"></div>
+                <div id="reabastecimentos-container" class="reabastecimentos-container">
+                    <!-- Os registros serão inseridos aqui dinamicamente -->
                 </div>
 
                 <div id="divReabastecimento" class="modal">
@@ -73,7 +57,6 @@
                             style="margin-top: 10px;">Salvar</button>
                     </div>
                 </div>
-
 
                 <!-- METRICAS -->
                 <div id="divMetricas" class="modal">
@@ -116,10 +99,10 @@
                         warning
                     </span> Métricas
                 </li>
-                <li class="sidebar-list-item" onclick="window.location.href ='./registros.html'">
+                <li class="sidebar-list-item" onclick="window.location.href ='./tanques.html'">
                     <span class="material-symbols-outlined">
-                        description
-                    </span> Registros
+                        check_box
+                    </span> Tanques
                 </li>
                 <li class="sidebar-list-item" onclick="sair()">
                     <span class="material-symbols-outlined">
@@ -140,12 +123,6 @@
 
 <script>
 
-    function sair() {
-        sessionStorage.clear()
-        window.location.href = './index.html'
-    }
-
-
     nome_usuario.innerHTML += `${sessionStorage.NOME_USUARIO}`
 
     function exibirTanques() {
@@ -154,29 +131,13 @@
         const selectTanquesMetricas = document.getElementById("tanqueMetricas");
 
         JSON.parse(sessionStorage.TANQUES).forEach(item => {
-            document.getElementById("cards-tanques").innerHTML += `
-                <div class="card" onclick="retornarTanque(${item.idTanque})" style="cursor: pointer;" >
-                    <div class="card-inner">
-                        <p class="text-primary"> Tanque ${item.idTanque} </p>
-                        <div class="card-content">
-                            <span class="text-primary font-weight-bold"> <i class="fa fa-gas-pump"></i> </span>
-                        </div>
-                            <p class="text-primary"> ${item.setor} </p>
-                        </div>
-                </div>`
-
             selectTanques.innerHTML += `
-                <option value="${item.idTanque}">Tanque ${item.idTanque}</option>`;
+        <option value="${item.idTanque}">Tanque ${item.idTanque}</option>`;
 
 
             selectTanquesMetricas.innerHTML += `
-                <option value="${item.idTanque}">Tanque ${item.idTanque}</option>`;
+        <option value="${item.idTanque}">Tanque ${item.idTanque}</option>`;
         });
-    }
-
-    function retornarTanque(idTanque) {
-        sessionStorage.ID_TANQUE_SELECIONADO = idTanque;
-        window.location = "./dashboard.html";
     }
 
     function aparecerDivReabastecimentos() {
@@ -279,6 +240,75 @@
                 console.log(`#ERRO: ${resposta}`);
             });
     }
+
+
+    function exibirReabastecimentos() {
+
+        const idEmpresa = sessionStorage.ID_EMPRESA
+
+        fetch(`/reabastecimentos/listar/${idEmpresa}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((resposta) => {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    throw new Error(`Erro ao buscar reabastecimentos: ${resposta.status}`);
+                }
+            })
+            .then((dados) => {
+                const container = document.getElementById("reabastecimentos-container");
+
+                // Limpa o container antes de adicionar novos registros
+                container.innerHTML = "";
+
+                dados.forEach((reabastecimento) => {
+                    const reabastecimentoDiv = document.createElement("div");
+                    reabastecimentoDiv.classList.add("reabastecimento-item");
+
+                    reabastecimentoDiv.innerHTML = `
+                    <div class="reabastecimento-dados">
+                        <p><strong>Data:</strong> ${new Date(reabastecimento.dataAbastecimento).toLocaleDateString()}</p>
+                        <p><strong>Volume:</strong> ${reabastecimento.volumeReabastecido} litros</p>
+                        <p><strong>Tanque:</strong> ${reabastecimento.idTanque}</p>
+                    </div>
+                    <div class="reabastecimento-acao">
+                        <span class="material-symbols-outlined lixeira-icon" onclick="deletarReabastecimento(${reabastecimento.idAbastecimento})">
+                            delete
+                        </span>
+                    </div>
+                `;
+
+                    container.appendChild(reabastecimentoDiv);
+                });
+            })
+            .catch((erro) => {
+                console.error("Erro ao carregar reabastecimentos:", erro);
+            });
+    }
+
+    function deletarReabastecimento(idReabastecimento) {
+        fetch(`/reabastecimentos/deletar/${idReabastecimento}`, {
+            method: "DELETE",
+        })
+            .then((resposta) => {
+                if (resposta.ok) {
+                    console.log(`Reabastecimento ${idReabastecimento} deletado com sucesso!`);
+                    exibirReabastecimentos();
+                } else {
+                    throw new Error(`Erro ao deletar reabastecimento: ${resposta.status}`);
+                }
+            })
+            .catch((erro) => {
+                console.error("Erro ao deletar reabastecimento:", erro);
+            });
+    }
+
+    // Chama a função ao carregar a página
+    document.addEventListener("DOMContentLoaded", exibirReabastecimentos);
 
 
 </script>

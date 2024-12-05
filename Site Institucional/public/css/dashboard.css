@@ -320,3 +320,37 @@ canvas {
 .modal-content button:hover {
   background-color: #c2d0cc;
 }
+
+
+
+
+.reabastecimentos-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.reabastecimento-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.reabastecimento-dados p {
+  margin: 0.2rem 0;
+}
+
+.lixeira-icon {
+  cursor: pointer;
+  color: #f44336;
+  font-size: 1.5rem;
+  transition: transform 0.2s;
+}
+
+.lixeira-icon:hover {
+  transform: scale(1.1);
+}

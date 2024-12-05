@@ -84,12 +84,11 @@
                         check_box
                     </span> Tanques
                 </li>
-                <li class="sidebar-list-item">
+                <li class="sidebar-list-item" onclick="window.location.href ='./registros.html'">
                     <span class="material-symbols-outlined">
-                        account_circle
-                    </span> Perfil
+                        description
+                    </span> Registros
                 </li>
-
                 <li class="sidebar-list-item" onclick="sair()">
                     <span class="material-symbols-outlined">
                         logout
@@ -112,7 +111,7 @@
 
     function sair() {
         sessionStorage.clear()
-        window.location.href ='./index.html'
+        window.location.href = './index.html'
     }
 
     nome_usuario.innerHTML += `${sessionStorage.NOME_USUARIO}`

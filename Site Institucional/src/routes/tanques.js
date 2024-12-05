@@ -8,7 +8,7 @@ router.get("/:idEmpresa", function (req, res) {
 
 router.post("/cadastrar", function (req, res) {
   tanqueController.cadastrar(req, res);
-})
+});
 
 // Retornar o tanque selecionado
 router.get("/tanques/:idTanque", function (req, res) {
