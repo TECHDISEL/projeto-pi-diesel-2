@@ -56,6 +56,7 @@
                         <div id="graficos"></div>
                     </div>
                     <div class="charts-card">
+                        <p><b>Consumo mensal</b></p>
                         <canvas id="graficos2"></canvas>
                     </div>
                 </div>
@@ -481,8 +482,8 @@
             .then(dadosMensais => {
                 console.log("Dados recebidos:", dadosMensais);
 
-                const labels = dadosMensais.map(est => `Mês ${est.mesAtual}`)
-                const dados = dadosMensais.map(est => est.leituraDoMes);
+                const labels = dadosMensais.map(est => `Mês ${est.mesAno}`)
+                const dados = dadosMensais.map(est => est.diferencaLeitura);
 
                 const ctx = document.getElementById("graficos2").getContext("2d");
 
@@ -507,7 +508,7 @@
                     options: {
                         plugins: {
                             legend: {
-                                display: true,
+                                display: false,
                             }
                         },
                         responsive: true,
