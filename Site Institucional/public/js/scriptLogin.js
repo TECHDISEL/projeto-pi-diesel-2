@@ -346,7 +346,7 @@ function entrar() {
 
                 if (sessionStorage.CARGO == 'Suporte N3') {
                     setTimeout(function () {
-                        window.location = "bobIA.html"
+                        window.location = "atendimentoAoCliente.html"
                     }, 2000);
                 } else {
                     setTimeout(function () {
